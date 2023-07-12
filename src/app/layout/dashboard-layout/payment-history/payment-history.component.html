@@ -1,0 +1,234 @@
+<!-- <div class="container-fluid">
+    <app-statistics></app-statistics> -->
+
+<section class="pt-5">
+    <div class="md:flex">
+        <div class="md:w-full">
+            <div class="project-banner">
+                <div class="pt-4">
+                    <app-tabs></app-tabs>
+
+                    <section aria-labelledby="tab8-label">
+                        <div class="text-right" style="margin-right: 10px;">
+                            <div>
+                                <button (click)="paymentHistoryModal.show();openModal()" style="cursor: pointer;"
+                                    class="mt-3 new-project-btn primary-btn font-size-16 primary-btn-text-color font-medium tracking-normal text-center">
+                                    Add Payment History
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <div class="mt-4 lg:flex">
+                                <div class="md:w-full">
+                                    <div class="worker-table mt-3" *ngIf="paymentList && paymentList.length>0">
+                                        <table class="worker-data" style="WIDTH: 100%;">
+                                            <tr>
+                                                <th class="text-left">Description</th>
+                                                <th class="text-left">Amount</th>
+                                                <th class="text-left">Payment Date</th>
+                                                <th class="text-left">Action</th>
+                                            </tr>
+
+                                            <tr *ngFor="let Payment of paymentList">
+
+                                                <td>
+                                                    <div *ngIf="Payment.description!=null && Payment.description!=''">
+                                                        <div style="text-align: justify;"
+                                                            *ngIf="Payment.description.length>85"
+                                                            class="font-medium heading-title-text-color font-size-14">
+                                                            <span style="word-break: break-all"
+                                                                [innerHtml]="Payment.description.slice(0, 85)"></span>
+
+                                                            <b style="cursor: pointer;color: blue;"
+                                                                (click)="htmlDescriptionModal.show()">Read
+                                                                more...</b>
+
+                                                            <div bsModal
+                                                                [config]="{backdrop: 'static',  keyboard: false}"
+                                                                class="modal fade" #htmlDescriptionModal="bs-modal"
+                                                                tabindex="-1" role="dialog"
+                                                                aria-labelledby="myModalLabel" aria-hidden="true"
+                                                                data-toggle="modal"
+                                                                data-target="#exampleModalScrollable">
+                                                                <div class="modal-dialog modal-lg" role="document">
+                                                                    <div class="modal-content">
+
+
+                                                                        <div class="modal-header">
+                                                                            <h4 class="modal-title"><b>Description</b>
+                                                                            </h4>
+                                                                            <button type="button" class="close"
+                                                                                (click)="htmlDescriptionModal.hide()"
+                                                                                aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+
+                                                                        <div class="modal-body">
+                                                                            <div class="col col-md-12">
+                                                                                <div class="lg:flex"
+                                                                                    style="word-break: break-all;"
+                                                                                    [innerHtml]="Payment.description">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button"
+                                                                                    class="primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center"
+                                                                                    (click)="htmlDescriptionModal.hide()"
+                                                                                    aria-label="Close">Cancel</button>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <p style="text-align: justify; word-break: break-all;"
+                                                            *ngIf="Payment.description.length<=85"
+                                                            [innerHtml]="Payment.description"
+                                                            class="font-medium heading-title-text-color font-size-14">
+                                                        </p>
+                                                    </div>
+                                                    <!-- <span class="font-medium heading-title-text-color font-size-14">
+                                                        {{Payment.description}}
+                                                    </span> -->
+                                                </td>
+                                                <td>
+                                                    <span class="font-medium heading-title-text-color font-size-14">
+                                                        {{Payment.amount}}
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span class="font-medium heading-title-text-color font-size-14">
+                                                        {{getDate(Payment.paymentDate)}}
+                                                    </span>
+                                                </td>
+
+                                                <td>
+                                                    <span class="font-medium heading-title-text-color font-size-14"
+                                                        (click)="EditPayment(Payment)">
+                                                        <span>
+                                                            <i class="fa fa-edit"></i>
+                                                        </span>
+                                                    </span>
+                                                    &nbsp; | &nbsp;
+                                                    <span (click)="DeletePayment(Payment.id)"
+                                                        class="font-medium heading-title-text-color font-size-14 delete-btn">
+                                                        <i class="fas fa-trash"></i>
+                                                    </span>
+                                                </td>
+
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                    <div style="text-align:center;" class="worker-table mt-3"
+                                        *ngIf="paymentList == null">
+                                        <span><b>No record (s) to show !</b></span>
+                                    </div>
+
+                                    <div style="text-align:center;" class="worker-table mt-3"
+                                        *ngIf="paymentList != null && paymentList.length==0">
+                                        <span><b>No record (s) to show !</b></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="md:w-full mt-3" *ngIf="pager.pages?.length>1">
+        <ul *ngIf="pager.pages && pager?.pages?.length" class="pagination-prev page-item pagination">
+            <li [ngClass]="{disabled:pager.currentPage === 1}" class="pagination-first page-item">
+                <a class="page-link" style="cursor: pointer;" *ngIf="pager.currentPage > 1"
+                    (click)="getPaymentHistory(1)">First</a>
+                <a class="page-link" *ngIf="pager.currentPage === 1">First</a>
+            </li>
+            <li [ngClass]="{disabled:pager.currentPage === 1}" class="pagination-prev page-item">
+                <a class="page-link" style="cursor: pointer;" *ngIf="pager.currentPage > 1"
+                    (click)="getPaymentHistory(pager.currentPage - 1)">Previous</a>
+                <a class="page-link" *ngIf="pager.currentPage === 1">Previous</a>
+            </li>
+            <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}"
+                class="pagination-page page-item">
+                <a class="page-link" style="cursor: pointer;" (click)="getPaymentHistory(page)">{{page}}</a>
+            </li>
+            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="pagination-next page-item">
+                <a class="page-link" style="cursor: pointer;" *ngIf="pager.totalPages > pager.currentPage"
+                    (click)="getPaymentHistory(pager.currentPage + 1)">Next</a>
+                <a class="page-link" *ngIf="pager.currentPage === pager.totalPages">Next</a>
+            </li>
+            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="pagination-last page-item">
+                <a class="page-link" style="cursor: pointer;" *ngIf="pager.totalPages > pager.currentPage"
+                    (click)="getPaymentHistory(pager.totalPages)">Last</a>
+                <a class="page-link" *ngIf="pager.currentPage === pager.totalPages">Last</a>
+            </li>
+        </ul>
+    </div>
+</section>
+<!-- </div> -->
+
+
+<!--Model Start for Add new milestone Here-->
+<div bsModal [config]="{backdrop: 'static',  keyboard: false}" class="modal fade" #paymentHistoryModal="bs-modal"
+    tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-toggle="modal"
+    data-target="#exampleModalScrollable">
+    <div class="modal-dialog modal-lg mt-5 md:mt-5" role="document">
+        <div class="modal-content">
+
+            <form [formGroup]="paymentHistoryForm" method="post" class="form-horizontal">
+
+                <div class="modal-header">
+                    <h4 class="modal-title"><b>Payment History</b></h4>
+                    <button type="button" class="close" (click)="paymentHistoryModal.hide()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="col-md-6 mt-2">
+                        <p>Select Date :<span class="help-block">*</span></p>
+                        <input type="date" placeholder="Select Date" formControlName="paymentDate" name="description"
+                            class="input-form-control" style="background-color:white;" />
+                        <p class="error-text"
+                            *ngIf="submitAttempt && paymentHistoryForm.controls.paymentDate.errors?.required">
+                            Date is required </p>
+                    </div>
+                    <div class="col-md-6 mt-2">
+                        <p>Enter Description :<span class="help-block">*</span></p>
+                        <textarea class="input-form-control" rows="5" formControlName="description"
+                            name="TaskDescription" id="TaskDescription" placeholder="Enter description"></textarea>
+                        <!-- <textarea class="form-control" type="text" placeholder="Enter Description" formControlName="description"
+                            name="description" class="input-form-control" /> -->
+                        <p class="error-text"
+                            *ngIf="submitAttempt && paymentHistoryForm.controls.description.errors?.required">
+                            Description is required </p>
+                    </div>
+                    <div class="col-md-6 mt-2">
+                        <p>Enter Amount :<span class="help-block">*</span></p>
+                        <input type="text" placeholder="Enter Amount" formControlName="amount" name="amount"
+                            mask="0*.00" maxlength="11" class="input-form-control" />
+                        <p class="error-text"
+                            *ngIf="submitAttempt && paymentHistoryForm.controls.amount.errors?.required">
+                            Amount is required </p>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button"
+                        class="primary-btn font-size-16 cancel-btn font-medium tracking-normal text-center"
+                        (click)="paymentHistoryModal.hide()" aria-label="Close">Cancel</button>
+                    <button type="button" (click)="AddNewPaymentToProject()"
+                        class="primary-btn font-size-16 primary-btn-text-color font-medium tracking-normal text-center">Submit</button>
+
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal ends here -->
+
+<app-chat-room></app-chat-room>

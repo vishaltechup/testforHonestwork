@@ -1,0 +1,245 @@
+<div class="s-layout__sidebar">
+    <a class="s-sidebar__trigger">
+        <i class="fa fa-bars"></i>
+    </a>
+
+    <nav class="s-sidebar__nav">
+        <ul>
+            <li (click)="hideBlock()" style="position: sticky;
+            top: 0;
+            z-index: 4;
+            background: #1c3a84;">
+           
+                <a class="s-sidebar__nav-link">
+                    <em class="logo-text-left font-size-20 white-text-color tracking-normal font-medium"
+                        style="left:auto !important;">
+                        <img src="../../../../assets/img/HonestWork Logo.png" style="width: 75%;
+                        margin-left: auto;
+                        margin-right: auto;">
+                    </em>
+                </a>
+            </li>
+            <li *ngIf="permissions.agencyview.canView" (click)="hideBlock()">
+                <a class="s-sidebar__nav-link" routerLink="/dashboard"
+                    [ngStyle]="{'background': router.url.indexOf('dashboard') > -1 ? '#434343' : '' }">
+                    <i class="fas fa-tachometer-alt sidebar-icon-color"></i>
+                    <em class=" white-text-color tracking-normal font-medium">
+                        Dashboard
+                    </em>
+                </a>
+            </li>
+            <li *ngIf="permissions.workerdashboard.canView" (click)="hideBlock()">
+                <a class="s-sidebar__nav-link" routerLink="/w/dashboard"
+                    [ngStyle]="{'background': router.url.indexOf('dashboard') > -1 ? '#434343' : '' }">
+                    <i class="fas fa-tachometer-alt sidebar-icon-color"></i>
+                    <em class=" white-text-color tracking-normal font-medium">
+                        Dashboard
+                    </em>
+                </a>
+            </li>
+            <li *ngIf="permissions.agencyview.canView" (click)="hideBlock()">
+                <a class="s-sidebar__nav-link" routerLink="/project-list"
+                    [ngStyle]="{'background': router.url.indexOf('project-list') > -1 ? '#434343' : '' }">
+                    <i class="far fa-list-alt sidebar-icon-color"></i>
+                    <em class=" white-text-color tracking-normal font-medium">
+                        Project List
+                    </em>
+                </a>
+            </li>
+            <li *ngIf="permissions.logout.canView" (click)="hideBlock()">
+                <a class="s-sidebar__nav-link" routerLink="/task-list"
+                    [ngStyle]="{'background': router.url.indexOf('task-list') > -1 ? '#434343' : '' }">
+                    <i class="fa fa-tasks sidebar-icon-color"></i>
+                    <em class=" white-text-color tracking-normal font-medium">
+                        Task List
+                    </em>
+                </a>
+            </li>
+            <li *ngIf="permissions.notes.canView" (click)="hideBlock()">
+                <a class="s-sidebar__nav-link" routerLink="/notes"
+                    [ngStyle]="{'background': router.url.indexOf('notes') > -1 ? '#434343' : '' }">
+                    <i class="fas fa-pen sidebar-icon-color"></i>
+                    <em class=" white-text-color tracking-normal font-medium">
+                        Notes
+                    </em>
+                </a>
+            </li>
+            <li *ngIf="permissions.workers.canView" (click)="hideBlock()">
+                <a class="s-sidebar__nav-link" routerLink="/workers"
+                    [ngStyle]="{'background': router.url.indexOf('workers') > -1 ? '#434343' : '' }">
+                    <i class="fa fa-users sidebar-icon-color"></i>
+                    <em class=" white-text-color tracking-normal font-medium">
+                        Workers
+                    </em>
+                </a>
+            </li>
+            <li *ngIf="permissions.personaltodo.canView" (click)="hideBlock()">
+                <a class="s-sidebar__nav-link" routerLink="/personal"
+                    [ngStyle]="{'background': router.url.indexOf('personal') > -1 ? '#434343' : '' }">
+                    <i class="fas fa-clipboard-list sidebar-icon-color"></i>
+                    <em class=" white-text-color tracking-normal font-medium">
+                        Personal To Do
+                    </em>
+                </a>
+            </li>
+            <li *ngIf="permissions.account.canView" (click)="hideBlock()">
+                <a class="s-sidebar__nav-link" routerLink="/account"
+                    [ngStyle]="{'background': router.url.indexOf('account') > -1 ? '#434343' : '' }">
+                    <i class="fa fa-user sidebar-icon-color"></i>
+                    <em class=" white-text-color tracking-normal font-medium">
+                        Account
+                    </em>
+                </a>
+            </li>
+            <li *ngIf="permissions.agencyaccount.canView" (click)="hideBlock()">
+                <a class="s-sidebar__nav-link" routerLink="/agency-account"
+                    [ngStyle]="{'background': router.url.indexOf('agency-account') > -1 ? '#330099' : '' }">
+                    <i class="fa fa-user sidebar-icon-color"></i>
+                    <em class=" white-text-color tracking-normal font-medium">
+                        Account
+                    </em>
+                </a>
+            </li>
+            <li *ngIf="permissions.clientaccount.canView" (click)="hideBlock()">
+                <a class="s-sidebar__nav-link" routerLink="/client-account"
+                    [ngStyle]="{'background': router.url.indexOf('client-account') > -1 ? '#434343' : '' }">
+                    <i class="fa fa-user sidebar-icon-color"></i>
+                    <em class=" white-text-color tracking-normal font-medium">
+                        Account
+                    </em>
+                </a>
+            </li>
+            <!-- <li *ngIf="permissions.changepassword.canView" (click)="hideBlock()">
+                <a class="s-sidebar__nav-link" routerLink="/change-password"
+                    [ngStyle]="{'background': router.url.indexOf('change-password') > -1 ? '#434343' : '' }">
+                    <i class="fas fa-user-lock sidebar-icon-color"></i>
+                    <em class="font-size-18 white-text-color tracking-normal font-medium">
+                        Change Password
+                    </em>
+                </a>
+            </li> -->
+            <li *ngIf="permissions.MasterDetails.canView">
+
+                <a class="s-sidebar__nav-link dropdown cursor-pointer" (click)="showDrp(true)">
+                    <i class="fas fa-cog sidebar-icon-color"></i>
+                    <em class=" white-text-color tracking-normal font-medium" style="width: 75%;
+                    text-align: inherit;">
+                        Master Details <i class="ml-3 fa" [ngClass]="{'fa-caret-down':isShown === false,'fa-caret-up':isShown}"
+                                        ></i>
+                    </em>
+
+                </a>
+                <ul class="dropdown-content" [ngStyle]="{'display':isShown ?'block' :'none'}">
+                    <li (click)="showDrp(false)">
+                        <a class="s-sidebar__nav-link" routerLink="/worker-skills"
+                            [ngStyle]="{'background': router.url.indexOf('worker-skills') > -1 ? 'rgb(136 175 241)' : '' }">
+                            <i class="fas fa-user-graduate sidebar-icon-color ml-5"></i>
+                            <!-- <i class="fa fa-cog"></i> -->
+                             
+                            <!-- <i class="fa fa-lock"></i>  -->
+                            
+                            <em class="font-size-18 white-text-color tracking-normal font-medium ml-5">
+                                Worker Skills
+                                <i class="fas fa-info-circle tooltip iconcolorchange"> <span class="tooltiptext tooltip-bottom">Here you can add worker development skills</span></i>
+                            </em>
+                           
+                        </a>
+                    </li>
+                    <li (click)="showDrp(false)">
+                        <a class="s-sidebar__nav-link" routerLink="/task-status"
+                            [ngStyle]="{'background': router.url.indexOf('task-status') > -1 ? 'rgb(136 175 241)' : '' }">
+                            <i class="fa fa-tasks sidebar-icon-color ml-5"></i>
+                            <em class=" white-text-color tracking-normal font-medium ml-5">
+                                Task Status
+                                <i class="fas fa-info-circle tooltip iconcolorchange"> <span class="tooltiptext tooltip-bottom">Here you can add your custom task status</span></i>
+                            </em>
+                        </a>
+                    </li>
+                    <li (click)="showDrp(false)">
+                        <a class="s-sidebar__nav-link" routerLink="/task-priority"
+                            [ngStyle]="{'background': router.url.indexOf('task-priority') > -1 ? 'rgb(136 175 241)' : '' }">
+                            <i class="fas fa-level-up-alt sidebar-icon-color ml-5"></i>
+                            <em class=" white-text-color tracking-normal font-medium ml-5">
+                                Task Priority
+                                <i class="fas fa-info-circle tooltip iconcolorchange "> <span class="tooltiptext tooltip-bottom">Here you can add your custom task priority</span></i>
+                            </em>
+                        </a>
+                    </li>
+                    <li (click)="showDrp(false)">
+                        <a class="s-sidebar__nav-link" routerLink="/task-tag"
+                            [ngStyle]="{'background': router.url.indexOf('task-tag') > -1 ? 'rgb(136 175 241)' : '' }">
+                            <i class="fa fa-tag sidebar-icon-color ml-5"></i>
+                            <em class=" white-text-color tracking-normal font-medium ml-5">
+                                Task Tag
+                                <i class="fas fa-info-circle tooltip iconcolorchange"> <span class="tooltiptext tooltip-bottom">Here you can add your custom task tag</span></i>
+                            </em>
+                        </a>
+                    </li>
+                    <li (click)="showDrp(false)">
+                        <a class="s-sidebar__nav-link" routerLink="/project-techstack"
+                            [ngStyle]="{'background': router.url.indexOf('project-techstack') > -1 ? 'rgb(136 175 241)' : '' }">
+                            <i class="fa fa-database sidebar-icon-color ml-5"></i>
+                            <em class=" white-text-color tracking-normal font-medium ml-5">
+                                Tech Stack
+                                <i class="fas fa-info-circle tooltip iconcolorchange"> <span class="tooltiptext tooltip-bottom">Here you can add your project tech stacks</span></i>
+                            </em>
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- </a> -->
+
+            </li>
+            <!-- <li>
+                <a class="s-sidebar__nav-link" routerLink="/worker-skills">
+                    <i class="fas fa-cog sidebar-icon-color"></i>
+                    <em class="font-size-18 white-text-color tracking-normal font-medium">
+                        Worker Skills
+                    </em>
+                </a>
+            </li>
+            <li>
+                <a class="s-sidebar__nav-link" routerLink="/task-status">
+                    <i class="fas fa-cog sidebar-icon-color"></i>
+                    <em class="font-size-18 white-text-color tracking-normal font-medium">
+                        Task Status
+                    </em>
+                </a>
+            </li>
+            <li>
+                <a class="s-sidebar__nav-link" routerLink="/task-tag">
+                    <i class="fas fa-cog sidebar-icon-color"></i>
+                    <em class="font-size-18 white-text-color tracking-normal font-medium">
+                        Task Tag
+                    </em>
+                </a>
+            </li>
+            <li>
+                <a class="s-sidebar__nav-link" routerLink="/project-techstack">
+                    <i class="fas fa-cog sidebar-icon-color"></i>
+                    <em class="font-size-18 white-text-color tracking-normal font-medium">
+                        Tech Stack
+                    </em>
+                </a>
+            </li> -->
+            <li *ngIf="permissions.download.canView">
+                <a class="s-sidebar__nav-link" routerLink="/download"
+                    [ngStyle]="{'background': router.url.indexOf('download') > -1 ? '#434343' : '' }">
+                    <i class="fa fa-download sidebar-icon-color"></i>
+                    <em class=" white-text-color tracking-normal font-medium">
+                        Time Tracker App
+                    </em>
+                </a>
+            </li>
+            <li *ngIf="permissions.logout.canView">
+                <a class="s-sidebar__nav-link cursor-pointer" (click)="logout()"
+                    [ngStyle]="{'background': router.url.indexOf('logout') > -1 ? '#434343' : '' }">
+                    <i class="fa fa-power-off sidebar-icon-color"></i>
+                    <em class=" white-text-color tracking-normal font-medium">
+                        Log Out
+                    </em>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>

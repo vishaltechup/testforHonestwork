@@ -1,0 +1,259 @@
+<!-- <div class="container-fluid">
+    <app-statistics></app-statistics> -->
+
+<section class="pt-5">
+    <div class="md:flex">
+        <div class="md:w-full">
+            <div class="project-banner">
+                <div class="pt-4">
+                    <app-tabs></app-tabs>
+                    <section aria-labelledby="tab2-label">
+                        <div class="p-4">
+                            <div class="w-full lg:flex md:flex">
+                                <div class="mr-2 lg:w-1/4 md:w-1/4 sm:w-full">
+                                    <ng-multiselect-dropdown class="mr-2 lg:w-1/4 md:w-1/4 sm:w-full"
+                                        [placeholder]="'Select Workers'" [settings]="dropdownSettings"
+                                        [data]="workerList" [(ngModel)]="selectedItems" name="name"
+                                        (onSelect)="onItemSelect($event)" (onFilterChange)="onFilterChange($event)"
+                                        (onSelectAll)="onSelectAll($event)" (onDropDownClose)="onDropDownClose()">
+                                    </ng-multiselect-dropdown>
+                                </div>
+                                <div class="mt-2 lg:w-1/4 md:w-1/4 sm:w-full lg:mt-0 md:mt-0">
+                                    <button type="button"
+                                        class="new-project-btn primary-btn font-size-16 primary-btn-text-color font-medium tracking-normal w-full"
+                                        (click)="AddWorker()">
+                                        Add
+                                    </button>
+                                </div>
+
+                            </div>
+                            <div class="mt-4">
+                                <span class="font-size-16 tracking-normal child-text-color font-bold">
+                                    Workers
+                                </span>
+                                <!-- <br/>
+                                    <span class="font-size-14 tracking-normal child-text-color font-bold">
+                                        Agency Workers
+                                    </span> -->
+                                <ng-container *ngIf="agencyWiseData !== undefined">
+                                    <div class="worker-data" *ngFor="let workeractivity of agencyWiseData">
+                                        <table width="100%" class="worker-table border"
+                                            *ngIf="workersActivityList && workersActivityList.length">
+                                            <tr style="text-decoration: underline; font-weight: bold;">
+                                                <td>{{workeractivity?.childArray[0]?.agencyName}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th
+                                                    class="font-size-14 heading-title-text-color tracking-normal font-bold text-left">
+                                                    Member</th>
+                                                <th
+                                                    class="font-size-14 heading-title-text-color tracking-normal font-bold text-left">
+                                                    Last Worked On</th>
+                                                <th class="font-size-14 heading-title-text-color tracking-normal font-bold text-center"
+                                                    style="text-align:center !important;">
+                                                    Time Worked / Activity</th>
+                                                <th class="delete-container">
+                                                    <div class="delete-container">
+                                                        Action
+                                                    </div>
+                                                </th>
+                                            </tr>
+                                            <tr *ngFor="let workeractivity of workeractivity.childArray"
+                                                id="profile-tr">
+                                                <td class="relative">
+                                                    <div class="top-text-fixed">
+                                                        <div class=""
+                                                            style="display: flex;justify-content:space-between">
+                                                            <p style="cursor: pointer;"
+                                                                class="font-size-16 font-medium tracking-normal mb-0"
+                                                                routerLink="/today-activity/{{projectId}}/{{workeractivity.workerId}}">
+                                                                {{workeractivity.workerName}}
+                                                            </p>
+                                                            <!-- <div class="dropdown-container" tabindex="-1">
+                                                                <i class="fa fa-times" style="color: red;font-size: 14px;" (click)="deleteUser(workeractivity)"></i>
+                                                            </div> -->
+                                                            <!-- <div class="dropdown-container" tabindex="-1">
+                                                                <div class="three-dots"></div>
+                                                                <ul class="dropdown">
+                                                                    <li (click)="deleteUser(workeractivity)"
+                                                                        href="javascript:void(0)">
+                                                                        Delete
+                                                                    </li>
+                                                                </ul>
+                                                            </div> -->
+                                                        </div>
+                                                        <p class="font-size-14 child-text-color font-normal tracking-normal mb-0"
+                                                            *ngIf="workeractivity.timeDuration != '' || workeractivity.timeDuration != null ">
+                                                            Last seen {{workeractivity.timeDuration}}
+                                                        </p>
+                                                        <p class="font-size-14 child-text-color font-normal tracking-normal mb-0"
+                                                            *ngIf="workeractivity.timeDuration == ''">
+                                                            Last seen 00.00 ago
+                                                        </p>
+                                                    </div>
+                                                    <div class="bottom-text-fixed">
+                                                        <p
+                                                            class="font-size-14 child-text-color font-normal tracking-normal mb-0">
+                                                            Partner - {{workeractivity.agencyName}}
+                                                        </p>
+                                                    </div>
+                                                </td>
+                                                <td style="width: 10%;">
+
+                                                    <div class="code-img">
+
+                                                        <img style="cursor: pointer;"
+                                                            *ngIf="workeractivity.imagePath==''"
+                                                            [src]="workeractivity.imagePath"
+                                                            routerLink="/today-activity/{{projectId}}/{{workeractivity.workerId}}"
+                                                            onerror="this.onerror=null;this.src='../../../assets/img/S-default.png';" />
+
+                                                        <img style="cursor: pointer;"
+                                                            *ngIf="workeractivity.imagePath!=''"
+                                                            [src]="workeractivity.imagePath"
+                                                            routerLink="/today-activity/{{projectId}}/{{workeractivity.workerId}}"
+                                                            onerror="this.onerror=null;this.src='../../../assets/img/S-default.png';" />
+
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="table-wrapper1"
+                                                        *ngIf="workeractivity.workerWeekenddata!=null">
+                                                        <table width="100%" class="data-table1"
+                                                            *ngIf="workeractivity.workerWeekenddata.length>0">
+                                                            <tr style="display:flex;">
+                                                                <th
+                                                                    class="text-center font-size-14 font-bold cursor-pointer tracking-nromal active-border">
+                                                                    Mon
+                                                                    -{{workeractivity.workerWeekenddata[0].weekDate|
+                                                                    date:'MM/dd'}}</th>
+                                                                <th
+                                                                    class="text-center font-size-14 font-bold cursor-pointer tracking-nromal ">
+                                                                    Tue
+                                                                    -{{workeractivity.workerWeekenddata[1].weekDate|
+                                                                    date:'MM/dd'}}</th>
+                                                                <th
+                                                                    class="text-center font-size-14 font-bold cursor-pointer tracking-nromal ">
+                                                                    Wed
+                                                                    -{{workeractivity.workerWeekenddata[2].weekDate|
+                                                                    date:'MM/dd'}}</th>
+                                                                <th
+                                                                    class="text-center font-size-14 font-bold cursor-pointer tracking-nromal ">
+                                                                    Thu
+                                                                    -{{workeractivity.workerWeekenddata[3].weekDate|
+                                                                    date:'MM/dd'}}</th>
+                                                                <th
+                                                                    class="text-center font-size-14 font-bold cursor-pointer tracking-nromal ">
+                                                                    Fri
+                                                                    -{{workeractivity.workerWeekenddata[4].weekDate|
+                                                                    date:'MM/dd'}}</th>
+                                                                <th
+                                                                    class="text-center font-size-14 font-bold cursor-pointer tracking-nromal ">
+                                                                    Sat
+                                                                    -{{workeractivity.workerWeekenddata[5].weekDate|
+                                                                    date:'MM/dd'}}</th>
+                                                                <th
+                                                                    class="text-center font-size-14 font-bold cursor-pointer tracking-nromal ">
+                                                                    Sun
+                                                                    -{{workeractivity.workerWeekenddata[6].weekDate|
+                                                                    date:'MM/dd'}}</th>
+                                                            </tr>
+                                                            <tbody>
+                                                                <tr style="display:flex;">
+                                                                    <td
+                                                                        class="active-border active-background text-center">
+                                                                        {{workeractivity.workerWeekenddata[0].dayHours}}
+                                                                    </td>
+                                                                    <td class="text-center table-child-background">
+                                                                        {{workeractivity.workerWeekenddata[1].dayHours}}
+                                                                    </td>
+                                                                    <td class="text-center table-child-background">
+                                                                        {{workeractivity.workerWeekenddata[2].dayHours}}
+                                                                    </td>
+                                                                    <td class="text-center table-child-background">
+                                                                        {{workeractivity.workerWeekenddata[3].dayHours}}
+                                                                    </td>
+                                                                    <td class="text-center table-child-background">
+                                                                        {{workeractivity.workerWeekenddata[4].dayHours}}
+                                                                    </td>
+                                                                    <td class="text-center table-child-background">
+                                                                        {{workeractivity.workerWeekenddata[5].dayHours}}
+                                                                    </td>
+                                                                    <td class="text-center table-child-background">
+                                                                        {{workeractivity.workerWeekenddata[6].dayHours}}
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="dropdown-container delete-container" tabindex="-1">
+                                                        <!-- <i class="fa fa-times" style="color: red;font-size: 14px;" (click)="deleteUser(workeractivity)"></i> -->
+                                                        <i class="fa fa-trash"  (click)="deleteUser(workeractivity)"></i>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- </div> -->
+<!--Model Start Here-->
+<div bsModal [config]="{backdrop: 'static',  keyboard: false}" class="modal fade" #htmlAddModal="bs-modal" tabindex="-1"
+    role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-toggle="modal"
+    data-target="#exampleModalScrollable">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+            <form [formGroup]="workerForm" method="post" class="form-horizontal">
+
+                <div class="modal-header">
+                    <h4 class="modal-title"><b>Worker</b></h4>
+                    <button type="button" class="close" (click)="htmlAddModal.hide()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="col col-md-12">
+                        <div class="lg:flex:full mt-1">
+                            <div class="col-md-12 mt-3 ml-2">
+                                <label for="project-Name"
+                                    class="font-size-14 mb-2 tracking-normal font-bold input-label-color">Currency</label>
+                                <span style="color: red;margin-left: 2px;font-weight: bold;">*</span>
+
+                                <select formControlName="worker" name="currencyId" id="currencyId"
+                                    class="select-dropdown-design">
+                                    <option value="">Select Worker</option>
+                                    <option *ngFor="let worker of workersList" [value]="worker.id">
+                                        {{worker.fullName}}
+                                    </option>
+                                </select>
+                                <p class="error-text" *ngIf="submitted && workerForm.controls.worker.errors?.required">
+                                    Select Worker
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button"
+                            class="new-project-btn primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center"
+                            (click)="htmlAddModal.hide()" aria-label="Close">Cancel</button>
+                        <button type="button" (click)="AddWorker();"
+                            class="new-project-btn primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center">Submit</button>
+
+                    </div>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal ends here -->
+<app-chat-room></app-chat-room>

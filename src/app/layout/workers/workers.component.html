@@ -1,0 +1,383 @@
+<div bsModal [config]="{backdrop: 'static',  keyboard: false}" #htmlAddModal="bs-modal" class="modal fade" tabindex="-1"
+    role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 style="font-weight: bold;">Add Worker</h3>
+            </div>
+            <form [formGroup]="workerForm" method="post" class="form-horizontal">
+                <div class="modal-body">
+                    <div class="col col-md-12">
+                        <div class="lg:flex md:flex mt-2">
+                            <div class="md:w-1/2">
+                                <div class="col col-md-6 ">
+                                    <label for="worker-Name" class=" form-control-label">First name</label>
+                                    <span style="color: red;margin-left: 2px;font-weight: bold;">*</span>
+                                </div>
+                                <div class="col col-md-6">
+
+                                    <input type="text" id="Employee-input" form name="firstname" maxlength="50"
+                                        formControlName="firstName" placeholder="Enter first name"
+                                        class="px-3 py-3 block input-form-control pl-10">
+                                    <p class="error-text"
+                                        *ngIf="submitAttempt && workerForm.controls.firstName.errors?.required">
+                                        First name is required
+                                    </p>
+
+                                </div>
+                            </div>
+                            <div class="md:w-1/2 md:ml-2">
+                                <label for="worker-Name" class=" form-control-label">Last name</label>
+                                <span style="color: red;margin-left: 2px;font-weight: bold;">*</span>
+                                <!-- <div class="flex items-center m-block"> -->
+                                <div class="col col-md-6">
+                                    <input type="text" id="Employee-input" name="lastName" maxlength="50"
+                                        formControlName="lastName" placeholder="Enter last name"
+                                        class="px-3 py-3 block input-form-control pl-10" required>
+                                    <p class="error-text"
+                                        *ngIf="submitAttempt && workerForm.controls.lastName.errors?.required">
+                                        Last name is required
+                                    </p>
+                                </div>
+                                <!-- </div> -->
+                            </div>
+                        </div>
+
+                        <!--name ends-->
+
+
+                        <div class="row form-group mt-2">
+                            <div class="col col-md-3">
+                                <label for="worker-Name" class=" form-control-label">Email address</label>
+                                <span style="color: red;margin-left: 2px;font-weight: bold;">*</span>
+                            </div>
+                            <div class="col-12 col-md-9">
+
+                                <input type="text" id="Employee-input" name="email" maxlength="100"
+                                    formControlName="email" placeholder="Enter email address"
+                                    class="px-3 py-3 block input-form-control pl-10" required>
+
+                                <div *ngIf="submitAttempt && workerForm.controls.email.errors" class="error-text">
+                                    <div *ngIf="workerForm.controls.email.errors.required">Email is required</div>
+                                    <div *ngIf="workerForm.controls.email.errors.pattern">Email must be a valid email
+                                        address</div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+                        <!--email ends-->
+
+                        <div class="lg:flex md:flex mt-2">
+                            <div class="md:w-1/2">
+                                <div class="col col-md-6 ">
+                                    <label for="worker-Name" class=" form-control-label">Mobile number</label>
+                                    <span style="color: red;margin-left: 2px;font-weight: bold;">*</span>
+                                </div>
+                                <div class="col col-md-6">
+                                    <input type="text" id="Employee-input" mask="0000000000" pattern="^\d{10}$"
+                                        name="mobileNo" formControlName="mobileNo" placeholder="Enter mobile number"
+                                        class="px-3 py-3 block input-form-control pl-10" required>
+
+                                    <div *ngIf="submitAttempt && workerForm.controls.mobileNo.errors"
+                                        class="error-text">
+                                        <div *ngIf="workerForm.controls.mobileNo.errors.required"> Mobile number is
+                                            required</div>
+                                        <div *ngIf="workerForm.controls.mobileNo.errors.pattern"> Mobile number must be
+                                            a valid number</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="md:w-1/2 md:ml-2">
+                                <div class="col col-md-6 ">
+                                    <label for="worker-Name" class=" form-control-label">Worker type</label>
+                                    <span style="color: red;margin-left: 2px;font-weight: bold;">*</span>
+                                </div>
+                                <div class="col col-md-6">
+                                    <select class="px-3 py-3 block input-form-control pl-10"
+                                        formControlName="workerType" required>
+                                        <option value="">Select worker type</option>
+                                        <option value="F">Full time</option>
+                                        <option value="P">Part time</option>
+                                    </select>
+                                    <p class="error-text"
+                                        *ngIf="submitAttempt && workerForm.controls.workerType.errors?.required">
+                                        Worker type is required
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!--Mobileno and work type ends-->
+                        <div class="lg:flex md:flex mt-2">
+                            <div class="md:w-1/2">
+                                <div class="col col-md-6 ">
+                                    <label for="worker-Name" class=" form-control-label">Availability</label>
+                                    <span style="color: red;margin-left: 2px;font-weight: bold;">*</span>
+                                </div>
+                                <div class="col col-md-6">
+                                    <input type="text" id="Employee-input" name="availability" mask="0*.00"
+                                        maxlength="3" formControlName="availability"
+                                        placeholder="Enter availability in hours"
+                                        class="px-3 py-3 block input-form-control pl-10" required>
+                                    <p class="error-text"
+                                        *ngIf="submitAttempt && workerForm.controls.availability.errors?.required">
+                                        Availability is required
+                                    </p>
+
+                                    <p class="error-text"
+                                        *ngIf="submitAttempt && workerForm.controls.availability.errors?.pattern">
+                                        Invalid availability
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="md:w-1/2 md:ml-2">
+                                <div class="col col-md-6 ">
+                                    <label for="worker-Name" class=" form-control-label">Experience</label>
+                                    <span style="color: red;margin-left: 2px;font-weight: bold;">*</span>
+                                </div>
+                                <div class="col col-md-6">
+                                    <input type="text" id="Employee-input" mask="0*.00" maxlength="3" name="expreience"
+                                        formControlName="experience" placeholder="Enter experience in years"
+                                        class="px-3 py-3 block input-form-control pl-10" required>
+                                    <p class="error-text"
+                                        *ngIf="submitAttempt && workerForm.controls.experience.errors?.required">
+                                        Experience is required
+                                    </p>
+                                    <p class="error-text"
+                                        *ngIf="submitAttempt && workerForm.controls.experience.errors?.pattern">
+                                        Invalid availability
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!--availability and experience ends-->
+
+                        <!-- <div class="lg:flex mt-6 text-right"> -->
+                        <div class="modal-footer ml-3">
+                            <button type="button"
+                                class="cus-primary-btn text-center font-medium tracking-normal white-text-color font-size-18"
+                                (click)="htmlAddModal.hide()">Cancel</button>
+                            <button type="submit"
+                                class="cus-primary-btn text-center font-medium tracking-normal white-text-color font-size-18"
+                                (click)="AddWorker();">Submit</button>
+                        </div>
+                        <!-- </div> -->
+
+                    </div>
+                </div>
+            </form>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="container-fluid">
+    <div class="md:flex pt-3 fixed-style">
+        <div class="md:w-full flex justify-between">
+            <h1 class="font-size-24 heading-title-text-color font-bold mb-0 tracking-normal">
+                Workers
+            </h1>
+            <!-- <div class="m-center"> -->
+            <button
+                class="cus-primary-btn text-center font-medium tracking-normal white-text-color font-size-18 float-right"
+                data-toggle="modal" (click)="htmlAddModal.show();openModal()">
+                New worker
+            </button>
+            <!-- </div> -->
+        </div>
+    </div>
+    <form [formGroup]="workerSearchForm" method="post" class="form-horizontal">
+        <div class="flex m-block items-center mr-2 pt-4">
+
+
+            <div class="lg:w-1/4 md:w-full">
+                <div class="relative flex w-full flex-wrap items-stretch mt-1">
+                    <span
+                        class="flex z-1 h-full leading-snug font-normal absolute text-center text-gray-400 absolute bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3">
+                        <i class="fas fa-search"></i>
+                    </span>
+                    <input type="text" placeholder="Search a worker..." class="px-3 py-3 block input-form-control pl-10"
+                        style="padding-left: 2.5rem;" formControlName="searchName" />
+                </div>
+
+            </div>
+            <div class="lg:w-3/5 md:w-full mt-1 text-center md:text-left lg:text-left">
+                <button style="background-color: var(--cus-primary-btn-background); padding: 8px 15px;min-width: 30px;"
+                    class="cus-primary-btn ml-1 text-center font-medium tracking-normal white-text-color font-size-18"
+                    (click)="getWorkerList(1)">
+                    Search
+                </button>
+            </div>
+
+
+
+        </div>
+    </form>
+
+    <div class="">
+        <div class="lg:flex mt-5">
+            <div class="lg:w-1/2 md:w-full workers-banner-new p-4 m-mb-2" style="overflow: hidden;">
+                <div class="md:flex">
+                    <div class="md:w-full">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <div class="flex items-center">
+
+                                    <p
+                                        class="font-bold cursor-pointer font-size-18 heading-title-text-color tracking-normal mb-0">
+                                        Agency workers
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="worker-table mt-4">
+                    <table style="width: 100%;" class="worker-data">
+                        <tr>
+                            <th class="text-left">Name</th>
+                            <th class="text-left">Availability</th>
+                            <th class="text-center">Action</th>
+
+                        </tr>
+                        <tbody *ngIf="workerList && workerList?.length > 0">
+
+                            <tr *ngFor="let worker of workerList">
+                                <td>
+                                    <div class="flex items-center">
+                                        <img src="../../../assets/img/profile.png" style="max-width: 10%" />
+                                        <p style="text-decoration: underline;text-align: inherit !important;"
+                                            routerLink="/worker-details/{{worker.id}}"
+                                            class="font-size-18 heading-title-text-color pl-3 cursor-pointer font-medium tracking-normal mb-0">
+                                            {{worker.fullName}}
+                                        </p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span
+                                        class="font-size-18 tracking-normal heading-title-text-color font-medium cursor-pointer">{{worker.availability}}</span>
+                                </td>
+                                <td class="text-center help-block">
+                                    <span (click)="deleteWorker(worker.id);"><i class="fas fa-trash"></i></span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div *ngIf="pager?.pages?.length>1">
+                    <ul *ngIf="pager.pages && pager?.pages?.length" class="mb-5 pagination-prev page-item pagination">
+                        <li [ngClass]="{disabled:pager.currentPage === 1}" class="pagination-first page-item">
+                            <a class="page-link" style="cursor: pointer;" *ngIf="pager.currentPage > 1"
+                                (click)="getWorkerList(1)">First</a>
+                            <a class="page-link" *ngIf="pager.currentPage === 1">First</a>
+                        </li>
+                        <li [ngClass]="{disabled:pager.currentPage === 1}" class="pagination-prev page-item">
+                            <a class="page-link" style="cursor: pointer;" *ngIf="pager.currentPage > 1"
+                                (click)="getWorkerList(pager.currentPage - 1)">Previous</a>
+                            <a class="page-link" *ngIf="pager.currentPage === 1">Previous</a>
+                        </li>
+                        <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}"
+                            class="pagination-page page-item">
+                            <a class="page-link" style="cursor: pointer;" (click)="getWorkerList(page)">{{page}}</a>
+                        </li>
+                        <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}"
+                            class="pagination-next page-item">
+                            <a class="page-link" style="cursor: pointer;" *ngIf="pager.totalPages > pager.currentPage"
+                                (click)="getWorkerList(pager.currentPage + 1)">Next</a>
+                            <a class="page-link" *ngIf="pager.currentPage === pager.totalPages">Next</a>
+                        </li>
+                        <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}"
+                            class="pagination-last page-item">
+                            <a class="page-link" style="cursor: pointer;" *ngIf="pager.totalPages > pager.currentPage"
+                                (click)="getWorkerList(pager.totalPages)">Last</a>
+                            <a class="page-link" *ngIf="pager.currentPage === pager.totalPages">Last</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="lg:w-1/2 md:w-full workers-banner-new p-4 m-mb-2  md:ml-3" style="overflow: hidden;">
+                <div class="md:flex">
+                    <div class="md:w-full">
+                        <p class="font-size-18 tracking-normal font-bold heading-title-text-color">
+                            Freelancer(s)
+                        </p>
+                    </div>
+                </div>
+                <div class="worker-table mt-4">
+                    <table width="100%" class="worker-data">
+                        <tr>
+                            <th class="text-left">Name</th>
+                            <th class="text-left">Availability</th>
+                            <th class="text-center">Action</th>
+
+                        </tr>
+                        <tbody *ngIf="freelanceWorkerList && freelanceWorkerList?.length > 0">
+                            <tr *ngFor="let worker of freelanceWorkerList">
+                                <td>
+                                    <div class="flex items-center">
+                                        <img src="../../../assets/img/profile.png" style="max-width: 10%" />
+                                        <p style="text-decoration: underline;"
+                                            routerLink="/worker-details/{{worker.id}}"
+                                            class="font-size-18 heading-title-text-color pl-3 cursor-pointer font-medium tracking-normal mb-0">
+                                            {{worker.fullName}}
+                                        </p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span
+                                        class="font-size-18 tracking-normal heading-title-text-color font-medium cursor-pointer">{{worker.availability}}</span>
+                                </td>
+                                <td class="text-center help-block">
+                                    <span (click)="deleteWorker(worker.id);"><i class="fas fa-trash"></i></span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div *ngIf="pager2?.pages?.length>1">
+                    <ul *ngIf="pager2.pages && pager2.pages.length" class="mb-5 pagination-prev page-item pagination">
+                        <li [ngClass]="{disabled:pager2.currentPage === 1}" class="pagination-first page-item">
+                            <a class="page-link" style="cursor: pointer;" *ngIf="pager2.currentPage > 1"
+                                (click)="getFreelanceWorkerByAgencyID(1)">First</a>
+                            <a class="page-link" *ngIf="pager2.currentPage === 1">First</a>
+                        </li>
+                        <li [ngClass]="{disabled:pager2.currentPage === 1}" class="pagination-prev page-item">
+                            <a class="page-link" style="cursor: pointer;" *ngIf="pager2.currentPage > 1"
+                                (click)="getFreelanceWorkerByAgencyID(pager2.currentPage - 1)">Previous</a>
+                            <a class="page-link" *ngIf="pager2.currentPage === 1">Previous</a>
+                        </li>
+                        <li *ngFor="let page of pager2.pages" [ngClass]="{active:pager2.currentPage === page}"
+                            class="pagination-page page-item">
+                            <a class="page-link" style="cursor: pointer;"
+                                (click)="getFreelanceWorkerByAgencyID(page)">{{page}}</a>
+                        </li>
+                        <li [ngClass]="{disabled:pager2.currentPage === pager2.totalPages}"
+                            class="pagination-next page-item">
+                            <a class="page-link" style="cursor: pointer;" *ngIf="pager2.totalPages > pager2.currentPage"
+                                (click)="getFreelanceWorkerByAgencyID(pager2.currentPage + 1)">Next</a>
+                            <a class="page-link" *ngIf="pager2.currentPage === pager2.totalPages">Next</a>
+                        </li>
+                        <li [ngClass]="{disabled:pager2.currentPage === pager2.totalPages}"
+                            class="pagination-last page-item">
+                            <a class="page-link" style="cursor: pointer;" *ngIf="pager2.totalPages > pager2.currentPage"
+                                (click)="getFreelanceWorkerByAgencyID(pager2.totalPages)">Last</a>
+                            <a class="page-link" *ngIf="pager2.currentPage === pager2.totalPages">Last</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

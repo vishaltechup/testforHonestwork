@@ -1,0 +1,92 @@
+<div class="container-fluid">
+    <div class="md:flex pt-3 fixed-style">
+        <div class="md:w-full">
+            <span class="font-size-24 heading-title-text-color font-bold mb-0 tracking-normal cursor-pointer">
+                Account
+            </span>
+        </div>
+    </div>
+    <form novalidate [formGroup]="accountForm">
+        <div class="account-banner p-4 mt-5">
+            <div class="lg:w-4/6 md:w-full">
+                <div class="account-page flex">
+
+                    <input type="file" id="file-input" name="file-input" style="display: none;" accept="image/*"
+                        class="form-control-file" (change)="readUrl($event)">
+
+                    <img class="image" [src]="url" height="200" style="margin:2%;"
+                        onerror="this.onerror=null;this.src='../../../assets/img/profile.png';" width="50">
+                        <i class="fa fa-plus-circle"></i>
+                    <br />
+                </div>
+                <div class="lg:flex">
+
+                    <div class="lg:w-1/2 pr-2">
+                        <div class="mt-5">
+                            <p class="font-size-14 mb-2 tracking-normal font-bold input-label-color">
+                                Client Name
+                            </p>
+                            <input formControlName="firstName" class="block input-form-control" id="fname" name="fname"
+                                type="text" placeholder="Jon" />
+                        </div>
+                        <div class="mt-3">
+                            <p class="font-size-14 mb-2 tracking-normal font-bold input-label-color">
+                                Company Name
+                            </p>
+                            <input formControlName="lastName" class="block input-form-control" id="lname" name="lname"
+                                type="text" placeholder="Doe" />
+                        </div>
+
+                        <div class="mt-3">
+                            <p class="font-size-14 mb-2 tracking-normal font-bold input-label-color">
+                                Email Address
+                            </p>
+                            <input formControlName="emailId" class="block input-form-control" type="email"
+                                placeholder="Enter Email Address..." name="emailId" disabled="disabled" />
+                        </div>
+                       
+                        
+
+                        <div class="mt-5 flex items-center">
+                           
+                            <button 
+                                class="view-details-btn1 link-text-color font-size-18 tracking-normal font-medium text-center ml-4">
+                                Update
+                            </button>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 pl-2">
+                        <div class="mt-5">
+                            <p class="font-size-14 mb-2 tracking-normal font-bold input-label-color">
+                                Company Website
+                            </p>
+                            <input  class="block input-form-control" type="text"
+                                placeholder="Enter Website..." name="Website" disabled="disabled" />
+                        </div>
+                        <div class="mt-3">
+                            <p class="font-size-14 mb-2 tracking-normal font-bold input-label-color">
+                                Contact No
+                            </p>
+                            <input  class="block input-form-control" id="mobileNo"
+                                name="mobileNo" type="text" placeholder="ex.9999999999"
+                                mask="0000000000" />
+
+                                <p class="error-text"
+                                *ngIf="submitAttempt && accountForm.controls.mobileNo.errors?.required">
+                                Contact number is required</p>
+                            <p class="error-text"
+                                *ngIf="submitAttempt && accountForm.controls.mobileNo.errors?.pattern">
+                                Invalid contact number</p>
+
+
+                        </div>
+                       
+                       
+                       
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

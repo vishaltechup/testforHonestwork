@@ -1,0 +1,455 @@
+<!-- <div class="container-fluid">
+    <app-statistics></app-statistics> -->
+<section class="pt-5">
+    <div class="md:flex">
+        <div class="md:w-full">
+            <div class="project-banner">
+                <div class="pt-4">
+                    <app-tabs></app-tabs>
+                    <section aria-labelledby="tab3-label">
+                        <div class="p-4">
+
+                            <div class="col-md-12 mb-3" style="text-align: right;">
+                                <button (click)="htmlAddNoteModal.show()" style="cursor: pointer;"
+                                    class="mt-3 new-project-btn primary-btn font-size-16 primary-btn-text-color font-medium tracking-normal text-center">
+                                    Add note
+                                </button>
+                            </div>
+
+                            <div class="lg:flex lg:flex-wrap" *ngIf="noteList && noteList.length>0">
+                                <div class="lg:w-3/12 mb-4 pr-2" *ngFor="let note of noteList">
+                                    <div class="workers-box">
+                                        <div class="p-4">
+                                            <div class="flex items-center justify-between">
+                                                <span class="font-size-14 tracking-normal child-text-color font-medium">
+                                                    Posted by
+                                                </span>
+                                                <span (click)="ConvertTask(note)" style="cursor: pointer;"
+                                                    *ngIf="permissions.agencyview.canView"
+                                                    class="font-size-14 tracking-normal link-text-color font-medium">
+                                                    Convert to task
+                                                </span>
+                                            </div>
+                                            <p
+                                                class="font-size-14 tracking-normal font-bold mb-0 heading-title-text-color pt-2">
+                                                {{note.postedBy}}
+                                            </p>
+                                            <div class="md:flex pt-3">
+                                                <div class="md:w-5/6 pr-2" *ngIf="note.notes!=null && note.notes!=''">
+                                                    <div class="font-size-16 tracking-normal heading-title-text-color mb-0 font-medium"
+                                                        *ngIf="note.notes.length>85"
+                                                        style="height: 114px;overflow: auto;">
+                                                        {{note.notes.slice(0, 85)}} ...
+
+                                                    </div>
+
+                                                    <p *ngIf="note.notes.length<=85" [innerHtml]="note.notes"
+                                                        style="height: 114px;overflow: auto;"
+                                                        class="font-size-18 heading-title-text-color font-normal tracking-normal mb-0 pt-2">
+
+                                                    </p>
+                                                </div>
+                                                <div class="md:w-1/6">
+                                                    <div class="count-icon flex items-center justify-center">
+                                                        <span class="white-text-color font-bold">{{
+                                                            note.confirmeCount}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="top-full-border mt-3"></div>
+                                            <div class="mt-3">
+                                                <p
+                                                    class="font-size-14 child-text-color child-text-color font-bold tracking-normal">
+                                                    Confirmed by
+                                                </p>
+                                                <p
+                                                    class="font-size-14 heading-title-text-color font-bold  mb-0 pt-2 tracking-normal">
+                                                    {{note.confirmedBy?note.confirmedBy:'-'}}
+                                                    <span class="link-text-color"></span>
+                                                </p>
+                                            </div>
+                                            <div class="md:flex" *ngIf="permissions.agencyview.canView">
+                                                <div class="md:w-1/2 ">
+                                                    <button *ngIf="!note.isConfirm"
+                                                        style="font-size: 12px;font-weight: bold;"
+                                                        class="mt-3 new-project-btn primary-btn font-size-16 primary-btn-text-color font-medium tracking-normal text-center"
+                                                        (click)="ConfirmNoteDetails(note.id)">
+                                                        Confirm note
+                                                    </button>
+
+                                                    <button *ngIf="note.isConfirm"
+                                                        class="mt-3 new-project-btn primary-btn font-size-16 primary-btn-text-color font-medium tracking-normal text-center"
+                                                        disabled="disabled"
+                                                        style="color: var(--gray);background-color: lightgray;">
+                                                        Confirmed </button>
+
+                                                </div>
+                                                <div class="md:w-1/2 pl-3  m-pl-0">
+                                                    <button (click)="OpenLeaveReplyPopup(note.id,note)"
+                                                        style="font-size: 12px;font-weight: bold;"
+                                                        class="mt-3 new-project-btn primary-btn font-size-16 primary-btn-text-color font-medium tracking-normal text-center">
+                                                        View more
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="" style="text-align: center;"
+                                                *ngIf="permissions.workerview.canView">
+                                                <button (click)="OpenLeaveReplyPopup(note.id,note)"
+                                                    style="font-size: 12px;font-weight: bold;"
+                                                    class="mt-3 new-project-btn primary-btn font-size-16 primary-btn-text-color font-medium tracking-normal text-center">
+                                                    View more
+                                                </button>
+                                            </div>
+
+                                            <div bsModal [config]="{backdrop: 'static',  keyboard: false}"
+                                                class="modal fade" #htmlDescriptionModal="bs-modal" tabindex="-1"
+                                                role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+                                                data-toggle="modal" data-target="#exampleModalScrollable">
+                                                <div class="modal-dialog modal-lg" role="document">
+                                                    <div class="modal-content">
+
+
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title"><b>Notes</b></h4>
+                                                            <button type="button" class="close"
+                                                                (click)="htmlDescriptionModal.hide()"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="modal-body">
+                                                            <div class="col col-md-12">
+                                                                <div class="lg:flex">
+
+                                                                    {{projectNotes}}
+                                                                </div>
+                                                            </div>
+                                                            <!-- <div class="modal-body"> -->
+
+                                                       
+                                                            <!-- </div> -->
+                                                            <div class="worker-table mt-3"
+                                                                style="height: 200px;overflow: auto;">
+                                                                <hr />
+                                                                Comments [ 3 ]: 
+                                                                <div *ngIf="noteReplyList && noteReplyList.length>0">
+
+                                                                    <div *ngFor="let reply of noteReplyList">
+                                                                      
+                                                                        <h3><b>{{reply.fullName}}</b> </h3>
+                                                                        <p>{{reply.reply}}</p>
+                                                                        <small> {{reply.replyDate | date:'dd MMM
+                                                                            hh:mm:aa'}}</small>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <form [formGroup]="ReplyNoteForm" method="post"
+                                                            class="form-horizontal mt-2">
+
+                                                            <div class="col-md-12">
+                                                                <div class="md:flex">
+                                                                    <div class="md:w-5/6">
+                                                                        <textarea
+                                                                            class="px-3 py-3 block input-form-control pl-10"
+                                                                            style="width: 100%;" id="reply"
+                                                                            name="reply"
+                                                                            placeholder="Enter note reply *"
+                                                                            formControlName="reply"
+                                                                            rows="3"></textarea>
+
+                                                                        <p class="error-text"
+                                                                            *ngIf="submitAttempt && ReplyNoteForm.controls.reply.errors?.required">
+                                                                            Enter note reply !
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="ml-1 md:w-1/6 text-center">
+                                                                        <button
+                                                                            class="new-project-btn primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center"
+                                                                            (click)="ReplayToNoteDetails()">
+                                                                            <i class="fa fa-paper-plane"></i>
+                                                                        </button>
+                                                                    </div>
+
+                                                                </div>
+
+
+                                                            </div>
+                                                        </form>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="top-full-border mt-3"></div>
+                                        <div class="p-4">
+                                            <div class="flex justify-center cursor-pointer">
+                                                <img src=".../../../assets/img/card.svg" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-center" *ngIf="noteList == null">
+                                <span><b>No record (s) to show !</b></span>
+                            </div>
+                            <div class="text-center" *ngIf="noteList != null && noteList.length == 0">
+                                <span><b> No record (s) to show !</b></span>
+                            </div>
+
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div *ngIf="pager?.pages?.length>1">
+    <ul *ngIf="pager.pages && pager?.pages?.length" class="mb-5 pagination-prev page-item pagination">
+        <li [ngClass]="{disabled:pager.currentPage === 1}" class="pagination-first page-item">
+            <a class="page-link" style="cursor: pointer;" *ngIf="pager.currentPage > 1"
+                (click)="getnoteList(1)">First</a>
+            <a class="page-link" *ngIf="pager.currentPage === 1">First</a>
+        </li>
+        <li [ngClass]="{disabled:pager.currentPage === 1}" class="pagination-prev page-item">
+            <a class="page-link" style="cursor: pointer;" *ngIf="pager.currentPage > 1"
+                (click)="getnoteList(pager.currentPage - 1)">Previous</a>
+            <a class="page-link" *ngIf="pager.currentPage === 1">Previous</a>
+        </li>
+        <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}"
+            class="pagination-page page-item">
+            <a class="page-link" style="cursor: pointer;" (click)="getnoteList(page)">{{page}}</a>
+        </li>
+        <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="pagination-next page-item">
+            <a class="page-link" style="cursor: pointer;" *ngIf="pager.totalPages > pager.currentPage"
+                (click)="getnoteList(pager.currentPage + 1)">Next</a>
+            <a class="page-link" *ngIf="pager.currentPage === pager.totalPages">Next</a>
+        </li>
+        <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="pagination-last page-item">
+            <a class="page-link" style="cursor: pointer;" *ngIf="pager.totalPages > pager.currentPage"
+                (click)="getnoteList(pager.totalPages)">Last</a>
+            <a class="page-link" *ngIf="pager.currentPage === pager.totalPages">Last</a>
+        </li>
+    </ul>
+</div>
+
+<!-- </div> -->
+
+
+<!--Model Start Here-->
+<div bsModal [config]="{backdrop: 'static',  keyboard: false}" class="modal fade" #htmlAddModal="bs-modal" tabindex="-1"
+    role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-toggle="modal"
+    data-target="#exampleModalScrollable">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <form [formGroup]="ReplyNoteForm" method="post" class="form-horizontal">
+                <div class="modal-header">
+                    <h4 class="modal-title">Note reply</h4>
+                    <button type="button" class="close" (click)="htmlAddModal.hide()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-md-12">
+                        <div class="col-md-12 mt-3">
+                            <div class="col-md-6">
+                                <div class="col col-md-6">
+                                    <p>Enter reply <i class="help-block">*</i>
+                                    </p>
+                                    <textarea class="px-3 py-3 block input-form-control pl-10" id="reply" name="reply"
+                                        formControlName="reply" rows="3"></textarea>
+                                    <p class="error-text"
+                                        *ngIf="submitAttempt && ReplyNoteForm.controls.reply.errors?.required">
+                                        Enter note reply !
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 mt-2 text-right">
+                                <button
+                                    class="new-project-btn primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center"
+                                    (click)="ReplayToNoteDetails()">
+                                    Reply
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal ends here -->
+
+<!--Model Start Here-->
+<div bsModal [config]="{backdrop: 'static',  keyboard: false}" class="modal fade" #htmlAddNoteModal="bs-modal"
+    tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-toggle="modal"
+    data-target="#exampleModalScrollable">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+            <form [formGroup]="projectnote" method="post" class="form-horizontal">
+
+                <div class="modal-header">
+                    <h4 class="modal-title"><b>Note</b></h4>
+                    <button type="button" class="close" (click)="htmlAddNoteModal.hide()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    Note <span style="color: red;">*</span>
+
+                    <textarea formControlName="note" placeholder="Enter note" class="input-form-control"
+                        style="margin-top: 0px; margin-bottom: 0px; height: 169px;"></textarea>
+                    <p class="error-text" *ngIf="noteSubmitAttempt && projectnote.controls.note.errors?.required">
+                        Note is required</p>
+                </div>
+                <!-- class="primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center" -->
+
+                <div class="modal-footer">
+                    <button type="button"
+                        class="primary-btn font-size-16 font-medium tracking-normal text-center cancel-btn"
+                        (click)="htmlAddNoteModal.hide()" aria-label="Close">Cancel</button>
+                    <button type="button" (click)="addNote()"
+                        class="primary-btn font-size-16 primary-btn-text-color font-medium tracking-normal text-center">Submit</button>
+
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal ends here -->
+
+
+<!--Model Start Here-->
+<div bsModal [config]="{backdrop: 'static',  keyboard: false}" class="modal fade" #htmlConvertTaskModal="bs-modal"
+    tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-toggle="modal"
+    data-target="#exampleModalScrollable">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+            <form [formGroup]="taskForm" method="post" class="form-horizontal">
+
+                <div class="modal-header">
+                    <h4 class="modal-title"><b>Convert to task</b></h4>
+                    <button type="button" class="close" (click)="htmlConvertTaskModal.hide()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div>
+                        <div class="col col-md-12">
+                            <input formControlName="task" class="input-form-control" type="text"
+                                placeholder="Task Title..." />
+                            <p class="error-text" *ngIf="taskSubmitAttempt && taskForm.controls.task.errors?.required">
+                                Task title is required
+                            </p>
+                        </div>
+
+                        <div class="col col-md-12 mt-3">
+                            <textarea style="margin-top: 0px; margin-bottom: 0px; height: 169px;"
+                                formControlName="taskDescription" class="input-form-control" type="text"
+                                placeholder="Task Description..."></textarea>
+                            <p class="error-text"
+                                *ngIf="taskSubmitAttempt && taskForm.controls.taskDescription.errors?.required">
+                                Task description is required
+                            </p>
+                        </div>
+
+                        <div class="mt-3">
+                            <div class="lg:flex:full">
+                                <div class="lg:flex mt-1">
+
+                                    <div class="md:w-3/5 ml-1">
+                                        <select formControlName="projectMileStoneId" name="projectMileStoneId"
+                                            id="projectMileStoneId" class="select-dropdown-design">
+                                            <option value="">Select milestone</option>
+                                            <option *ngFor="let milestone of Milestonelist" [value]="milestone.id">
+                                                {{milestone.name}}</option>
+                                        </select>
+
+                                        <p class="error-text"
+                                            *ngIf="taskSubmitAttempt && taskForm.controls.projectMileStoneId.errors?.required">
+                                            Milestone is required
+                                        </p>
+                                    </div>
+
+                                    <div class="md:w-3/5 ml-1">
+                                        <select formControlName="WorkerId" class="select-dropdown-design">
+                                            <option value="">Select worker</option>
+                                            <option *ngFor="let worker of Workerslist" [value]="worker.id">
+                                                {{worker.name}}</option>
+                                        </select>
+                                        <p class="error-text"
+                                            *ngIf="taskSubmitAttempt && taskForm.controls.WorkerId.errors?.required">
+                                            Worker is required
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-3">
+                            <div class="lg:flex:full">
+                                <div class="lg:flex mt-1">
+
+                                    <div class="md:w-3/5 ml-1">
+                                        <input formControlName="estimatedHours" maxlength="4" mask="0*.00"
+                                            class="input-form-control" type="text" placeholder="Estimated hours..." />
+                                        <p class="error-text"
+                                            *ngIf="taskSubmitAttempt && taskForm.controls.estimatedHours.errors?.required">
+                                            Estimated hours is required
+                                        </p>
+                                    </div>
+
+                                    <div class="md:w-3/5 ml-1">
+                                        <select formControlName="tagId" name="tagId" id="tagId"
+                                            class="select-dropdown-design">
+                                            <option value="">Select tag</option>
+                                            <option *ngFor="let tag of Taglist" [value]="tag.id">
+                                                {{tag.name}}</option>
+                                        </select>
+                                        <p class="error-text"
+                                            *ngIf="taskSubmitAttempt && taskForm.controls.tagId.errors?.required">
+                                            Tag is required
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-2 d-flex justify-content-end">
+                            <div>
+                                <button type="button"
+                                    class="new-project-btn primary-btn font-size-16 font-medium tracking-normal text-center mx-2"
+                                    (click)="htmlConvertTaskModal.hide()" aria-label="Close">Cancel</button>
+                            </div>
+                            <div>
+                                <button type="button" (click)="AddProjectTask()"
+                                    class="new-project-btn primary-btn font-size-16 primary-btn-text-color font-medium tracking-normal text-center">Submit</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- <div class="modal-footer">
+                    <button type="button"
+                        class="new-project-btn primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center"
+                        (click)="htmlConvertTaskModal.hide()" aria-label="Close">Cancel</button>
+                    <button type="button" (click)="AddProjectTask()"
+                        class="new-project-btn primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center">Submit</button>
+
+                </div> -->
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal ends here -->
+
+<app-chat-room></app-chat-room>

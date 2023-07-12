@@ -1,0 +1,46 @@
+@import "../../../assets/scss/comman.scss";
+@import "../../../assets/scss/media.scss";
+@import "../../../assets/scss/utilize.scss";
+@import "../../../assets/scss/variable.scss";
+
+.account-banner {
+    background-color: var(--white);
+    box-shadow: 0px 0px 10px #00000029;
+    min-height: calc(100vh - 170px);
+    border-radius: 10px 10px 0px 0px;
+    .account-page {
+        img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+        }
+    }
+}
+
+.error-text {
+    color: red;
+}
+.image {
+    position: relative;
+}
+.image {
+    display: initial;
+}
+.fa-plus-circle {
+    margin-top: 20px;
+    margin-left: -50px;
+    /* margin-right: 22px; */
+    /* bottom: 0; */
+    /* left: 0; */
+    z-index: 1;
+    color: #330099;
+    font-size: 25px;
+}
+@media (max-width: 635px) {
+    .fa-plus-circle {
+        margin-left: -44px;
+    }
+}
+.container-fluid {
+    padding-bottom: 5% !important;
+ }

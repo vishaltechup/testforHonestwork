@@ -1,0 +1,76 @@
+<div class='tabs'>
+    <!-- Flattern structure for adjacent sibling combinator -->
+
+    <!-- Tab 1 & Content -->
+
+    <input type="radio" name="tab" id="tab1" role="tab" [checked]="router.url.indexOf('details') > -1"
+        *ngIf="permissions.agencyview.canView && projectStatus === 'Self'">
+    <label for="tab1" id="tab1-label" routerLink="/project/details/{{projectId}}" *ngIf="permissions.agencyview.canView && projectStatus === 'Self'"
+        class="font-size-14 cursor-pointer tracking-normal font-bold heading-title-text-color">
+        Time & Payments
+    </label>
+
+
+
+
+    <!-- Tab 2 & Content -->
+
+    <input type="radio" name="tab" id="tab2" role="tab" [checked]="router.url.indexOf('worker') > -1"
+        *ngIf="permissions.agencyview.canView && projectStatus === 'Self'">
+    <label for="tab2" id="tab2-label" routerLink="/project/worker/{{projectId}}" *ngIf="permissions.agencyview.canView && projectStatus === 'Self'"
+        class="font-size-14 cursor-pointer tracking-normal font-bold heading-title-text-color">Workers</label>
+
+
+    <!-- Tab 3 & Content -->
+    <input type="radio" name="tab" id="tab3" role="tab" [checked]="router.url.indexOf('note') > -1">
+    <label for="tab3" id="tab3-label" routerLink="/project/note/{{projectId}}"
+        class="font-size-14 cursor-pointer tracking-normal font-bold heading-title-text-color">Notes</label>
+
+
+    <!-- Tab 4 & Content -->
+    <input type="radio" name="tab" id="tab4" role="tab" [checked]="router.url.indexOf('tasks') > -1">
+    <label for="tab4" routerLink="/project/tasks/{{projectId}}"
+        class="font-size-14 cursor-pointer tracking-normal font-bold heading-title-text-color">Tasks</label>
+
+    <!-- Tab 4 & Content -->
+    <input type="radio" name="tab" id="tab5" role="tab" [checked]="router.url.indexOf('scope') > -1">
+    <label for="tab5" routerLink="/project/scope/{{projectId}}"
+        class="font-size-14 cursor-pointer tracking-normal font-bold heading-title-text-color">Project
+        Scope</label>
+
+
+    <input type="radio" name="tab" id="tab6" role="tab" [checked]="router.url.indexOf('deliverables') > -1"
+        *ngIf="permissions.agencyview.canView && projectStatus === 'Self'">
+    <label for="tab6" routerLink="/project/deliverables/{{projectId}}" *ngIf="permissions.agencyview.canView && projectStatus === 'Self'"
+        class="font-size-14 cursor-pointer tracking-normal font-bold heading-title-text-color">Deliverables</label>
+
+    <!--Tab 6-->
+
+
+    <input type="radio" name="tab" id="tab7" role="tab" [checked]="router.url.indexOf('milestone') > -1"
+        *ngIf="permissions.agencyview.canView && projectStatus === 'Self'">
+    <label for="tab7" routerLink="/project/milestone/{{projectId}}" *ngIf="permissions.agencyview.canView && projectStatus === 'Self'"
+        class="font-size-14 cursor-pointer tracking-normal font-bold heading-title-text-color">
+        Milestone
+    </label>
+
+
+    <!-- Tab 8 -->
+
+    <input type="radio" name="tab" id="tab8" role="tab" [checked]="router.url.indexOf('Client') > -1"
+        *ngIf="permissions.agencyview.canView && projectStatus === 'Self'">
+    <label for="tab7" routerLink="/project/Client/{{projectId}}" *ngIf="permissions.agencyview.canView && projectStatus === 'Self'"
+        class="font-size-14 cursor-pointer tracking-normal font-bold heading-title-text-color">Client</label>
+
+
+
+    <input type="radio" name="tab" id="tab9" role="tab" [checked]="router.url.indexOf('payment-history') > -1"
+        *ngIf="permissions.agencyview.canView && projectStatus === 'Self'">
+    <label for="tab7" routerLink="/project/payment-history/{{projectId}}" *ngIf="permissions.agencyview.canView && projectStatus === 'Self'"
+        class="font-size-14 cursor-pointer tracking-normal font-bold heading-title-text-color">Payment History</label>
+
+    <input type="radio" name="tab" id="tab9" role="tab" [checked]="router.url.indexOf('agency') > -1"
+        *ngIf="permissions.agencyview.canView && projectStatus === 'Self'">
+    <label for="tab7" routerLink="/project/agency/{{projectId}}" *ngIf="permissions.agencyview.canView && projectStatus === 'Self'"
+        class="font-size-14 cursor-pointer tracking-normal font-bold heading-title-text-color">Invited Agency</label>
+</div>

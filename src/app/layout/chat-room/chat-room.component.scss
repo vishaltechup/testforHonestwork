@@ -1,0 +1,151 @@
+/* new css */
+
+.main-section {
+    width: 300px;
+    position: fixed;
+    right: 50px;
+    bottom: -350px;
+    left: 15px;
+    margin-left: auto;
+}
+.first-section:hover {
+    cursor: pointer;
+}
+.open-more {
+    bottom: 0px;
+    transition: all 2s ease-in-out;
+}
+.border-chat {
+    // border: 1px solid #1c3a84;
+    margin: 0px;
+}
+.first-section {
+    background-color: #1c3a84;
+    text-align: center;
+    padding: 10px 12px !important;
+    border-radius: 100%;
+    margin-right: 25px;
+    position: relative;
+}
+.first-section p {
+    color: #fff;
+    margin: 0px;
+    padding: 10px 0px;
+}
+.first-section p:hover {
+    color: #fff;
+    cursor: pointer;
+}
+.right-first-section {
+    text-align: right;
+}
+.right-first-section i {
+    color: #fff;
+    font-size: 15px;
+    padding: 12px 3px;
+}
+.right-first-section i:hover {
+    color: #fff;
+}
+.chat-section ul li {
+    list-style: none;
+    margin-top: 10px;
+    position: relative;
+}
+.chat-section {
+    overflow-y: scroll;
+    height: 310px;
+    border-bottom: 1px solid #1c3a84ab;
+}
+.chat-section ul {
+    padding: 0px;
+}
+.left-chat img,
+.right-chat img {
+    width: 50px;
+    height: 50px;
+    float: left;
+    margin: 0px 10px;
+}
+.right-chat img {
+    float: right;
+}
+.second-section {
+    padding: 0px;
+    margin: 0px;
+    background-color: #f3f3f3;
+    height: 350px;
+}
+.left-chat,
+.right-chat {
+    overflow: hidden;
+}
+.left-chat p,
+.right-chat p {
+    background-color: #1c3a84;
+    padding: 10px;
+    color: #fff;
+    border-radius: 5px;
+    float: left;
+    width: 60%;
+    margin-bottom: 20px;
+}
+
+.left-chat span,
+.right-chat span {
+    position: absolute;
+    left: 70px;
+    top: 60px;
+    color: #b7bcc5;
+}
+
+.right-chat span {
+    left: 45px;
+}
+
+.right-chat p {
+    float: right;
+    background-color: #3da1e8;
+    color: #ffffff;
+}
+.third-section {
+    border-top: 1px solid #eeeeee;
+}
+.text-bar input {
+    width: 90%;
+    margin-left: -15px;
+    padding: 10px 10px;
+    border: 1px solid #fff;
+}
+.text-bar a i {
+    background-color: #1c3a84;
+    color: #fff;
+    width: 30px;
+    height: 30px;
+    padding: 7px 0px;
+    border-radius: 50%;
+    text-align: center;
+}
+.left-chat:before {
+    content: " ";
+    position: absolute;
+    top: 0px;
+    left: 55px;
+    bottom: 150px;
+    border: 15px solid transparent;
+    border-top-color: #1c3a84;
+}
+.right-chat:before {
+    content: " ";
+    position: absolute;
+    top: 0px;
+    right: 55px;
+    bottom: 150px;
+    border: 15px solid transparent;
+    border-top-color: #3da1e8;
+}
+@media (max-width: 769px) {
+    .chat-section {
+        height: 275px !important;
+    }
+}

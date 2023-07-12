@@ -1,0 +1,118 @@
+<div class="container-fluid">
+    <div class="md:flex pt-3 fixed-style">
+        <div class="md:w-full">
+            <h1 class="font-size-24 heading-title-text-color font-bold mb-0 tracking-normal">
+                Personal To Do
+            </h1>
+        </div>
+    </div>
+    <div class="lg:flex">
+        <div class="lg:w-full">
+            <div class="md:w-full">
+                <form [formGroup]="todoForm" method="post">
+                    <div class="relative flex w-full items-stretch mb-3 dashboard-box normal-shadow">
+                        <input class="px-3 py-3 block input-form-control w-full pr-10 mr-2" type="text" id="notes-input"
+                            name="notes" formControlName="notes" placeholder="Write Something...">
+                        <p class="error-text" *ngIf="submitAttempt && todoForm.controls.notes.errors?.required">
+                            Please Enter notes
+                        </p>
+                        <span class="z-10 leading-snug font-normal text-center text-gray-400 bg-transparent
+                 rounded text-base items-center justify-center w-8 right-0 py-3" (click)="insertpersonaltodo()"
+                            style="width: 15%;color: #fff;background: #1c3a84;cursor: pointer;border-radius: 8px;">Add
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="lg:flex pt-5 md:flex md:flex-wrap" *ngIf="perosnalTodoList && perosnalTodoList.length>0">
+        <div class="lg:w-1/4 pl-3 pr-3 md:w-1/2 mb-5" *ngFor="let perosnalTodo of perosnalTodoList">
+            <div class="dashboard-box p-4 normal-box-shadow">
+                <div class="font-size-18 tracking-normal heading-title-text-color font-normal mb-0"
+                    *ngIf="perosnalTodo.notes.length>77" style="height: 78px;text-align: justify;">
+                    {{perosnalTodo.notes.slice(0, 77)}}
+                    <!-- <b style="cursor: pointer;color: blue;" (click)="htmlDescriptionModal.show()">Read more...</b> -->
+                    <div bsModal [config]="{backdrop: 'static',  keyboard: false}" class="modal fade"
+                        #htmlDescriptionModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                        aria-hidden="true" data-toggle="modal" data-target="#exampleModalScrollable">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+
+
+                                <div class="modal-header">
+                                    <h4 class="modal-title"><b>Notes</b></h4>
+                                    <button type="button" class="close" (click)="htmlDescriptionModal.hide()"
+                                        aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+
+                                <div class="modal-body">
+                                    <div class="col col-md-12" style="height:68vh;overflow:auto;">
+                                        <div class="lg:flex">
+                                            {{perosnalTodo.notes}}
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer" style="padding-bottom:0px !important;">
+                                        <button type="button"
+                                            class="new-project-btn primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center"
+                                            (click)="htmlDescriptionModal.hide()" aria-label="Close">Close</button>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="font-size-18 tracking-normal heading-title-text-color font-normal mb-0"
+                    *ngIf="perosnalTodo.notes.length<=77" [innerHtml]="perosnalTodo.notes"
+                    style="height: 78px;text-align: justify;">
+                </p>
+                <div class="pt-8">
+                    <button *ngIf="!perosnalTodo.completedStatus" (click)="updatemarkcomplete(perosnalTodo.id)"
+                        class="view-details-btn link-text-color font-size-18 tracking-normal font-medium text-center">
+                        Mark complete
+                    </button>
+                    <button *ngIf="perosnalTodo.completedStatus"
+                        class="view-details-btn link-text-color font-size-18 tracking-normal font-medium text-center"
+                        style="border: 2px solid var(--gray); color: var(--gray);" disabled="disabled">
+                        Completed
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div *ngIf="pager?.pages?.length>1">
+        <ul *ngIf="pager.pages && pager?.pages?.length" class="mb-5 pagination-prev page-item pagination">
+            <li [ngClass]="{disabled:pager.currentPage === 1}" class="pagination-first page-item">
+                <a class="page-link" style="cursor: pointer;" *ngIf="pager.currentPage > 1"
+                    (click)="getPersonalTodo(1)">First</a>
+                <a class="page-link" *ngIf="pager.currentPage === 1">First</a>
+            </li>
+            <li [ngClass]="{disabled:pager.currentPage === 1}" class="pagination-prev page-item">
+                <a class="page-link" style="cursor: pointer;" *ngIf="pager.currentPage > 1"
+                    (click)="getPersonalTodo(pager.currentPage - 1)">Previous</a>
+                <a class="page-link" *ngIf="pager.currentPage === 1">Previous</a>
+            </li>
+            <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}"
+                class="pagination-page page-item">
+                <a class="page-link" style="cursor: pointer;" (click)="getPersonalTodo(page)">{{page}}</a>
+            </li>
+            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="pagination-next page-item">
+                <a class="page-link" style="cursor: pointer;" *ngIf="pager.totalPages > pager.currentPage"
+                    (click)="getPersonalTodo(pager.currentPage + 1)">Next</a>
+                <a class="page-link" *ngIf="pager.currentPage === pager.totalPages">Next</a>
+            </li>
+            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="pagination-last page-item">
+                <a class="page-link" style="cursor: pointer;" *ngIf="pager.totalPages > pager.currentPage"
+                    (click)="getPersonalTodo(pager.totalPages)">Last</a>
+                <a class="page-link" *ngIf="pager.currentPage === pager.totalPages">Last</a>
+            </li>
+        </ul>
+    </div>
+
+</div>

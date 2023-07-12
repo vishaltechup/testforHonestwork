@@ -1,0 +1,173 @@
+<div class="container-fluid">
+    <div class="md:flex pt-3 fixed-style">
+        <div class="md:w-full flex justify-between">
+            <span class="font-size-24 heading-title-text-color font-bold mb-0 tracking-normal cursor-pointer">
+                Tech Stack
+            </span>
+            <div class="text-right" style="margin-right: 10px;">
+                <!-- <div> -->
+                <button style="cursor: pointer;" (click)="htmlModal.show();openModal()"
+                    class="new-project-btn primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center">
+                    Add Tech Stack
+                </button>
+            </div>
+            <!-- </div> -->
+        </div>
+
+    </div>
+
+    <div class="col-md-12">
+
+        <hr class="mt-2" />
+        <div class="p-4">
+            <div class="mt-4 lg:flex">
+                <div class="md:w-full">
+                    <div class="worker-table mt-3" *ngIf="techstackList && techstackList.length>0">
+                        <table class="worker-data" style="WIDTH: 100%;">
+                            <tr>
+                                <th class="text-left">Tech stack</th>
+                                <th class="text-left">Action</th>
+                            </tr>
+                            <tr *ngFor="let tech of techstackList">
+                                <td>{{tech.name}}</td>
+                                <td>
+
+                                    <button (click)="editTechstack(tech)">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                    |
+                                    <button class="ml-1 help-block" (click)="DeleteTechStack(tech .id)">
+                                        <i class="fas fa-trash" style="color:black;"></i>
+                                    </button>
+
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="col-md-12 mb-4 flex ml-2" *ngIf="techstackList.length>20">
+                            <div class="lg:flex-full mt-4">
+                                <div class="md:flex">
+                                    <div *ngIf="pager!=null">
+                                        <ul *ngIf="pager.pages && pager?.pages?.length"
+                                            class="mb-5 pagination-prev page-item pagination">
+                                            <li [ngClass]="{disabled:pager.currentPage === 1}"
+                                                class="pagination-first page-item">
+                                                <a class="page-link" style="cursor: pointer;"
+                                                    *ngIf="pager.currentPage > 1"
+                                                    (click)="GetTechstackByAgency(1)">First</a>
+                                                <a class="page-link" *ngIf="pager.currentPage === 1">First</a>
+                                            </li>
+                                            <li [ngClass]="{disabled:pager.currentPage === 1}"
+                                                class="pagination-prev page-item">
+                                                <a class="page-link" style="cursor: pointer;"
+                                                    *ngIf="pager.currentPage > 1"
+                                                    (click)="GetTechstackByAgency(pager.currentPage - 1)">Previous</a>
+                                                <a class="page-link" *ngIf="pager.currentPage === 1">Previous</a>
+                                            </li>
+                                            <li *ngFor="let page of pager.pages"
+                                                [ngClass]="{active:pager.currentPage === page}"
+                                                class="pagination-page page-item">
+                                                <a class="page-link" style="cursor: pointer;"
+                                                    (click)="GetTechstackByAgency(page)">{{page}}</a>
+                                            </li>
+                                            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}"
+                                                class="pagination-next page-item">
+                                                <a class="page-link" style="cursor: pointer;"
+                                                    *ngIf="pager.totalPages > pager.currentPage"
+                                                    (click)="GetTechstackByAgency(pager.currentPage + 1)">Next</a>
+                                                <a class="page-link"
+                                                    *ngIf="pager.currentPage === pager.totalPages">Next</a>
+                                            </li>
+                                            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}"
+                                                class="pagination-last page-item">
+                                                <a class="page-link" style="cursor: pointer;"
+                                                    *ngIf="pager.totalPages > pager.currentPage"
+                                                    (click)="GetTechstackByAgency(pager.totalPages)">Last</a>
+                                                <a class="page-link"
+                                                    *ngIf="pager.currentPage === pager.totalPages">Last</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="text-align:center;" *ngIf="techstackList == null">
+                        <span><b>No record (s) to show !</b></span>
+                    </div>
+
+                    <div style="text-align:center;" *ngIf="techstackList != null && techstackList.length==0">
+                        <span><b>No record (s) to show !</b></span>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div *ngIf="pager?.pages?.length>1">
+        <ul *ngIf="pager.pages && pager?.pages?.length" class="mb-5 pagination-prev page-item pagination">
+            <li [ngClass]="{disabled:pager.currentPage === 1}" class="pagination-first page-item">
+                <a class="page-link" style="cursor: pointer;" *ngIf="pager.currentPage > 1"
+                    (click)="getProjectnotebypagination(1)">First</a>
+                <a class="page-link" *ngIf="pager.currentPage === 1">First</a>
+            </li>
+            <li [ngClass]="{disabled:pager.currentPage === 1}" class="pagination-prev page-item">
+                <a class="page-link" style="cursor: pointer;" *ngIf="pager.currentPage > 1"
+                    (click)="getProjectnotebypagination(pager.currentPage - 1)">Previous</a>
+                <a class="page-link" *ngIf="pager.currentPage === 1">Previous</a>
+            </li>
+            <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}"
+                class="pagination-page page-item">
+                <a class="page-link" style="cursor: pointer;" (click)="getProjectnotebypagination(page)">{{page}}</a>
+            </li>
+            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="pagination-next page-item">
+                <a class="page-link" style="cursor: pointer;" *ngIf="pager.totalPages > pager.currentPage"
+                    (click)="getProjectnotebypagination(pager.currentPage + 1)">Next</a>
+                <a class="page-link" *ngIf="pager.currentPage === pager.totalPages">Next</a>
+            </li>
+            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="pagination-last page-item">
+                <a class="page-link" style="cursor: pointer;" *ngIf="pager.totalPages > pager.currentPage"
+                    (click)="getProjectnotebypagination(pager.totalPages)">Last</a>
+                <a class="page-link" *ngIf="pager.currentPage === pager.totalPages">Last</a>
+            </li>
+        </ul>
+    </div> -->
+</div>
+
+
+
+<!--Model Start for Add new milestone Here-->
+<div bsModal [config]="{backdrop: 'static',  keyboard: false}" class="modal fade" #htmlModal="bs-modal" tabindex="-1"
+    role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-toggle="modal"
+    data-target="#exampleModalScrollable">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <form [formGroup]="TechStack" method="post" class="form-horizontal">
+                <div class="modal-header">
+                    <h4 class="modal-title"><b>Tech Stack</b></h4>
+                    <button type="button" class="close" (click)="htmlModal.hide()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-md-6 mt-2">
+                        <p>Add Tech Stack :<span class="help-block">*</span></p>
+                        <input type="text" placeholder="Add Tech Stack" formControlName="name" name="name"
+                            maxlength="50" class="input-form-control" />
+                        <p class="error-text" *ngIf="submitAttempt && TechStack.controls.name.errors?.required">
+                            Tech Stack is required </p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button"
+                        class="primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center"
+                        (click)="htmlModal.hide()" aria-label="Close">Cancel</button>
+                    <button type="button" (click)="AddTaskStatus()"
+                        class="primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center">Submit</button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal ends here -->

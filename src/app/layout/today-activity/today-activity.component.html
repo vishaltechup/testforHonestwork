@@ -1,0 +1,281 @@
+<div class="container-fluid">
+    <div class="row">
+        <h2 class="col-md-6" style="margin: left 2px;margin-top: 10px;"><i class="fa fa-arrow-left"
+                aria-hidden="true"></i> &nbsp; &nbsp; <b>{{projectName}}</b></h2>
+        <div class="col-md-6 text-right mt-5">
+            <span style="cursor: pointer;display: none;"
+                class="new-project-btn primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center ng-star-inserted">
+                Add Manual Time
+            </span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <section class="pt-5">
+                <div class="md:flex">
+                    <div class="md:w-full">
+                        <div class="project-banner">
+                            <div class="pt-4">
+                                <div class=''>
+                                    <section>
+                                        <div class="p-4">
+                                            <div class="md:flex mt-3">
+                                                <div class="md:w-full">
+                                                    <div class="table-wrapper">
+
+                                                        <table width="100%" class="data-table"
+                                                            *ngIf="WeekData && WeekData.length > 0">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td colspan="11"
+                                                                        style="text-align: center;font-weight: bold;background: #ccc;">
+                                                                        {{WeekData[0].weekDate| date:'MMM dd, yyyy'}} -
+                                                                        {{WeekData[6].weekDate| date:'MMM dd, yyyy'}}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td rowspan="2" align="center"> <i (click)="moveToPreviousWeek()"
+                                                                            class="fa fa-arrow-left cursor-pointer"></i> </td>
+
+                                                                    <th
+                                                                        class="text-center font-size-14 font-bold cursor-pointer tracking-nromal active-border" [ngStyle]="{'background-color': activeDate === WeekData[0].weekDate ? '#ccccccad' : 'white' }" (click)="showDateWiseData(WeekData[0].weekDate)">
+                                                                        {{WeekData[0].weekDate| date:'MMM dd, yyyy'}}
+                                                                    </th>
+
+                                                                    <th
+                                                                        class="text-center font-size-14 font-bold cursor-pointer tracking-nromal " [ngStyle]="{'background-color': activeDate === WeekData[1].weekDate ? '#ccccccad' : 'white' }" (click)="showDateWiseData(WeekData[1].weekDate)">
+                                                                        {{WeekData[1].weekDate| date:'MMM dd, yyyy'}}
+                                                                    </th>
+
+                                                                    <th [ngStyle]="{'background-color': activeDate === WeekData[2].weekDate ? '#ccccccad' : 'white' }"
+                                                                        class="text-center font-size-14 font-bold cursor-pointer tracking-nromal " (click)="showDateWiseData(WeekData[2].weekDate)">
+                                                                        {{WeekData[2].weekDate| date:'MMM dd, yyyy'}}
+                                                                    </th>
+
+                                                                    <th [ngStyle]="{'background-color': activeDate === WeekData[3].weekDate ? '#ccccccad' : 'white' }"
+                                                                        class="text-center font-size-14 font-bold cursor-pointer tracking-nromal " (click)="showDateWiseData(WeekData[3].weekDate)">
+                                                                        {{WeekData[3].weekDate| date:'MMM dd, yyyy'}}
+                                                                    </th>
+
+                                                                    <th [ngStyle]="{'background-color': activeDate === WeekData[4].weekDate ? '#ccccccad' : 'white' }"
+                                                                        class="text-center font-size-14 font-bold cursor-pointer tracking-nromal " (click)="showDateWiseData(WeekData[4].weekDate)">
+                                                                        {{WeekData[4].weekDate| date:'MMM dd, yyyy'}}
+                                                                    </th>
+
+                                                                    <th [ngStyle]="{'background-color': activeDate === WeekData[5].weekDate ? '#ccccccad' : 'white' }"
+                                                                        class="text-center font-size-14 font-bold cursor-pointer tracking-nromal " (click)="showDateWiseData(WeekData[5].weekDate)">
+                                                                        {{WeekData[5].weekDate| date:'MMM dd, yyyy'}}
+                                                                    </th>
+
+                                                                    <th [ngStyle]="{'background-color': activeDate === WeekData[6].weekDate ? '#ccccccad' : 'white' }"
+                                                                        class="text-center font-size-14 font-bold cursor-pointer tracking-nromal " (click)="showDateWiseData(WeekData[6].weekDate)">
+                                                                        {{WeekData[6].weekDate| date:'MMM dd, yyyy'}}
+                                                                    </th>
+
+                                                                    <td rowspan="2" align="center"> <i *ngIf="showNextBtnFlag"
+                                                                            class="fa fa-arrow-right cursor-pointer" (click)="moveToNextWeek()"></i> </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-center table-child-background">
+                                                                        {{WeekData[0].dayHours}}</td>
+                                                                    <td class="text-center table-child-background">
+                                                                        {{WeekData[1].dayHours}}</td>
+                                                                    <td class="text-center table-child-background">
+                                                                        {{WeekData[2].dayHours}}</td>
+                                                                    <td class="text-center table-child-background">
+                                                                        {{WeekData[3].dayHours}}</td>
+                                                                    <td class="text-center table-child-background">
+                                                                        {{WeekData[4].dayHours}}</td>
+                                                                    <td class="text-center table-child-background">
+                                                                        {{WeekData[5].dayHours}}</td>
+                                                                    <td class="text-center table-child-background">
+                                                                        {{WeekData[6].dayHours}}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <h1 class="ml-2 mt-3" style="font-size: 20px;">
+                                                            <b>{{CurrentDate | date:'MMM dd, yyyy'}}</b>
+                                                        </h1>
+                                                    </div>
+                                                    <!-- Open application Bind Section -->
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-11 Setborderbox">
+                                                            <p
+                                                                class="child-text-color font-size-14 font-bold tracking-normal font-medium tracking-normal mb-0 pt-5 ml-2">
+                                                                APPLICATIONS</p>
+                                                            <div style="height: 250px;" class="worker-table"
+                                                                *ngIf="OpenApplicationList && OpenApplicationList.length > 0 ">
+                                                                <div class="col-md-12 "
+                                                                    *ngFor="let openApp of OpenApplicationList">
+                                                                    <div
+                                                                        class="flex items-center justify-between mb-2 mt-3">
+                                                                        <span
+                                                                            class="font-size-14 tracking-normal child-text-color font-bold">
+                                                                            {{openApp.applicationName}}
+                                                                        </span>
+                                                                        <span
+                                                                            class="font-size-14 link-text-color font-bold tracking-normal cursor-pointer">
+                                                                            {{openApp.totalTime}} -
+                                                                            {{openApp.totalPercentage}}
+                                                                        </span>
+                                                                    </div>
+                                                                    <div id="progressbar">
+                                                                        <div class="abc"
+                                                                            [ngStyle]="{'width': openApp.totalPercentage}">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div style="height: 250px; margin-top: 50px;"
+                                                                class="worker-table text-center"
+                                                                *ngIf="OpenApplicationList==null">
+                                                                <span> <b>No record (s) to show ! </b></span>
+                                                            </div>
+                                                            <div style="height: 250px; margin-top: 50px;"
+                                                                class="worker-table text-center"
+                                                                *ngIf="OpenApplicationList!=null  && OpenApplicationList.length == 0 ">
+                                                                <span>No record (s) to show</span>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <!--Key Board Mouse click section-->
+                                                    <div class="col-md-5 ml-2">
+
+                                                        <div class="Setborderbox">
+                                                            <p
+                                                                class="child-text-color font-size-14 font-bold tracking-normal font-medium tracking-normal mb-0 pt-5 ml-2">
+                                                                KEYBOARD CLICKS . MOUSE CLICKS .</p>
+                                                            <div class="worker-table"
+                                                                style="height: 250px;"
+                                                                *ngIf="ScreenShotKeyBoardMouseClickList && ScreenShotKeyBoardMouseClickList.length>0">
+                                                                <table class="worker-data">
+                                                                    <tr>
+                                                                        <th class="text-left">TIME</th>
+                                                                        <th class="text-left">KEYBOARD CLICKS</th>
+                                                                        <th class="text-left">MOUSE CLICKS</th>
+                                                                    </tr>
+                                                                    <tr
+                                                                        *ngFor="let click of ScreenShotKeyBoardMouseClickList">
+                                                                        <td>{{click.screenshotTime}}</td>
+                                                                        <td>{{click.keyboardClick}}</td>
+                                                                        <td>{{click.mouseClick}}</td>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                            <div class="worker-table text-center"
+                                                                style="height: 250px; margin-top: 50px;"
+                                                                *ngIf="ScreenShotKeyBoardMouseClickList == null">
+                                                                <span><b>No record (s) to show !</b></span>
+                                                            </div>
+                                                            <div class="worker-table text-center"
+                                                                style="height: 250px; margin-top: 50px;"
+                                                                *ngIf="ScreenShotKeyBoardMouseClickList !=null  && ScreenShotKeyBoardMouseClickList.length == 0 ">
+                                                                <span><b>No record (s) to show !</b></span>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <section class="pt-5">
+                <div class="md:flex">
+                    <div class="md:w-full">
+                        <div class="project-banner">
+                            <div class="pt-4">
+                                <div class=''>
+                                    <section>
+                                        <div class="p-4">
+                                            <div class="md:flex mt-3">
+                                                <div class="md:w-full">
+                                                    <p
+                                                        class="child-text-color font-size-14 font-bold tracking-normal font-medium tracking-normal mb-0 pt-5 ml-2">
+                                                        SCREENSHOTS</p>
+                                                    <div class="row"
+                                                        *ngFor="let screenShot of ScreenShotKeyBoardMouseClickList">
+
+                                                        <div class="col-md-2 card mr-2" style="margin-top: 2%;">
+                                                            <div class="ml-2 mr-2">
+                                                                <span>{{screenShot.screenshotTime}}</span>
+                                                                <img *ngIf="screenShot.screenshotPath" style="cursor: pointer;"
+                                                                    (click)="htmlAddModal.show();openOriginalImage(screenShot)"
+                                                                    [src]="screenShot.screenshotPath"
+                                                                    onerror="this.onerror=null;this.src='../../../assets/img/profile.png';" />
+                                                                <div class="col-md-12">
+                                                                    <div class="col-md-6">
+                                                                        <p
+                                                                            class="child-text-color font-size-14 font-bold tracking-normal font-medium tracking-normal mb-0 pt-5 ml-2">
+                                                                            {{screenShot.screenshotTime}}
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="col-md-6 text-right">
+                                                                        <p
+                                                                            class="child-text-color font-size-14 font-bold tracking-normal font-medium tracking-normal mb-0 pt-5 ml-2">
+                                                                            {{screenShot.screenshotTime}}
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <div id="progressbar">
+                                                                            <div class="abc"
+                                                                                [ngStyle]="{'width': screenShot.totalPercentage}">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <p
+                                                                            class="child-text-color font-size-14 font-bold tracking-normal font-medium tracking-normal mb-0 pt-5 ml-2">
+                                                                            {{screenShot.totalPercentage}} of
+                                                                            {{screenShot.totalmin}}</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <!--Model Start Here-->
+
+</div>
+<div bsModal [config]="{backdrop: 'static',  keyboard: false}" class="modal fade" #htmlAddModal="bs-modal" tabindex="-1"
+    role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-toggle="modal"
+    data-target="#exampleModalScrollable">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!-- <h4 class="modal-title">Note reply</h4> -->
+                <button type="button" class="close" (click)="htmlAddModal.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="{{originalImage}}">
+                <!-- <p>dddddddddddddd</p> -->
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal ends here -->

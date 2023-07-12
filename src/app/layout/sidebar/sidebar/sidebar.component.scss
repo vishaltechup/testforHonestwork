@@ -1,0 +1,265 @@
+@import "../../../../assets/scss/variable.scss";
+@import "../../../../assets/scss/utilize.scss";
+@import "../../../../assets/scss/media.scss";
+@import "../../../../assets/scss/comman.scss";
+
+em {
+   font-style: normal;
+   color: #fff;
+}
+
+a {
+   text-decoration: none;
+   color: inherit;
+}
+
+/* Layout */
+.s-layout {
+   display: flex;
+   width: 100%;
+   min-height: 100vh;
+}
+
+.s-layout__content {
+   flex: 1;
+}
+
+/* Sidebar */
+.s-sidebar__trigger {
+   z-index: 2;
+   // position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 4em;
+   background: #192b3c;
+}
+
+.s-sidebar__trigger > i {
+   display: inline-block;
+   margin: 1.5em 0 0 1.5em;
+   color: #f07ab0;
+   position: fixed;
+   z-index: 3;
+   top: 0;
+}
+
+.s-sidebar__nav {
+   position: fixed;
+   top: 0;
+   left: -15em;
+   overflow: hidden;
+   transition: all 0.3s ease-in;
+   width: 15em;
+   height: 100%;
+   background: var(--sidebar-background-color);
+   color: rgba(255, 255, 255, 0.7);
+   z-index: 3;
+   overflow-y: auto;
+}
+
+.s-sidebar__nav:hover,
+.s-sidebar__nav:focus,
+.s-sidebar__trigger:focus + .s-sidebar__nav,
+.s-sidebar__trigger:hover + .s-sidebar__nav {
+   left: 0;
+}
+
+.s-sidebar__nav ul {
+   position: initial;
+   top: 4em;
+   left: 0;
+   margin: 0;
+   padding: 0;
+   width: 15em;
+}
+
+.s-sidebar__nav ul li {
+   width: 100%;
+}
+
+.s-sidebar__nav-link {
+   position: relative;
+   display: inline-block;
+   width: 100%;
+   height: 3em;
+}
+
+.s-sidebar__nav-link em {
+   position: absolute;
+   top: 31%;
+   left: 3.5em;
+   transform: inherit;
+}
+
+.s-sidebar__nav-link:hover {
+   background: var(--sidebar-menu-hover-color);
+}
+
+.s-sidebar__nav-link > i {
+   position: absolute;
+   top: 0;
+   left: 0;
+   display: inline-block;
+   width: 4em;
+   height: 3em;
+}
+
+.s-sidebar__nav-link > i::before {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+}
+
+/* Mobile First */
+@media (min-width: 42em) {
+   .s-layout__content {
+      margin-left: 4em;
+   }
+
+   /* Sidebar */
+   .s-sidebar__trigger {
+      width: 0em;
+   }
+
+   .s-sidebar__nav {
+      width: 0em;
+      left: 0;
+   }
+
+   .s-sidebar__nav:hover,
+   .s-sidebar__nav:focus,
+   .s-sidebar__trigger:hover + .s-sidebar__nav,
+   .s-sidebar__trigger:focus + .s-sidebar__nav {
+      width: 15em;
+   }
+}
+
+@media (min-width: 68em) {
+   .s-layout__content {
+      margin-left: 15em;
+   }
+
+   /* Sidebar */
+   .s-sidebar__trigger {
+      display: none;
+   }
+
+   .s-sidebar__nav {
+      width: 15em;
+   }
+
+   .s-sidebar__nav ul {
+      top: 0.3em;
+   }
+}
+
+///css for dropdown menu
+.dropbtn {
+   border: none;
+   cursor: pointer;
+}
+
+.dropdown {
+   position: relative;
+   display: inline-block;
+}
+
+.dropdown-content {
+   display: none;
+   position: initial;
+   background-color: #330099;
+   min-width: 160px;
+   z-index: 1;
+   top: 4em !important;
+}
+
+.dropdown-content a {
+   color: black;
+   text-decoration: none;
+   display: block;
+}
+
+.dropdown-content a:hover {
+   background-color: rgba(59, 130, 246, 0.5);
+}
+
+.dropdown:target .dropdown-content {
+   display: block;
+}
+
+@media (max-width: 1024px) {
+   .s-sidebar__nav ul {
+      top: 0em;
+   }
+}
+/* Works on Firefox */
+* {
+   scrollbar-width: 18px; /*thin;*/
+   scrollbar-color: skyblue #000066;
+}
+*::-webkit-scrollbar {
+   width: 5px;
+}
+
+*::-webkit-scrollbar-track {
+   background: #000066; /* color of the tracking area */
+}
+
+*::-webkit-scrollbar-thumb {
+   background-color: skyblue; /* color of the scroll thumb */
+   border-radius: 1px; /* roundness of the scroll thumb */
+   /* border: 1px solid #000066;  */ /* creates padding around scroll thumb */
+}
+.dropdown-content li {
+   border-bottom: 1px dotted #ffffff4a;
+}
+.tooltip {
+   position: relative;
+   display: inline-block;
+   color: #006080;
+}
+
+.tooltip .tooltiptext {
+   visibility: hidden;
+   position: absolute;
+   width: 120px;
+   background-color: #fff;
+   color: rgb(10, 6, 6);
+   text-align: center;
+   padding: 5px 5px;
+   border-radius: 6px;
+   z-index: 5;
+   //font-size: 17px;
+   font-weight: initial;
+   // font-family: inherit;
+   font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji",
+      "Segoe UI Emoji";
+}
+
+.tooltip:hover .tooltiptext {
+   visibility: visible;
+   opacity: 1;
+}
+
+.tooltip-bottom {
+   top: 135%;
+   left: 0%;
+   margin-left: -90px;
+}
+
+.tooltip-bottom::after {
+   content: "";
+   position: absolute;
+   bottom: 100%;
+   left: 80%;
+   margin-left: -5px;
+   border-width: 5px;
+   border-style: solid;
+   border-color: transparent transparent #fff transparent;
+}
+
+.iconcolorchange {
+   color: #fff;
+}

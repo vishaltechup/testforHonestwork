@@ -1,0 +1,41 @@
+<div class="full-page-background">
+
+    <form novalidate [formGroup]="changeForm">
+        <div class="md:container md:mx-auto">
+            <div class="flex items-center justify-center center-box">
+                <div class="login-box p-12">
+                    <p class="font-medium font-size-24 tracking-normal heading-title-text-color">
+                        Hello! Welcome to Honest Work
+                    </p>
+                    <p class="heading-title-text-color font-size-18 tracking-normal font-normal">
+                        Please verify otp to continue.
+                    </p>
+                    <div class="form pt-8">
+                        <div>
+                            <div class="relative flex w-full flex-wrap items-stretch">
+
+                                <p class="font-size-14 mb-2 tracking-normal font-bold input-label-color">
+                                    OTP
+                                </p>
+                                <input type="text" formControlName="Otp"
+                                    class="px-3 py-3 input-form-control relative  pr-10" id="Otp" placeholder="OTP*"
+                                    formControlName="Otp" maxlength="6" required>
+                            </div>
+                            <div class="m-pt-1 mt-2 text-center">
+                                <button
+                                    class="new-project-btn primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center"
+                                    (click)="verifyOtp();">
+                                    Verify
+                                </button>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>

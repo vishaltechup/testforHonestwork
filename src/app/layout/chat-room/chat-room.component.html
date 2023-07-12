@@ -1,0 +1,105 @@
+<!-- <div class=""><i class="fa fa-plus" (click)="OpenclosePopup()" ></i></div> -->
+<div class="row border-chat text-right" *ngIf="!Chatshow" style="margin-top: -50px;">
+  <!-- <div class="col-md-12 col-sm-12 col-xs-12 text-right" style="margin-right: 25px;"> -->
+    <span class="first-section" (click)="OpenclosePopup()">
+      <i class="fas fa-comment-alt" style="color:white" ></i>
+    </span>
+    <!-- <div class="row md:flex">
+
+        <div class="md:w-4/5 col-md-8 col-sm-6 col-xs-6 left-first-section">
+          <p style="text-align: center;">Chat</p>
+        </div>
+
+        <div class="md:w-1/5 col-md-4 col-sm-6 col-xs-6 right-first-section">
+          <a><i (click)="OpenclosePopup()" class="fa fa-minus" aria-hidden="true"></i></a> &nbsp;&nbsp;
+        </div>
+
+      </div> -->
+
+  </div>
+<!-- </div> -->
+<div class="main-section">
+  <div *ngIf="Chatshow" style="    border: 1px solid #1c3a84ab;
+  box-shadow: 0px 0px 10px 0px #1c3a8494;">
+    <div class="row border-chat">
+      <div class="col-md-12 col-sm-12 col-xs-12 second-section">
+        <div class="row md:flex" style="background-color:#1c3a84;color:#fff;">
+
+          <div class="md:w-4/5 col-md-8 col-sm-6 col-xs-6 left-first-section" style="padding-top:5px">
+            <p style="text-align: center;">Chat</p>
+          </div>
+
+          <div class="md:w-1/5 col-md-4 col-sm-6 col-xs-6 right-first-section">
+            <a><i (click)="OpenclosePopup()" class="fa fa-minus" aria-hidden="true"></i></a> &nbsp;&nbsp;
+          </div>
+
+        </div>
+        <div class="chat-section">
+          <!-- 
+  
+          <div class="chat-status" text-center *ngIf="chat.type==='join'||chat.type==='exit';else message">
+              <span class="chat-date">{{chat.date | date:'short'}}</span>
+              <span class="chat-content-center">{{chat.message}}</span>
+          </div>
+  
+        -->
+          <!-- <div >
+          <div class="users-card" *ngFor="let user of users">
+         
+              <span class="right-chat">{{user.nickname}}</span>
+           
+          </div>
+        </div> -->
+
+          <div #chatcontent>
+
+            <!--  <ul *ngIf="!Chatshow">
+
+           <li *ngFor="let user of users">
+              <div  *ngIf="user.nickname!=null && user.nickname !== nickname" class="left-chat">
+                <img (click)="OpenChat(user.nickname)" src="https://www.nicesnippets.com/demo/man01.png" />
+                <p (click)="OpenChat(user.nickname)">{{user.nickname}}</p>
+              </div>
+            </li>
+          </ul> -->
+            <!-- <ul *ngIf="Chatshow"> -->
+            <ul>
+              <li *ngFor="let chat of chats">
+                <div [ngClass]="{'right-chat': chat.nickname === nickname, 'left-chat': chat.nickname !== nickname}">
+                  <img *ngIf="chat.nickname !== nickname" src="https://www.nicesnippets.com/demo/man01.png">
+                  <img *ngIf="chat.nickname === nickname" src="https://www.nicesnippets.com/demo/man02.png">
+                  <p>{{chat.message}} <br>
+                    <small *ngIf="chat.nickname !== nickname">{{chat.nickname}} at {{getDate(chat.date)}}
+                    </small>
+                    <small *ngIf="chat.nickname === nickname">Me at {{getDate(chat.date)}} </small>
+                  </p>
+                </div>
+              </li>
+
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="row border-chat">
+      <div class="col-md-12 col-sm-12 col-xs-12 third-section">
+        <div class="text-bar">
+
+          <form [formGroup]="chatForm" style="background-color:white">
+
+            <input type="text" (keyup.enter)="onFormSubmit(chatForm.value)" style="margin-left: 0px;width: 80%;"
+              placeholder="Enter message here" formControlName="message">
+
+            <a type="submit" (click)="onFormSubmit(chatForm.value)">
+              <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </a>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

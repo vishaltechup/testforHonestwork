@@ -1,0 +1,165 @@
+<!-- <div class="container-fluid">
+    <app-statistics></app-statistics> -->
+    <section class="pt-5">
+        <div class="md:flex">
+            <div class="md:w-full">
+                <div class="project-banner">
+                    <div class="pt-4">
+                        <app-tabs></app-tabs>
+                        <section aria-labelledby="tab5-label">
+                            <div class="p-4">
+                                <div class="flex items-center justify-between">
+                                    <span class="font-size-14 tracking-normal child-text-color font-bold">
+                                        Deliverables
+                                    </span>
+                                    <button (click)="htmlAddModal.show();openModal()" style="cursor: pointer;"
+                                        class="primary-btn font-size-16 tracking-normal link-text-color font-bold mb-0"
+                                        *ngIf="permissions.deleverables.canView">
+                                        + Upload Document
+                                    </button>
+
+
+                                </div>
+                                <div class="mt-4 lg:flex">
+                                    <div class="md:w-full">
+                                        <div class="worker-table mt-3">
+                                            <table class="worker-data" style="WIDTH: 100%;">
+                                                <tr>
+                                                    <th class="text-left">Name</th>
+                                                    <th class="text-left">Date / Time</th>
+                                                    <th class="text-left">Uploaded By</th>
+                                                    <th class="text-center">Actions</th>
+                                                </tr>
+
+                                                <tr *ngFor="let deliverble of deliverblesList">
+                                                    <td>
+                                                        <div class="flex items-center">
+                                                            <a [href]="deliverble.filePath"> <i
+                                                                    class="far fa-file-image child-text-color"></i></a>
+                                                            <span
+                                                                class="pl-3 font-medium heading-title-text-color font-size-14">
+                                                                {{deliverble.name}}
+                                                            </span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <span
+                                                            class="font-medium heading-title-text-color font-size-14">
+                                                            {{deliverble.dateTime}}
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span
+                                                            class="font-medium heading-title-text-color font-size-14">
+                                                            {{deliverble.uploadedBy}}
+                                                        </span>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <div class="flex items-center justify-end">
+                                                            <p style="cursor: pointer;"
+                                                                class="font-medium danger-text-color underline font-size-14"
+                                                                (click)="Removedeliverblefile(deliverble.id)">
+                                                                <i class="fas fa-trash"></i>
+                                                            </p>
+                                                            <p style="cursor: pointer;"
+                                                                class="pl-3 font-medium link-text-color underline font-size-14"
+                                                                *ngIf="deliverble.confirmBy==' '"
+                                                                (click)="confirmdeliverblefile(deliverble.id)">
+                                                                Confirm Deliverable
+                                                            </p>
+                                                            <p *ngIf="deliverble.confirmBy!=' '"
+                                                                class="pl-3 font-medium child-text-color underline font-size-14">
+                                                                Confirmed by
+                                                                <span class="font-bold child-text-color pl-1">
+                                                                    {{deliverble.confirmBy}}
+                                                                </span>
+                                                            </p>
+
+
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- </div> -->
+
+
+
+<!--Model Start Here-->
+<div bsModal [config]="{backdrop: 'static',  keyboard: false}" class="modal fade" #htmlAddModal="bs-modal" tabindex="-1"
+    role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-toggle="modal"
+    data-target="#exampleModalScrollable">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+            <form [formGroup]="deliverablesForm" method="post" class="form-horizontal">
+
+                <div class="modal-header">
+                    <h4 class="modal-title"><b>Deliverables</b></h4>
+                    <button type="button" class="close" (click)="htmlAddModal.hide()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="col col-md-12">
+                        <div class="lg:flex">
+
+                            <div class="md:w-full">
+                                <label for="project-Name"
+                                    class="font-size-14 mb-2 tracking-normal font-bold input-label-color">
+                                    Name<span style="color: red;margin-left: 2px;font-weight: bold;">*</span></label>
+
+
+                                <input class="input-form-control" style="width: 100%;" formControlName="dFilename"
+                                    type="text" placeholder="Enter file name" />
+
+                                <p class="error-text"
+                                    *ngIf="submitAttempt && deliverablesForm.controls.dFilename.errors?.required">
+                                    Name is required
+                                </p>
+
+                            </div>
+
+                        </div>
+                        <div class="lg:flex">
+
+                            <div class="md:w-full mb-5">
+                                <label for="project-Name"
+                                    class="font-size-14 mb-2 tracking-normal font-bold input-label-color">File</label>
+                                <div class="flex items-center m-block">
+                                    <div class="pr-5 m-pr-0">
+                                        <input #fileInput type="file" id="file-input" name="file-input" accept="image/*"
+                                            class="form-control-file" (change)="readUrl($event)">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button"
+                            class="new-project-btn primary-btn font-size-16 primary-btn-text-color font-medium tracking-normal text-center cancel-btn"
+                            (click)="htmlAddModal.hide()" aria-label="Close">Cancel</button>
+                        <button type="button" (click)="uploaddeliverblefile();"
+                            class="new-project-btn primary-btn font-size-16 primary-btn-text-color font-medium tracking-normal text-center">Submit</button>
+
+                    </div>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal ends here -->
+
+<div class="">
+    <app-chat-room></app-chat-room>
+</div>

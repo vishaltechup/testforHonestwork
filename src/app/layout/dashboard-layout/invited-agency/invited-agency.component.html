@@ -1,0 +1,108 @@
+<!-- <div class="container-fluid">
+    <app-statistics></app-statistics> -->
+
+<section class="pt-5">
+    <div class="md:flex">
+        <div class="md:w-full">
+            <div class="project-banner">
+                <div class="pt-4">
+                    <app-tabs></app-tabs>
+                    <section aria-labelledby="tab2-label">
+                        <div class="p-4">
+                            <form [formGroup]="agencyInvite" (ngSubmit)="submitAgencyInvite()">
+                                <div class="w-full lg:flex md:flex mb-2">
+                                    <div class="mr-2 lg:w-1/4 md:w-1/4 sm:w-full">
+                                        <input formControlName="agencyName" class="input-form-control" type="text"
+                                            placeholder="Enter Agency Name" />
+                                        <p class="error-text"
+                                            *ngIf="submitAgency && agencyInvite.controls.agencyName.errors?.required">
+                                            Agency Name is required
+                                        </p>
+                                    </div>
+                                    <div class="mr-2 lg:w-1/4 md:w-1/4 sm:w-full">
+                                        <input formControlName="agency" class="input-form-control" type="email"
+                                            placeholder="Enter Agency Email" />
+                                        <p class="error-text"
+                                            *ngIf="submitAgency && agencyInvite.controls.agency.errors?.required">
+                                            Email is required
+                                        </p>
+                                        <p class="error-text"
+                                            *ngIf="submitAgency && agencyInvite.controls.agency.errors?.email">
+                                            Enter Valid Email
+                                        </p>
+                                    </div>
+                                    <div class="mt-2 lg:w-1/4 md:w-1/4 sm:w-full lg:mt-0 md:mt-0">
+                                        <button type="submit"
+                                            class="new-project-btn primary-btn font-size-10  primary-btn-text-color font-medium tracking-normal w-full invite-btn">
+                                            Send Invitation
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                        <div class="mt-4 lg:flex">
+                            <div class="md:w-full">
+                                <div class="worker-table mt-3 " *ngIf="invitAgencyList && invitAgencyList.length>0">
+                                    <table class="worker-data" style="WIDTH: 100%;">
+                                        <tr>
+                                            <th class="text-left">Agency Name</th>
+                                            <th class="text-left">Email</th>
+                                            <th class="text-left">Status</th>
+                                            <th class="text-left">Action</th>
+                                            <th></th>
+                                        </tr>
+
+                                        <tr *ngFor="let Milestone of invitAgencyList">
+
+                                            <td>
+                                                <span class="font-medium heading-title-text-color font-size-14">
+                                                    {{Milestone.agencyName}}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="font-medium heading-title-text-color font-size-14">
+                                                    {{Milestone.agencyEmailId}}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="font-medium heading-title-text-color font-size-14"
+                                                    *ngIf="Milestone.isApproved === 'Y'" style="color:green">
+                                                    Accepted
+                                                </span>
+                                                <span class="font-medium heading-title-text-color font-size-14"
+                                                    *ngIf="Milestone.isApproved !== 'Y'" style="color:red;">
+                                                    Not Accepted
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="font-medium heading-title-text-color font-size-14 delete-btn"
+                                                    (click)="DeleteAgency(Milestone.id)">
+                                                    <i class="fas fa-trash"></i>
+                                                </span>
+                                            </td>
+                                            <td class="text-right">
+                                            </td>
+                                        </tr>
+
+                                    </table>
+                                </div>
+
+                                <div style="text-align:center;" class="worker-table mt-3"
+                                    *ngIf="invitAgencyList == null">
+                                    <span><b>No record (s) to show !</b></span>
+                                </div>
+
+                                <div style="text-align:center;" class="worker-table mt-3"
+                                    *ngIf="invitAgencyList != null && invitAgencyList.length==0">
+                                    <span><b>No record (s) to show !</b></span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<app-chat-room></app-chat-room>

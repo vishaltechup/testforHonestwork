@@ -1,0 +1,500 @@
+<div class="container-fluid">
+    <div class="row">
+        <h2 class="col-md-6" style="margin: left 2px;margin-top: 10px;">
+            <!-- <i class="fa fa-arrow-left" aria-hidden="true"></i> -->
+        </h2>
+        <div class="col-md-6 text-right mt-5">
+            <span style="cursor: pointer;display: none;"
+                class="new-project-btn primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center ng-star-inserted">
+                Add Manual Time
+            </span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="md:flex">
+                <div class="md:w-full">
+                    <p class="child-text-color font-size-14 tracking-normal font-medium tracking-normal mb-0 pt-5">
+                        Projects
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <section class="pt-5">
+                <div class="md:flex">
+                    <div class="md:w-full">
+                        <div class="projet-banner">
+                            <div class="pt-4">
+                                <div class="">
+                                    <section>
+                                        <div class="lg:flex md:flex md:flex-wrap lg:flex-wrap pt-5"
+                                            *ngIf="projectList && projectList.length>0">
+                                            <div class="lg:w-1/4 md:w-1/2 pr-3 m-pr-0 mt-2"
+                                                *ngFor="let project of projectList">
+                                                <div class="dashboard-box p-4 normal-box-shadow">
+                                                    <div class="flex items-center">
+                                                        <!-- <div
+                                                            class="company-logo flex items-center justify-center cursor-pointer">
+                                                            <img src="../../../assets/img/projectlogo.jpg" />
+                                                        </div> -->
+                                                        <div class="pl-5">
+                                                            <p style="font-size: 18px;"
+                                                                class="font-size-24 tracking-normal heading-title-text-color font-medium mb-0">
+                                                                {{project.projectName}}
+                                                            </p>
+                                                            <p class="link-text-color font-size-14 tracking-normal font-medium mb-0 cursor-pointer"
+                                                                *ngIf="permissions.agencyview.canView">
+                                                                Estimated profit - ${{project.estimatedProfilt}}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div style="width: 100%;height: 75px;overflow: auto;">
+                                                        <div
+                                                            *ngIf="project.scopeDescription!=null && project.scopeDescription!=''">
+                                                            <div *ngIf="project.scopeDescription.length>85"
+                                                                class="font-size-14 font-normal tracking-normal mb-0 pt-2">
+                                                                <span
+                                                                    [innerHtml]="project.scopeDescription.slice(0, 85)"></span>
+
+                                                                <!-- <b style="cursor: pointer;color: blue;"
+                                                                    (click)="htmlDescriptionModal.show()">...Read
+                                                                    more</b> -->
+
+                                                                <div bsModal
+                                                                    [config]="{backdrop: 'static',  keyboard: false}"
+                                                                    class="modal fade" #htmlDescriptionModal="bs-modal"
+                                                                    tabindex="-1" role="dialog"
+                                                                    aria-labelledby="myModalLabel" aria-hidden="true"
+                                                                    data-toggle="modal"
+                                                                    data-target="#exampleModalScrollable">
+                                                                    <div class="modal-dialog modal-lg" role="document">
+                                                                        <div class="modal-content">
+
+
+                                                                            <div class="modal-header">
+                                                                                <h4 class="modal-title">
+                                                                                    <b>Description</b>
+                                                                                </h4>
+                                                                                <button type="button" class="close"
+                                                                                    (click)="htmlDescriptionModal.hide()"
+                                                                                    aria-label="Close">
+                                                                                    <span
+                                                                                        aria-hidden="true">&times;</span>
+                                                                                </button>
+                                                                            </div>
+
+                                                                            <div class="modal-body">
+                                                                                <div class="col col-md-12">
+                                                                                    <div class="lg:flex"
+                                                                                        [innerHtml]="project.scopeDescription">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <button type="button"
+                                                                                        class="new-project-btn primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center"
+                                                                                        (click)="htmlDescriptionModal.hide()"
+                                                                                        aria-label="Close">Cancel</button>
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                            <p *ngIf="project.scopeDescription.length<=85"
+                                                                [innerHtml]="project.scopeDescription"
+                                                                class="font-size-14 font-normal tracking-normal mb-0 pt-2">
+                                                            </p>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="top-full-border mt-5"
+                                                        *ngIf="permissions.agencyview.canView"></div>
+                                                    <div class="pt-4 flex items-center justify-between"
+                                                        *ngIf="permissions.agencyview.canView">
+                                                        <span
+                                                            class="child-text-color font-size-14 cursor-pointer tracking-normal font-bold">
+                                                            Total hours
+                                                        </span>
+                                                        <span
+                                                            class="heading-title-text-color font-size-14 cursor-pointer tracking-normal font-bold">
+                                                            {{project.estimatedCompletionHours}} Hours
+                                                        </span>
+                                                    </div>
+                                                    <div class="pt-1 flex items-center justify-between"
+                                                        *ngIf="permissions.agencyview.canView">
+                                                        <span
+                                                            class="child-text-color font-size-14 cursor-pointer tracking-normal font-bold">
+                                                            Total costs
+                                                        </span>
+                                                        <span
+                                                            class="heading-title-text-color font-size-14 cursor-pointer tracking-normal font-bold">
+                                                            ${{project.totalAmount}}
+                                                        </span>
+                                                    </div>
+                                                    <div class="pt-1 flex items-center justify-between"
+                                                        *ngIf="permissions.agencyview.canView">
+                                                        <span
+                                                            class="child-text-color font-size-14 cursor-pointer tracking-normal font-bold">
+                                                            Total received
+                                                        </span>
+                                                        <span
+                                                            class="heading-title-text-color font-size-14 cursor-pointer tracking-normal font-bold">
+                                                            ${{project.totalReceived}}
+                                                        </span>
+                                                    </div>
+                                                    <div class="pt-1 flex items-center justify-between"
+                                                        *ngIf="permissions.agencyview.canView">
+                                                        <span
+                                                            class="child-text-color font-size-14 cursor-pointer tracking-normal font-bold">
+                                                            Total quoted
+                                                        </span>
+                                                        <span
+                                                            class="heading-title-text-color font-size-14 cursor-pointer tracking-normal font-bold">
+                                                            ${{project.buildQuoteAmount}}
+                                                        </span>
+                                                    </div>
+                                                    <div class="pt-1 flex items-center justify-between"
+                                                        *ngIf="permissions.agencyview.canView">
+                                                        <span
+                                                            class="child-text-color font-size-14 cursor-pointer tracking-normal font-bold">
+                                                            Partner quoted
+                                                        </span>
+                                                        <span
+                                                            class="heading-title-text-color font-size-14 cursor-pointer tracking-normal font-bold">
+                                                            ${{project.partnerQuoteAmount}}
+                                                        </span>
+                                                    </div>
+                                                    <div class="top-full-border mt-5"></div>
+                                                    <div class="pt-5" *ngIf="permissions.agencyview.canView">
+                                                        <div class="flex items-center justify-between mb-2">
+                                                            <span
+                                                                class="font-size-14 tracking-normal child-text-color font-bold">
+                                                                Progress
+                                                            </span>
+                                                            <span
+                                                                class="font-size-14 link-text-color font-bold tracking-normal cursor-pointer">
+                                                                {{project.progressPercentage}}% Complete
+                                                            </span>
+                                                        </div>
+                                                        <div id="progressbar">
+                                                            <div class="abc"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="pt-2" *ngIf="permissions.agencyview.canView">
+                                                        <div class="flex items-center justify-between mb-2">
+                                                            <span
+                                                                class="font-size-14 tracking-normal child-text-color font-bold">
+                                                                Activity level
+                                                            </span>
+                                                            <span
+                                                                class="font-size-14 link-text-color font-bold tracking-normal cursor-pointer">
+                                                                {{project.activityLevelPercentage}}% Active
+                                                            </span>
+                                                        </div>
+                                                        <div id="progressbar">
+                                                            <div class="abc"></div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- routerLink="/project-details/{{project.id}}" -->
+                                                    <!-- <div class="pt-5" style="text-align: center;" *ngIf="permissions.agencyview.canView">
+                                                        <button (click)= "Addroom(project.projectName,project.id)"                     
+                                                            class="new-project-btn primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center" >
+                                                            View details
+                                                        </button>
+                                                    </div> -->
+                                                    <div class="pt-5" style="text-align: center;"
+                                                        *ngIf="permissions.projectview.canView">
+                                                        <button (click)="Addroom(project.projectName,project.id)"
+                                                            class="new-project-btn primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center">
+                                                            View details
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="mt-2">
+                                            <ul *ngIf="pager.pages && pager?.pages?.length && pager.nextPage"
+                                                class="pagination-prev page-item pagination">
+                                                <li [ngClass]="{disabled:pager.currentPage === 1}"
+                                                    class="pagination-first page-item">
+                                                    <a class="page-link" style="cursor: pointer;"
+                                                        *ngIf="pager.currentPage > 1"
+                                                        (click)="getProjectList(1)">First</a>
+                                                    <a class="page-link" *ngIf="pager.currentPage === 1">First</a>
+                                                </li>
+                                                <li [ngClass]="{disabled:pager.currentPage === 1}"
+                                                    class="pagination-prev page-item">
+                                                    <a class="page-link" style="cursor: pointer;"
+                                                        *ngIf="pager.currentPage > 1"
+                                                        (click)="getProjectList(pager.currentPage - 1)">Previous</a>
+                                                    <a class="page-link" *ngIf="pager.currentPage === 1">Previous</a>
+                                                </li>
+                                                <li *ngFor="let page of pager.pages"
+                                                    [ngClass]="{active:pager.currentPage === page}"
+                                                    class="pagination-page page-item">
+                                                    <a class="page-link" style="cursor: pointer;"
+                                                        (click)="getProjectList(page)">{{page}}</a>
+                                                </li>
+                                                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}"
+                                                    class="pagination-next page-item">
+                                                    <a class="page-link" style="cursor: pointer;"
+                                                        *ngIf="pager.totalPages > pager.currentPage"
+                                                        (click)="getProjectList(pager.currentPage + 1)">Next</a>
+                                                    <a class="page-link"
+                                                        *ngIf="pager.currentPage === pager.totalPages">Next</a>
+                                                </li>
+                                                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}"
+                                                    class="pagination-last page-item">
+                                                    <a class="page-link" style="cursor: pointer;"
+                                                        *ngIf="pager.totalPages > pager.currentPage"
+                                                        (click)="getProjectList(pager.totalPages)">Last</a>
+                                                    <a class="page-link"
+                                                        *ngIf="pager.currentPage === pager.totalPages">Last</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+
+
+        </div>
+    </div>
+    <div class="row" *ngIf="permissions.workerview.canView">
+        <div class="col-md-12">
+            <section class="pt-5">
+                <div class="md:flex">
+                    <div class="md:w-full">
+                        <div class="project-banner">
+                            <div class="pt-4">
+                                <div class=''>
+                                    <section>
+                                        <div class="p-4">
+                                            <div class="md:flex mt-3">
+                                                <div class="md:w-full">
+
+                                                    <table width="100%" class="data-table">
+                                                        <tbody>
+                                                            <tr>
+
+                                                                <td align="center"
+                                                                    (click)="PrevgetTodayProjectWorkerActivity(PrevDate)">
+                                                                    <i class="fa fa-arrow-left"></i>
+                                                                </td>
+
+                                                                <td style="text-align: center;font-weight: bold;">
+                                                                    {{CurrentDate | date:'MMM dd, yyyy'}}
+                                                                </td>
+
+                                                                <td align="center" *ngIf="NextDate!=null"
+                                                                    (click)="NextgetTodayProjectWorkerActivity(NextDate)">
+                                                                    <i class="fa fa-arrow-right"></i>
+                                                                </td>
+
+                                                                <td align="center" *ngIf="NextDate==null"></td>
+
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                    <!-- Open application Bind Section -->
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-11 Setborderbox">
+                                                            <p
+                                                                class="child-text-color font-size-14 font-bold tracking-normal font-medium tracking-normal mb-0 pt-5 ml-2">
+                                                                APPLICATIONS</p>
+                                                            <div style="height: 250px;" class="worker-table"
+                                                                *ngIf="OpenApplicationList != null && OpenApplicationList.length>0">
+                                                                <div class="col-md-12 "
+                                                                    *ngFor="let openApp of OpenApplicationList">
+                                                                    <div
+                                                                        class="flex items-center justify-between mb-2 mt-3">
+                                                                        <span
+                                                                            class="font-size-14 tracking-normal child-text-color font-bold">
+                                                                            {{openApp.applicationName}}
+                                                                        </span>
+                                                                        <span
+                                                                            class="font-size-14 link-text-color font-bold tracking-normal cursor-pointer">
+                                                                            {{openApp.totalTime}} -
+                                                                            {{openApp.totalPercentage}}
+                                                                        </span>
+                                                                    </div>
+                                                                    <div id="progressbar">
+                                                                        <div class="abc"
+                                                                            [ngStyle]="{'width': openApp.totalPercentage}">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div style="height: 250px;margin-top: 50px;"
+                                                                class="worker-table text-center"
+                                                                *ngIf="OpenApplicationList == null">
+                                                                <span><b>No record (s) to show !</b></span>
+                                                            </div>
+                                                            <div style="height: 250px;margin-top: 50px;"
+                                                                class="worker-table text-center"
+                                                                *ngIf="OpenApplicationList != null && OpenApplicationList.length==0">
+                                                                <span><b>No record (s) to show !</b></span>>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <!--Key Board Mouse click section-->
+                                                    <div class="col-md-8">
+
+                                                        <div class="Setborderbox">
+                                                            <p
+                                                                class="child-text-color font-size-14 font-bold tracking-normal font-medium tracking-normal mb-0 pt-5 ml-2">
+                                                                KEYBOARD CLICKS . MOUSE CLICKS .</p>
+                                                            <div class="worker-table"
+                                                                style="height:calc(100vh - 370px);overflow-x: auto;"
+                                                                *ngIf="WorkerActivities && WorkerActivities.length>0">
+                                                                <table class="worker-data">
+                                                                    <tr>
+                                                                        <th class="text-left">TIME</th>
+                                                                        <th class="text-left">KEYBOARD CLICKS</th>
+                                                                        <th class="text-left">MOUSE CLICKS</th>
+                                                                    </tr>
+                                                                    <tr *ngFor="let click of WorkerActivities">
+                                                                        <td>{{click.screenshotTime}}</td>
+                                                                        <td>{{click.keyboardClick}}</td>
+                                                                        <td>{{click.mouseClick}}</td>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+
+                                                            <div style="height: 250px;margin-top: 50px;"
+                                                                class="worker-table text-center"
+                                                                *ngIf="WorkerActivities == null">
+                                                                <span><b>No record (s) to show !</b></span>
+                                                            </div>
+                                                            <div style="height: 250px; margin-top: 50px;"
+                                                                class="worker-table text-center"
+                                                                *ngIf="WorkerActivities != null && WorkerActivities.length == 0">
+                                                                <span><b>No record (s) to show !</b></span>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="permissions.workerview.canView">
+        <div class="col-md-12">
+            <section class="pt-5">
+                <div class="md:flex">
+                    <div class="md:w-full">
+                        <div class="project-banner">
+                            <div class="pt-4">
+                                <div class=''>
+                                    <section>
+                                        <div class="p-4">
+                                            <div class="md:flex mt-3">
+                                                <div class="md:w-full"
+                                                    *ngIf="WorkerActivities && WorkerActivities.length>0">
+                                                    <p
+                                                        class="child-text-color font-size-14 font-bold tracking-normal font-medium tracking-normal mb-0 pt-5 ml-2">
+                                                        SCREENSHOTS</p>
+                                                    <div class="row" *ngFor="let screenShot of WorkerActivities">
+
+                                                        <div class="col-md-2 card" style="margin-top: 2%;margin-right: 5px;
+                                                        margin-left: 5px;
+                                                        padding: 5px;">
+                                                            <div class="">
+                                                                <span>{{screenShot.screenshotTime}}</span>
+                                                                <!-- {{screenShot.screenshotPath}} -->
+                                                                <img *ngIf="screenShot.screenshotPath"
+                                                                    style="cursor: pointer;"
+                                                                    (click)="htmlAddModal.show();openOriginalImage(screenShot)"
+                                                                    [src]="screenShot.screenshotPath"
+                                                                    onerror="this.onerror=null;this.src='../../../assets/img/profile.png';" />
+                                                                <div class="col-md-12">
+                                                                    <div class="col-md-6">
+                                                                        <p
+                                                                            class="child-text-color font-size-14 font-bold tracking-normal font-medium tracking-normal mb-0 pt-5 ml-2">
+                                                                            {{screenShot.screenshotTime}}
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="col-md-6 text-right">
+                                                                        <p
+                                                                            class="child-text-color font-size-14 font-bold tracking-normal font-medium tracking-normal mb-0 pt-5 ml-2">
+                                                                            {{screenShot.screenshotTime}}
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <div id="progressbar">
+                                                                            <div class="abc"
+                                                                                [ngStyle]="{'width': screenShot.totalPercentage}">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <p
+                                                                            class="child-text-color font-size-14 font-bold tracking-normal font-medium tracking-normal mb-0 pt-5 ml-2">
+                                                                            {{screenShot.totalPercentage}} of
+                                                                            {{screenShot.totalmin}}</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="md:w-full text-center" *ngIf="WorkerActivities == null">
+                                                    <span><b>No screen shot to show !</b></span>
+                                                </div>
+                                                <div class="md:w-full text-center"
+                                                    *ngIf="WorkerActivities !=null && WorkerActivities.length==0">
+                                                    <span><b>No screen shot to show !</b></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<div bsModal [config]="{backdrop: 'static',  keyboard: false}" class="modal fade" #htmlAddModal="bs-modal" tabindex="-1"
+    role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-toggle="modal"
+    data-target="#exampleModalScrollable">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!-- <h4 class="modal-title">Note reply</h4> -->
+                <button type="button" class="close" (click)="htmlAddModal.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="{{originalImage}}">
+                <!-- <p>dddddddddddddd</p> -->
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal ends here -->

@@ -1,0 +1,124 @@
+<div class="md:flex pt-3 fixed-style">
+    <div class="md:w-full">
+        <i (click)="navigateBack()"  class="fas fa-arrow-left heading-title-text-color cursor-pointer"></i>
+        <span class="pl-3 font-size-24 heading-title-text-color font-bold mb-0 tracking-normal">
+            {{projectName}}
+        </span>
+    </div>
+    <div class="col-md-12 mb-3" style="text-align: right;" *ngIf="permissions.workerview.canView">
+        <button routerLink="/w/dashboard" style="cursor: pointer;"
+            class="mt-3 new-project-btn primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center">
+            Activity
+        </button>
+    </div>
+</div>
+<p class="child-text-color font-size-14 tracking-normal font-medium tracking-normal mb-0 pt-5"
+    *ngIf="permissions.agencyview.canView">
+    Statistics
+</p>
+<div class="lg:flex md:flex md:flex-wrap pt-4">
+    <div class="lg:w-1/4 md:w-1/2 pr-3 m-pr-0  mt-2">
+        <div class="dashboard-box p-4 normal-box-shadow">
+            <p class="link-text-color font-size-14 tracking-normal font-medium mb-0">
+                Last 24 hours
+            </p>
+            <div class="flex items-center justify-between">
+                <p class="font-size-20 heading-title-text-color cursor-pointer tracking-normal font-medium mb-0">
+                    {{LastWokedhours}} <span class="child-text-color font-size-24">  </span>
+                </p>
+                <p class="font-size-14 child-text-color tracking-normal font-medium cursor-pointer mb-0">
+                    Last worked {{LastWoked}}
+                </p>
+            </div>
+            <div id="progressbar" class="mt-3">
+                <div class="abc"></div>
+            </div>
+            <div class="flex pt-2 items-center justify-between">
+                <span class="font-size-14 tracking-normal child-text-color font-bold">
+                    Activity level
+                </span>
+                <span class="font-size-14 link-text-color font-bold tracking-normal cursor-pointer">
+                    {{LastWokedActivityLevelPer}}% Active
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="lg:w-1/4 md:w-1/2 pr-3 m-pr-0 mt-2">
+        <div class="dashboard-box p-4 normal-box-shadow">
+            <p class="link-text-color font-size-14 tracking-normal font-medium mb-0">
+                This week
+            </p>
+            <div class="flex items-center justify-between">
+                <p class="font-size-20 heading-title-text-color cursor-pointer tracking-normal font-medium mb-0">
+                    {{ThisWeekhours}} <span class="child-text-color font-size-24">  </span>
+                </p>
+                <p class="font-size-14 child-text-color tracking-normal font-medium cursor-pointer mb-0">
+                    Of {{ThisWeekhourslimit}} hour limit
+                </p>
+            </div>
+            <div id="progressbar" class="mt-3">
+                <div class="abc"></div>
+            </div>
+            <div class="flex pt-2 items-center justify-between">
+                <span class="font-size-14 tracking-normal child-text-color font-bold">
+                    Activity level
+                </span>
+                <span class="font-size-14 link-text-color font-bold tracking-normal cursor-pointer">
+                    {{ThisWeekActivityLevelPer}}% Active
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="lg:w-1/4 md:w-1/2 pr-3 m-pr-0 mt-2">
+        <div class="dashboard-box p-4 normal-box-shadow">
+            <p class="link-text-color font-size-14 tracking-normal font-medium mb-0">
+                Since start
+            </p>
+            <div class="flex items-center justify-between">
+                <p class="font-size-20 heading-title-text-color cursor-pointer tracking-normal font-medium mb-0">
+                    {{SinceStarthours}} <span class="child-text-color font-size-24">  </span>
+                </p>
+                <p class="font-size-14 child-text-color tracking-normal font-medium cursor-pointer mb-0">
+                    {{symbol}} {{SinceStartPaid}} paid
+                </p>
+            </div>
+            <div id="progressbar" class="mt-3">
+                <div class="abc"></div>
+            </div>
+            <div class="flex pt-2 items-center justify-between">
+                <span class="font-size-14 tracking-normal child-text-color font-bold">
+                    Activity level
+                </span>
+                <span class="font-size-14 link-text-color font-bold tracking-normal cursor-pointer">
+                    {{SinceStartActivityLevelPer}}% Active
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="lg:w-1/4 md:w-1/2  m-pr-0 mt-2">
+        <div class="dashboard-box p-4 normal-box-shadow h-100dashboard-box">
+            <p class="link-text-color font-size-14 tracking-normal font-medium mb-0">
+                Budget
+            </p>
+            <div class="flex items-center justify-between">
+                <p class="font-size-20 heading-title-text-color cursor-pointer tracking-normal font-medium mb-0">
+                    {{symbol}} {{Budget}}<span class="child-text-color font-size-24"> </span>
+                </p>
+                <p class="font-size-14 child-text-color tracking-normal font-medium cursor-pointer mb-0">
+                    Estimated Profilt - {{symbol}} {{EstimatedProfilt}}
+                </p>
+            </div>
+            <div id="progressbar" class="mt-3">
+                <div class="abc"></div>
+            </div>
+            <div class="flex pt-7 items-center justify-between">
+                <span class="font-size-14 tracking-normal child-text-color font-bold" style="display: none;">
+                    Activity level
+                </span>
+                <span class="font-size-14 link-text-color font-bold tracking-normal cursor-pointer" style="display: none;">
+                    {{EstimatedProfilt}}% Active
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

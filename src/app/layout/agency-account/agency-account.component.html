@@ -1,0 +1,194 @@
+<div class="container-fluid">
+    <div class="md:flex pt-3 fixed-style">
+        <div class="md:w-full">
+            <span class="font-size-24 heading-title-text-color font-bold mb-0 tracking-normal cursor-pointer">
+                Account
+            </span>
+        </div>
+    </div>
+    <div class="account-banner p-4 mt-5 md:flex">
+        <div class="lg:w-1/2 md:w-full">
+            <form [formGroup]="accountForm">
+                <div class="account-page flex">
+
+                    <input type="file" id="file-input" name="file-input" style="display: none;" accept="image/*"
+                        class="form-control-file" (change)="readUrl($event)">
+
+                    <img class="image" [src]="url" height="200" style="margin:2%;"
+                        onerror="this.onerror=null;this.src='../../../assets/img/profile.png';" width="50">
+                    <label style="z-index: 1;" for="file-input"> <i style="margin-left: -44px;"
+                            class="fa fa-plus-circle"></i></label>
+                    <br />
+                </div>
+                <div class="lg:flex">
+
+                    <div class="lg:w-1/2 pr-2">
+                        <div class="mt-5">
+                            <p class="font-size-14 mb-2 tracking-normal font-bold input-label-color">
+                                Agency name
+                            </p>
+                            <input formControlName="agencyName" class="block input-form-control" name="agencyName"
+                                type="text" placeholder="Enter agency name" maxlength="100" />
+                            <p class="error-text"
+                                *ngIf="submitAttempt && accountForm.controls.agencyName.errors?.required">
+                                Agency name is required</p>
+                        </div>
+                        <div class="mt-3">
+                            <p class="font-size-14 mb-2 tracking-normal font-bold input-label-color">
+                                Email address
+                            </p>
+                            <input formControlName="agencyEmailId" class="block input-form-control" type="email"
+                                placeholder="Enter email address" name="agencyEmailId" disabled="disabled" />
+                            <p class="error-text"
+                                *ngIf="submitAttempt && accountForm.controls.agencyEmailId.errors?.required">
+                                Email address is required</p>
+                        </div>
+                        <div class="mt-3">
+                            <p class="font-size-14 mb-2 tracking-normal font-bold input-label-color">
+                                Contact number
+                            </p>
+
+                            <input formControlName="contactNo" class="block input-form-control" id="contactNo"
+                                name="contactNo" maxlength="10" pattern="^\d{10}$" type="text"
+                                placeholder="ex.9999999999" mask="0000000000" />
+
+                            <div *ngIf="submitAttempt && accountForm.controls.contactNo.errors"
+                                class="error-text help-block">
+                                <div *ngIf="accountForm.controls.contactNo.errors.required"> Contact number is required
+                                </div>
+                                <div *ngIf="accountForm.controls.contactNo.errors.pattern"> Contact number must be a
+                                    valid number</div>
+                            </div>
+
+                        </div>
+                        <div class="mt-3">
+                            <p class="font-size-14 mb-2 tracking-normal font-bold input-label-color">
+                                Working Days
+                            </p>
+
+                            <input formControlName="workingDay" class="block input-form-control" id="contactNo"
+                                name="contactNo" min="0" max="7" type="number" placeholder="Enter working day" />
+
+                            <div *ngIf="submitAttempt && accountForm.controls.workingDay.errors"
+                                class="error-text help-block">
+                                <div *ngIf="accountForm.controls.workingDay.errors.required"> Working day is required
+                                </div>
+                                <div *ngIf="accountForm.controls.workingDay.errors.max">Only upto 7 working days is
+                                    allowed
+                                </div>
+                                <div *ngIf="accountForm.controls.workingDay.errors.min">Minimum day must be 1
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="mt-5 flex items-center">
+                            <button (click)="updateProfile();"
+                                style="padding: 0px 0px; background: #1c3a84; border-color: #1c3a84; color: #fff;"
+                                class="view-details-btn1 link-text-color font-size-18 tracking-normal font-medium text-center">
+                                Update
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="lg:w-1/2 md:w-full" style="border-left: 1px solid #9ca3af;
+        margin-left: 30px;">
+            <form novalidate [formGroup]="changeForm" (ngSubmit)="onnewChangePassword()">
+                <div class="md:container md:mx-auto">
+                    <div class="flex items-center justify-center center-box">
+                        <div class="login-box p-12">
+                            <p class="font-medium font-size-24 tracking-normal heading-title-text-color">
+                                Change your password
+                            </p>
+
+                            <div class="form pt-8">
+                                <div class="relative flex w-full flex-wrap items-stretch">
+
+                                    <p class="font-size-14 mb-2 tracking-normal font-bold input-label-color">
+                                        Old password
+                                    </p>
+                                    <input [type]="showOldPassword ? 'text' : 'password'"
+                                        class="px-3 py-3 input-form-control relative  pr-10" id="oldPassword"
+                                        placeholder="Old password*" formControlName="oldPassword" required />
+                                    <div>
+                                        <span
+                                            class="z-10 h-full leading-snug font-normal absolute text-center absolute bg-transparent rounded text-base items-center justify-center w-8 right-0 pr-3 py-3"
+                                            (click)="toggleShowOldPassword()"><i
+                                                [class]="showOldPassword ? 'far fa-fw fa-eye toggle-password' : 'far fa-fw fa-eye-slash toggle-password'"></i></span>
+                                    </div>
+                                    <p class="error-text"
+                                        *ngIf="registerSubmitted && changeForm.controls.oldPassword.errors?.required">
+                                        Old password is required
+                                    </p>
+                                </div>
+                                <div class="pt-6">
+                                    <div class="relative flex w-full flex-wrap items-stretch">
+                                        <p class="font-size-14 mb-2 tracking-normal font-bold input-label-color">
+                                            New password
+                                        </p>
+                                        <input [type]="showNewPassword ? 'text' : 'password'"
+                                            formControlName="newPassword" class="block input-form-control"
+                                            placeholder="New password*" id="newPassword" (input)="checkPassword()" />
+                                        <div>
+
+                                            <span (click)="toggleShowNewPassword()"
+                                                class="z-10 h-full leading-snug font-normal absolute text-center absolute bg-transparent rounded text-base items-center justify-center w-8 right-0 pr-3 py-3"><i
+                                                    [class]="showNewPassword ? 'far fa-fw fa-eye toggle-password' : 'far fa-fw fa-eye-slash toggle-password'"></i></span>
+                                        </div>
+
+                                        <p class="error-text"
+                                            *ngIf="registerSubmitted && changeForm.controls.newPassword.errors?.required">
+                                            Please enter Password</p>
+
+                                        <div *ngIf="changeForm.controls.newPassword.value"
+                                            [ngClass]="{'password-short': passwordStrength == 'Too short' || passwordStrength == 'Weak','password-good': passwordStrength == 'Good','password-strong': passwordStrength == 'Strong'}">
+                                            Your password is {{passwordStrength}}</div>
+                                        <div class="error-text" *ngIf="showRegexError">{{errorMsg}}</div>
+
+                                    </div>
+                                </div>
+                                <div class="pt-6">
+                                    <div class="relative flex w-full flex-wrap items-stretch">
+                                        <p class="font-size-14 mb-2 tracking-normal font-bold input-label-color">
+                                            Confirm password
+                                        </p>
+                                        <input [type]="showConformPassword ? 'text' : 'password'"
+                                            formControlName="confirmPassword" class="block input-form-control"
+                                            id="confirmPassword" placeholder="Confirm password*" />
+                                        <div>
+                                            <span
+                                                class="z-10 h-full leading-snug font-normal absolute text-center absolute bg-transparent rounded text-base items-center justify-center w-8 right-0 pr-3 py-3"
+                                                (click)="toggleShowConfirmPassword()"><i
+                                                    [class]="showConformPassword ? 'far fa-fw fa-eye toggle-password' : 'far fa-fw fa-eye-slash toggle-password'"></i></span>
+                                        </div>
+                                        <p class="error-text"
+                                            *ngIf="registerSubmitted && changeForm.controls.confirmPassword.errors?.required">
+                                            Confirm password is required
+                                        </p>
+                                        <p class="error-text"
+                                            *ngIf="registerSubmitted && changeForm.controls.confirmPassword.errors?.mustMatch">
+                                            Passwords must match
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="create-account-btn pt-10">
+                                <button
+                                    style="padding: 0px 0px; background: #1c3a84; border-color: #1c3a84; color: #fff;"
+                                    class="view-details-btn1 link-text-color font-size-18 tracking-normal font-medium text-center"
+                                    type="submit">
+                                    Change Password
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+</div>

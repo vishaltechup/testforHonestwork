@@ -1,0 +1,152 @@
+<!-- <div class="container-fluid">
+    <app-statistics></app-statistics> -->
+
+    <section class="pt-5">
+        <div class="md:flex">
+            <div class="md:w-full">
+                <div class="project-banner">
+                    <div class="pt-4">
+                        <app-tabs></app-tabs>
+                        <section aria-labelledby="tab5-label">
+                            <div class="md:flex pt-3">
+                                <div class="md:w-full flex justify-between">
+                                    <span
+                                        class="heading-title-text-color font-bold mb-0 tracking-normal cursor-pointer" style="margin-left: 10px;width:50%">
+                                        <select name="viewas" id="viewas" class="select-dropdown-design pr-2 m-pr-1"
+                                            (change)="filterData($event)">
+                                            <option value="1">Active</option>
+                                            <option value="0">Inactive</option>
+                                        </select>
+                                    </span>
+                                    <div class="text-right" style="margin-right: 10px;">
+                                        <!-- <div> -->
+                                        <button (click)="htmlNewMilestoneModal.show();openModal();" style="cursor: pointer;"
+                                            class="new-project-btn primary-btn font-size-16 primary-btn-text-color font-medium tracking-normal text-center">
+                                            Add Milestone
+                                        </button>
+                                    </div>
+                                    <!-- </div> -->
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <div class="mt-4 lg:flex">
+                                    <div class="md:w-full">
+                                        <div class="worker-table mt-3"
+                                            *ngIf="Milestonelist && Milestonelist.length>0">
+                                            <table class="worker-data" style="WIDTH: 100%;">
+                                                <tr>
+                                                    <th class="text-left">Milestone</th>
+                                                    <th class="text-left">Amount</th>
+                                                    <th class="text-left">Action</th>
+                                                    <th></th>
+                                                </tr>
+
+                                                <tr *ngFor="let Milestone of Milestonelist">
+
+                                                    <td>
+                                                        <span
+                                                            class="font-medium heading-title-text-color font-size-14">
+                                                            {{Milestone.milestone}}
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span
+                                                            class="font-medium heading-title-text-color font-size-14">
+                                                            {{Milestone.amount}}
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span
+                                                            class="font-medium heading-title-text-color font-size-14"
+                                                            (click)="editMilestone(Milestone)">
+                                                            <span>
+                                                                <i class="fa fa-edit"></i>
+                                                            </span>
+                                                        </span>
+                                                        &nbsp; | &nbsp;
+                                                        <span
+                                                            class="font-medium heading-title-text-color font-size-14 delete-icon"
+                                                            (click)="DeleteMilestone(Milestone.id)">
+                                                            <i class="fas fa-trash"></i>
+                                                        </span>
+                                                    </td>
+                                                    <td class="text-right">
+                                                    </td>
+                                                </tr>
+
+                                            </table>
+                                        </div>
+
+                                        <div style="text-align:center;" class="worker-table mt-3"
+                                            *ngIf="Milestonelist == null">
+                                            <span><b>No record (s) to show !</b></span>
+                                        </div>
+
+                                        <div style="text-align:center;" class="worker-table mt-3"
+                                            *ngIf="Milestonelist != null && Milestonelist.length==0">
+                                            <span><b>No record (s) to show !</b></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- </div> -->
+
+
+<!--Model Start for Add new milestone Here-->
+<div bsModal [config]="{backdrop: 'static',  keyboard: false}" class="modal fade" #htmlNewMilestoneModal="bs-modal"
+    tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-toggle="modal"
+    data-target="#exampleModalScrollable">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+            <form [formGroup]="newMilestoneForm" method="post" class="form-horizontal">
+
+                <div class="modal-header">
+                    <h4 class="modal-title"><b>Milestone</b></h4>
+                    <button type="button" class="close" (click)="htmlNewMilestoneModal.hide()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="col-md-6 mt-2">
+                        <p>Enter milestone :<span class="help-block">*</span></p>
+                        <input type="text" placeholder="Enter milestone" formControlName="milestone"
+                            name="milestoneName" class="input-form-control" />
+                        <p class="error-text"
+                            *ngIf="submitAttempt && newMilestoneForm.controls.milestone.errors?.required"> Milestone is
+                            required </p>
+                    </div>
+
+                    <div class="col-md-6 mt-2">
+                        <p>Enter amount :<span class="help-block">*</span></p>
+                        <input type="text" placeholder="Enter amount" formControlName="amount" mask="0*.00"
+                            maxlength="11" name="amount" class="input-form-control" />
+                        <p class="error-text"
+                            *ngIf="submitAttempt && newMilestoneForm.controls.amount.errors?.required"> Amount is
+                            required</p>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button"
+                        class="primary-btn font-size-16 primary-btn-text-color font-medium tracking-normal text-center cancel-btn"
+                        (click)="htmlNewMilestoneModal.hide()" aria-label="Close">Cancel</button>
+                    <button type="button"
+                        class="primary-btn font-size-16 primary-btn-text-color font-medium tracking-normal text-center"
+                        (click)="AddProjectMileStone();">Submit</button>
+
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal ends here -->
+
+<app-chat-room></app-chat-room>

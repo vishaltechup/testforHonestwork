@@ -1,0 +1,345 @@
+<!-- <div class="container-fluid">
+    <app-statistics></app-statistics> -->
+
+    <section class="pt-5">
+        <div class="md:flex">
+            <div class="md:w-full">
+                <div class="project-banner">
+                    <div class="pt-4">
+                       <app-tabs></app-tabs>
+                       <section aria-labelledby="tab1-label">
+                        <div class="p-4">
+                            <span class="font-size-14 tracking-normal child-text-color font-bold">
+                                Timesheet This Week
+                            </span>
+                            <div class="md:flex mt-3">
+                                <div class="md:w-full">
+                                    <div style="overflow-x:auto;" *ngIf="TimesheetList!=null">
+                                        <table class="timesheet" *ngIf="TimesheetList.length>0">
+                                            <tr style="display:flex;">
+                                                <th class="">
+                                                    Mon - {{TimesheetList[0].weekDate| date:'MM/dd'}}</th>
+                                                <th class="">
+                                                    Tue - {{TimesheetList[1].weekDate| date:'MM/dd'}}</th>
+                                                <th class="">
+                                                    Wed - {{TimesheetList[2].weekDate| date:'MM/dd'}}</th>
+                                                <th class="">
+                                                    Thu - {{TimesheetList[3].weekDate| date:'MM/dd'}}</th>
+                                                <th class="">
+                                                    Fri - {{TimesheetList[4].weekDate| date:'MM/dd'}}</th>
+                                                <th class="">
+                                                    Sat - {{TimesheetList[5].weekDate| date:'MM/dd'}}</th>
+                                                <th class="">
+                                                    Sun - {{TimesheetList[6].weekDate| date:'MM/dd'}}</th>
+                                                <th class="">
+                                                    Hours</th>
+                                                <th class="">
+                                                    Rate</th>
+                                                <th class="">
+                                                    Amount</th>
+                                            </tr>
+                                            <tr style="display: flex;">
+                                                <td class="active-border active-background text-center">
+                                                    {{TimesheetList[0].dayHours}}
+                                                </td>
+                                                <td class="text-center table-child-background">
+                                                    {{TimesheetList[1].dayHours}}
+                                                </td>
+                                                <td class="text-center table-child-background">
+                                                    {{TimesheetList[2].dayHours}}
+                                                </td>
+                                                <td class="text-center table-child-background">
+                                                    {{TimesheetList[3].dayHours}}
+                                                </td>
+                                                <td class="text-center table-child-background">
+                                                    {{TimesheetList[4].dayHours}}
+                                                </td>
+                                                <td class="text-center table-child-background">
+                                                    {{TimesheetList[5].dayHours}}
+                                                </td>
+                                                <td class="text-center table-child-background">
+                                                    {{TimesheetList[6].dayHours}}
+                                                </td>
+                                                <td class="text-center table-child-background">
+                                                    {{TimesheetList[0].totalHours}}
+                                                </td>
+                                                <td class="text-center table-child-background">
+                                                    {{TimesheetList[0].rate}}
+                                                </td>
+                                                <td class="text-center table-child-background">
+                                                    {{TimesheetList[0].amount}}
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <!-- <div class="table-wrapper table-responsive" *ngIf="TimesheetList!=null">
+                                            <table width="100%" class="data-table" *ngIf="TimesheetList.length>0">
+                                                <tr>
+                                                    <th
+                                                        class="text-center font-size-14 font-bold cursor-pointer tracking-nromal active-border">
+                                                        Mon - {{TimesheetList[0].weekDate| date:'dd'}}</th>
+                                                    <th
+                                                        class="text-center font-size-14 font-bold cursor-pointer tracking-nromal ">
+                                                        Tue - {{TimesheetList[1].weekDate| date:'dd'}}</th>
+                                                    <th
+                                                        class="text-center font-size-14 font-bold cursor-pointer tracking-nromal ">
+                                                        Wed - {{TimesheetList[2].weekDate| date:'dd'}}</th>
+                                                    <th
+                                                        class="text-center font-size-14 font-bold cursor-pointer tracking-nromal ">
+                                                        Thu - {{TimesheetList[3].weekDate| date:'dd'}}</th>
+                                                    <th
+                                                        class="text-center font-size-14 font-bold cursor-pointer tracking-nromal ">
+                                                        Fri - {{TimesheetList[4].weekDate| date:'dd'}}</th>
+                                                    <th
+                                                        class="text-center font-size-14 font-bold cursor-pointer tracking-nromal ">
+                                                        Sat - {{TimesheetList[5].weekDate| date:'dd'}}</th>
+                                                    <th
+                                                        class="text-center font-size-14 font-bold cursor-pointer tracking-nromal ">
+                                                        Sun - {{TimesheetList[6].weekDate| date:'dd'}}</th>
+                                                    <th
+                                                        class="text-center font-size-14 font-bold cursor-pointer tracking-nromal ">
+                                                        Hours</th>
+                                                    <th
+                                                        class="text-center font-size-14 font-bold cursor-pointer tracking-nromal ">
+                                                        Rate</th>
+                                                    <th
+                                                        class="text-center font-size-14 font-bold cursor-pointer tracking-nromal ">
+                                                        Amount</th>
+                                                </tr>
+                
+                                                <tbody>
+                                                    <tr>
+                                                        <td
+                                                            class="active-border active-background text-center">
+                                                            {{TimesheetList[0].dayHours}}
+                                                        </td>
+                                                        <td
+                                                            class="text-center table-child-background">
+                                                            {{TimesheetList[1].dayHours}}
+                                                        </td>
+                                                        <td
+                                                            class="text-center table-child-background">
+                                                            {{TimesheetList[2].dayHours}}
+                                                        </td>
+                                                        <td
+                                                            class="text-center table-child-background">
+                                                            {{TimesheetList[3].dayHours}}
+                                                        </td>
+                                                        <td
+                                                            class="text-center table-child-background">
+                                                            {{TimesheetList[4].dayHours}}
+                                                        </td>
+                                                        <td
+                                                            class="text-center table-child-background">
+                                                            {{TimesheetList[5].dayHours}}
+                                                        </td>
+                                                        <td
+                                                            class="text-center table-child-background">
+                                                            {{TimesheetList[6].dayHours}}
+                                                        </td>
+                                                        <td
+                                                            class="text-center table-child-background">
+                                                            {{TimesheetList[0].totalHours}}
+                                                        </td>
+                                                        <td
+                                                            class="text-center table-child-background">
+                                                            {{TimesheetList[0].rate}}
+                                                        </td>
+                                                        <td
+                                                            class="text-center table-child-background">
+                                                            {{TimesheetList[0].amount}}
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div> -->
+                
+                
+                                </div>
+                            </div>
+                            <div class="pt-5">
+                                <span class="font-size-14 tracking-normal child-text-color font-bold">
+                                    All Timesheets & Payments
+                                </span>
+                            </div>
+                            <div class="md:flex">
+                                <div class="md:w-full">
+                                    <div class="worker-table mt-3">
+                                        <div class="row w-full">
+                
+                                            <div class="w-full">
+                
+                                                <table width="100%" class="data-table">
+                                                    <tr>
+                                                        <th style="width:10px;"
+                                                            class="text-center font-size-14 font-bold cursor-pointer tracking-nromal">
+                                                            DATE
+                                                        </th>
+                                                        <th style="width:60px;"
+                                                            class="text-center font-size-14 font-bold cursor-pointer tracking-nromal">
+                                                            DESCRIPTION
+                                                        </th>
+                                                        <th style="width:10px;"
+                                                            class="text-center font-size-14 font-bold cursor-pointer tracking-nromal">
+                                                            CHARGE
+                                                        </th>
+                                                        <th style="width:10px;"
+                                                            class="text-center font-size-14 font-bold cursor-pointer tracking-nromal">
+                                                            INVOICE
+                                                        </th>
+                                                        <th style="width:10px;"
+                                                            class="text-center font-size-14 font-bold cursor-pointer tracking-nromal">
+                                                            STATUS
+                                                        </th>
+                                                    </tr>
+                                                </table>
+                                                <div class="tabs">
+                
+                                                    <div class="tab"
+                                                        *ngFor="let week of AllTimesheetList; let i = index">
+                                                        <input type="radio" *ngIf="i==0" checked="checked"
+                                                            id="rd{{i}}" name="rd">
+                                                        <input type="radio" *ngIf="i!=0" id="rd{{i}}" name="rd">
+                                                        <label class="tab-label" for="rd{{i}}">
+                                                            <table width="100%" class="data-table">
+                                                                <tr>
+                                                                    <th style="width:10px;"
+                                                                        class="text-center font-size-14 font-bold cursor-pointer tracking-nromal">
+                                                                        {{week.weekStart| date:'MMM'}}
+                                                                        {{week.weekStart| date:'dd'}}-
+                                                                        {{week.weekEnd| date:'dd'}}
+                                                                    </th>
+                                                                    <th style="width:60px;"
+                                                                        class="text-center font-size-14 font-bold cursor-pointer tracking-nromal">
+                                                                        Invoice for {{week.weekStart|
+                                                                        date:'MMM'}} {{week.weekStart|
+                                                                        date:'dd'}}- {{week.weekEnd| date:'dd'}}
+                                                                        -00:00 hrs @ $00.00/hr
+                                                                    </th>
+                                                                    <th style="width:10px;"
+                                                                        class="text-center font-size-14 font-bold cursor-pointer tracking-nromal">
+                                                                        {{symbol}}00.00
+                                                                    </th>
+                                                                    <th style="width:10px;"
+                                                                        class="text-center font-size-14 font-bold cursor-pointer tracking-nromal">
+                                                                        {{symbol}}00:00
+                                                                    </th>
+                                                                    <th style="width:10px;"
+                                                                        class="text-center font-size-14 font-bold cursor-pointer tracking-nromal">
+                                                                        Owed
+                                                                    </th>
+                                                                </tr>
+                                                            </table>
+                                                        </label>
+                                                        <div class="tab-content">
+                                                            <div class="inner-table"
+                                                                *ngIf="week.weekData!=null">
+                                                                <table width="100%" class="data-table"
+                                                                    *ngIf="week.weekData.length>0">
+                
+                                                                    <tr style="display:flex;">
+                                                                        <th
+                                                                            class="">
+                                                                            Mon - {{week.weekData[0].weekDate|
+                                                                            date:'MM/dd'}}</th>
+                                                                        <th
+                                                                            class="">
+                                                                            Tue - {{week.weekData[1].weekDate|
+                                                                            date:'MM/dd'}}</th>
+                                                                        <th
+                                                                            class="">
+                                                                            Wed - {{week.weekData[2].weekDate|
+                                                                            date:'MM/dd'}}</th>
+                                                                        <th
+                                                                            class="">
+                                                                            Thu - {{week.weekData[3].weekDate|
+                                                                            date:'MM/dd'}}</th>
+                                                                        <th
+                                                                            class="">
+                                                                            Fri - {{week.weekData[4].weekDate|
+                                                                            date:'MM/dd'}}</th>
+                                                                        <th
+                                                                            class="">
+                                                                            Sat - {{week.weekData[5].weekDate|
+                                                                            date:'MM/dd'}}</th>
+                                                                        <th
+                                                                            class="">
+                                                                            Sun - {{week.weekData[6].weekDate|
+                                                                            date:'MM/dd'}}</th>
+                                                                        <th
+                                                                            class="">
+                                                                            Hours</th>
+                                                                        <th
+                                                                            class="">
+                                                                            Rate</th>
+                                                                        <th
+                                                                            class="">
+                                                                            Amount</th>
+                                                                    </tr>
+                
+                                                                    <tbody>
+                                                                        <tr style="display:flex;">
+                                                                            <td
+                                                                                class="active-border active-background text-center">
+                                                                                {{week.weekData[0].dayHours}}
+                                                                            </td>
+                                                                            <td
+                                                                                class="text-center table-child-background">
+                                                                                {{week.weekData[1].dayHours}}
+                                                                            </td>
+                                                                            <td
+                                                                                class="text-center table-child-background">
+                                                                                {{week.weekData[2].dayHours}}
+                                                                            </td>
+                                                                            <td
+                                                                                class="text-center table-child-background">
+                                                                                {{week.weekData[3].dayHours}}
+                                                                            </td>
+                                                                            <td
+                                                                                class="text-center table-child-background">
+                                                                                {{week.weekData[4].dayHours}}
+                                                                            </td>
+                                                                            <td
+                                                                                class="text-center table-child-background">
+                                                                                {{week.weekData[5].dayHours}}
+                                                                            </td>
+                                                                            <td
+                                                                                class="text-center table-child-background">
+                                                                                {{week.weekData[6].dayHours}}
+                                                                            </td>
+                                                                            <td
+                                                                                class="text-center table-child-background">
+                                                                                {{week.weekData[0].totalHours}}
+                                                                            </td>
+                                                                            <td
+                                                                                class="text-center table-child-background">
+                                                                                {{week.weekData[0].rate}}
+                                                                            </td>
+                                                                            <td
+                                                                                class="text-center table-child-background">
+                                                                                {{week.weekData[0].amount}}
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                
+                                    </div>
+                                </div>
+                            </div>
+                
+                        </div>
+                    </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- </div> -->
+
+<app-chat-room></app-chat-room>

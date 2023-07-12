@@ -1,0 +1,53 @@
+<div class="container-fluid">
+    <div class="md:flex pt-3 fixed-style">
+        <div class="md:w-full flex justify-between">
+            <span class="font-size-24 heading-title-text-color font-bold mb-0 tracking-normal cursor-pointer">
+                Project List
+            </span>
+        </div>
+    </div>
+    <div class="col-md-12">
+
+        <hr class="mt-2" />
+        <div class="p-4">
+            <div class="mt-4 lg:flex">
+                <div class="md:w-full">
+                    <div class="worker-table mt-3" *ngIf="projectList && projectList.length>0">
+                        <table class="worker-data" style="WIDTH: 100%;">
+                            <tr>
+                                <th class="text-left">Projects</th>
+                                <th class="text-left">Actions</th>
+                            </tr>
+                            <tr *ngFor="let project of projectList">
+                                <td>{{project.projectName}}</td>
+                                <td>
+                                    <button>
+                                        <i class="fas fa-eye" title="View" (click)="navigateToProject(project)"></i>
+                                    </button>
+                                    |
+                                    <button>
+                                        <i class="fa fa-tasks" title="TaskList"
+                                            routerLink="/task-list/{{project.id}}"></i>
+                                    </button>
+                                    |
+                                    <button class="ml-1 help-block">
+                                        <i class="fas fa-trash" style="color:black;" title="Delete"
+                                            (click)="deleteProject(project.id)"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div style="text-align:center;" *ngIf="projectList.length === 0">
+                        <span><b>There are no projects to show</b></span>
+                    </div>
+
+                    <!-- <div style="text-align:center;" *ngIf="skillList != null && skillList.length==0">
+                        <span><b>No record (s) to show !</b></span>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

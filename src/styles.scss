@@ -1,0 +1,87 @@
+/* You can add global styles to this file, and also import other style files */
+@import "./assets/scss/comman.scss";
+@import "./assets/scss/media.scss";
+@import "./assets/scss/utilize.scss";
+@import "./assets/scss/variable.scss";
+body {
+  overflow-x: hidden;
+}
+
+.project-banner {
+  background-color: var(--project-banner);
+  border-radius: var(--border-radius-normal);
+  box-shadow: var(--normal-box-shadow);
+  min-height: calc(100vh - 380px);
+  overflow: auto;
+}
+
+.tabs {
+  /* Step 1: Enable Flex on the container */
+  display: flex;
+
+  /* Step 2: Enable flex-wrap to put content section below tab label */
+  flex-wrap: wrap;
+}
+.tabs > section {
+  /* Step 3: Move content <section> to the end, after the tab labels */
+  order: 999;
+
+  /* Step 4: Make sure the content <section> is 100% width */
+  width: 100%;
+
+  /* Step 5: Hide all content <section> by default */
+  display: none;
+}
+.tabs > input {
+  /* display: none; Don’t use display:none. Bad for accessibility */
+
+  /* Step 6: Hide the radio inputs */
+  opacity: 0;
+
+  /* Step 7: Make sure the radio inputs don’t take up space in layout */
+  position: absolute;
+}
+/* Step 8: Select the label right next to the selected input */
+/* Step 10: Select the section right next to the label which is next to the selected input */
+.tabs > input[type="radio"]:checked + label + section {
+  /* Step 11: Unset the 'display:none' we did in step 5 */
+  display: unset;
+}
+
+.tabs > label {
+  padding: 0.5em 1em;
+}
+.tabs > label:last-of-type {
+  border-right: none;
+}
+.tabs > input[type="radio"]:checked + label {
+  border-bottom: 3px solid #29ccb1;
+  color: #29ccb1 !important;
+  cursor: pointer;
+}
+.fixed-style {
+  padding-top: 4.75rem !important;
+}
+/* Works on Firefox */
+* {
+  scrollbar-width: 18px; /*thin;*/
+  scrollbar-color: var(--sidebar-background-color) #000066;
+}
+*::-webkit-scrollbar {
+  width: 5px;
+  height: 3px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #000066; /* color of the tracking area */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--sidebar-background-color); /* color of the scroll thumb */
+  border-radius: 1px; /* roundness of the scroll thumb */
+  /* border: 1px solid #000066;  */ /* creates padding around scroll thumb */
+}
+.error-text {
+  font-size: 12px;
+  color: red;
+}

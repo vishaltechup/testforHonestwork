@@ -12,11 +12,11 @@
                                     <span class="font-size-14 tracking-normal child-text-color font-bold">
                                         Deliverables
                                     </span>
-                                    <button (click)="htmlAddModal.show();openModal()" style="cursor: pointer;"
-                                        class="primary-btn font-size-16 tracking-normal link-text-color font-bold mb-0"
+                                    <p (click)="htmlAddModal.show();openModal()" style="cursor: pointer;"
+                                        class="font-size-14 tracking-normal link-text-color font-bold mb-0"
                                         *ngIf="permissions.deleverables.canView">
                                         + Upload Document
-                                    </button>
+                                    </p>
 
 
                                 </div>
@@ -28,7 +28,7 @@
                                                     <th class="text-left">Name</th>
                                                     <th class="text-left">Date / Time</th>
                                                     <th class="text-left">Uploaded By</th>
-                                                    <th class="text-center">Actions</th>
+                                                    <th class="text-right"></th>
                                                 </tr>
 
                                                 <tr *ngFor="let deliverble of deliverblesList">
@@ -59,7 +59,7 @@
                                                             <p style="cursor: pointer;"
                                                                 class="font-medium danger-text-color underline font-size-14"
                                                                 (click)="Removedeliverblefile(deliverble.id)">
-                                                                <i class="fas fa-trash"></i>
+                                                                Remove File
                                                             </p>
                                                             <p style="cursor: pointer;"
                                                                 class="pl-3 font-medium link-text-color underline font-size-14"
@@ -148,10 +148,10 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button"
-                            class="new-project-btn primary-btn font-size-16 primary-btn-text-color font-medium tracking-normal text-center cancel-btn"
+                            class="new-project-btn primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center"
                             (click)="htmlAddModal.hide()" aria-label="Close">Cancel</button>
                         <button type="button" (click)="uploaddeliverblefile();"
-                            class="new-project-btn primary-btn font-size-16 primary-btn-text-color font-medium tracking-normal text-center">Submit</button>
+                            class="new-project-btn primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center">Submit</button>
 
                     </div>
                 </div>

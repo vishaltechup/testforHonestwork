@@ -16,14 +16,14 @@
     transition: all 2s ease-in-out;
 }
 .border-chat {
-    // border: 1px solid #1c3a84;
+    // border: 1px solid #4400cc;
     margin: 0px;
 }
 .first-section {
-    background-color: #1c3a84;
+    background-color: #4400cc;
     text-align: center;
-    padding: 10px 12px !important;
-    border-radius: 100%;
+    padding: 12px;
+    border-radius: 50%;
     margin-right: 25px;
     position: relative;
 }
@@ -55,7 +55,7 @@
 .chat-section {
     overflow-y: scroll;
     height: 310px;
-    border-bottom: 1px solid #1c3a84ab;
+    border-bottom: 1px solid #4400ccab;
 }
 .chat-section ul {
     padding: 0px;
@@ -82,7 +82,7 @@
 }
 .left-chat p,
 .right-chat p {
-    background-color: #1c3a84;
+    background-color: #4400cc;
     padding: 10px;
     color: #fff;
     border-radius: 5px;
@@ -118,7 +118,7 @@
     border: 1px solid #fff;
 }
 .text-bar a i {
-    background-color: #1c3a84;
+    background-color: #4400cc;
     color: #fff;
     width: 30px;
     height: 30px;
@@ -133,7 +133,7 @@
     left: 55px;
     bottom: 150px;
     border: 15px solid transparent;
-    border-top-color: #1c3a84;
+    border-top-color: #4400cc;
 }
 .right-chat:before {
     content: " ";

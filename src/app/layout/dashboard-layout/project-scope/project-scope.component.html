@@ -19,7 +19,7 @@
                                             style="background: #f9f2f2;border: 1px solid #cccccc;border-radius: 7px;">
 
                                             <ckeditor name="scopeDescription" formControlName="scopeDescription"
-                                                [config]="{uiColor: '#1c3a84'}" [readonly]="!Scopeedit" debounce="500"
+                                                [config]="{uiColor: '#4400cc'}" [readonly]="!Scopeedit" debounce="500"
                                                 required>
                                             </ckeditor>
 
@@ -28,13 +28,13 @@
                                             </textarea> -->
 
                                             <div class="flex justify-end mt-4">
-                                                <div style="background: #1c3a84; padding: 6px;border-radius: 5px;"
+                                                <div style="background: #4400cc; padding: 6px;border-radius: 5px;"
                                                     class="add-task font-size-18 cursor-pointer flex items-center justify-center"
                                                     (click)="editprojectscopedetails()"
                                                     *ngIf="permissions.newproject.canView && !Scopeedit">
                                                     <i class="fas fa-pen white-icon-color"></i>
                                                 </div>
-                                                <div style="background: #1c3a84; padding: 6px;border-radius: 5px;"
+                                                <div style="background: #4400cc; padding: 6px;border-radius: 5px;"
                                                     class="add-task font-size-18 cursor-pointer flex items-center justify-center"
                                                     (click)="updateprojectscopedetails()"
                                                     *ngIf="permissions.newproject.canView && Scopeedit">
@@ -49,24 +49,20 @@
                                                     Quote To Build
                                                 </p>
                                                 <div
-                                                    class="relative flex w-full flex-wrap items-stretch normal-shadow">
-                                                    <!-- class="relative flex w-full flex-wrap items-stretch mb-3 dashboard-box normal-shadow"> -->
+                                                    class="relative flex w-full flex-wrap items-stretch mb-3 dashboard-box normal-shadow">
 
                                                     <input type="text" id="notes-input" [readonly]="!BuildQuoteedit"
                                                         placeholder="Write Something..." name="buildQuoteAmount"
                                                         formControlName="buildQuoteAmount" placeholder="$9,000,000.00"
                                                         mask="0*.00" maxlength="11"
-                                                        class="block input-form-control w-full pr-10">
-                                                        <!-- class="px-3 py-3 block input-form-control w-full pr-10"> -->
+                                                        class="px-3 py-3 block input-form-control w-full pr-10">
 
 
-                                                        <!-- rounded text-base items-center justify-center w-8 right-0 pr-3 py-3" -->
                                                     <span
                                                         class="z-10 h-full leading-snug font-normal absolute text-center text-gray-400 absolute bg-transparent
                                                     rounded text-base items-center justify-center w-8 right-0 pr-3 py-3"
                                                         (click)="editbuildQuoteAmount()" *ngIf="!BuildQuoteedit"
-                                                        style="width: 20%;color: #fff;background: #1c3a84;cursor: pointer;border-radius: 8px;z-index:0;">
-                                                        <!-- style="width: 20%;padding: 13px 8px;color: #fff;background: #1c3a84;cursor: pointer;border-radius: 8px;z-index:0;"> -->
+                                                        style="width: 20%;padding: 13px 8px;color: #fff;background: #4400cc;cursor: pointer;border-radius: 8px;z-index:0;">
                                                         <i class="fas fa-pen white-icon-color"></i>
                                                     </span>
 
@@ -74,7 +70,7 @@
                                                         class="z-10 h-full leading-snug font-normal absolute text-center text-gray-400 absolute bg-transparent
                                                     rounded text-base items-center justify-center w-8 right-0 pr-3 py-3"
                                                         (click)="updateprojectscopedetails()" *ngIf="BuildQuoteedit"
-                                                        style="width: 20%;padding: 13px 8px;color: #fff;background: #1c3a84;cursor: pointer;border-radius: 8px;z-index:0;">
+                                                        style="width: 20%;padding: 13px 8px;color: #fff;background: #4400cc;cursor: pointer;border-radius: 8px;z-index:0;">
                                                         <i class="fas fa-save white-icon-color"></i>
                                                     </span>
 
@@ -99,7 +95,7 @@
                                                         class="z-10 h-full leading-snug font-normal absolute text-center text-gray-400 absolute bg-transparent
                                                     rounded text-base items-center justify-center w-8 right-0 pr-3 py-3"
                                                         (click)="editPartnerQuoted()" *ngIf="!PartnerQuotededit"
-                                                        style="width: 15%;padding: 10px 5px;color: #fff;background: #1c3a84;cursor: pointer;border-radius: 8px;z-index:0;">
+                                                        style="width: 15%;padding: 10px 5px;color: #fff;background: #4400cc;cursor: pointer;border-radius: 8px;z-index:0;">
                                                         <i class="fas fa-pen white-icon-color"></i>
                                                     </span>
 
@@ -107,7 +103,7 @@
                                                         class="z-10 h-full leading-snug font-normal absolute text-center text-gray-400 absolute bg-transparent
                                                     rounded text-base items-center justify-center w-8 right-0 pr-3 py-3"
                                                         (click)="updateprojectscopedetails()" *ngIf="PartnerQuotededit"
-                                                        style="width: 15%;padding: 10px 5px;color: #fff;background: #1c3a84;cursor: pointer;border-radius: 8px;z-index:0;">
+                                                        style="width: 15%;padding: 10px 5px;color: #fff;background: #4400cc;cursor: pointer;border-radius: 8px;z-index:0;">
                                                         <i class="fas fa-save white-icon-color"></i>
                                                     </span>
 
@@ -136,7 +132,7 @@
                                                     rounded text-base items-center justify-center w-8 right-0 pr-3 py-3"
                                                         (click)="edittotalAmountsReceivable()"
                                                         *ngIf="!totalAmountsReceivableedit"
-                                                        style="width: 15%;padding: 10px 5px;color: #fff;background: #1c3a84;cursor: pointer;border-radius: 8px;z-index:0;">
+                                                        style="width: 15%;padding: 10px 5px;color: #fff;background: #4400cc;cursor: pointer;border-radius: 8px;z-index:0;">
                                                         <i class="fas fa-pen white-icon-color"></i>
                                                     </span>
 
@@ -145,7 +141,7 @@
                                                     rounded text-base items-center justify-center w-8 right-0 pr-3 py-3"
                                                         (click)="updateprojectscopedetails()"
                                                         *ngIf="totalAmountsReceivableedit"
-                                                        style="width: 15%;padding: 10px 5px;color: #fff;background: #1c3a84;cursor: pointer;border-radius: 8px;z-index:0;">
+                                                        style="width: 15%;padding: 10px 5px;color: #fff;background: #4400cc;cursor: pointer;border-radius: 8px;z-index:0;">
                                                         <i class="fas fa-save white-icon-color"></i>
                                                     </span>
 
@@ -173,7 +169,7 @@
                                                     rounded text-base items-center justify-center w-8 right-0 pr-3 py-3"
                                                         (click)="edittotalAmountsOwed()"
                                                         *ngIf="!totalAmountsOwededit"
-                                                        style="width: 15%;padding: 10px 5px;color: #fff;background: #1c3a84;cursor: pointer;border-radius: 8px;z-index:0;">
+                                                        style="width: 15%;padding: 10px 5px;color: #fff;background: #4400cc;cursor: pointer;border-radius: 8px;z-index:0;">
                                                         <i class="fas fa-pen white-icon-color"></i>
                                                     </span>
 
@@ -182,7 +178,7 @@
                                                     rounded text-base items-center justify-center w-8 right-0 pr-3 py-3"
                                                         (click)="updateprojectscopedetails()"
                                                         *ngIf="totalAmountsOwededit"
-                                                        style="width: 15%;padding: 10px 5px;color: #fff;background: #1c3a84;cursor: pointer;border-radius: 8px;z-index:0;">
+                                                        style="width: 15%;padding: 10px 5px;color: #fff;background: #4400cc;cursor: pointer;border-radius: 8px;z-index:0;">
                                                         <i class="fas fa-save white-icon-color"></i>
                                                     </span>
 
@@ -237,10 +233,10 @@
                                                     class="font-size-14 tracking-normal cursor-pointer font-medium child-text-color">
                                                     Scope Documents
                                                 </span>
-                                                <button (click)="htmlAddModal.show();openModal()" style="cursor: pointer;"
-                                                    class="primary-btn font-size-16 tracking-normal link-text-color font-bold mb-0">
+                                                <p (click)="htmlAddModal.show();openModal()" style="cursor: pointer;"
+                                                    class="font-size-14 tracking-normal link-text-color font-bold mb-0">
                                                     + Upload Document
-                                                </button>
+                                                </p>
                                             </div>
                                             <div class="worker-table mt-3">
                                                 <table class="worker-data" style="WIDTH: 100%;">
@@ -357,10 +353,10 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button"
-                            class="new-project-btn primary-btn font-size-16 font-medium tracking-normal text-center cancel-btn"
+                            class="new-project-btn primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center"
                             (click)="htmlAddModal.hide()" aria-label="Close">Cancel</button>
                         <button type="button" (click)="uploadscopeDocuemntfile();"
-                            class="new-project-btn primary-btn font-size-16 primary-btn-text-color font-medium tracking-normal text-center">Submit</button>
+                            class="new-project-btn primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center">Submit</button>
 
                     </div>
                 </div>

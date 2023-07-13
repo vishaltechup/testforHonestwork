@@ -1,7 +1,7 @@
 :root {
-    // --primary:#1c3a84;
+    // --primary:#4400CC;
     // --primary:#397be4;
-    --primary:#1c3a84;
+    --primary:#1c3a84;;
     // --primary:#488adf;
     --secoundry:#ffffff;
     --black:#000000;
@@ -19,10 +19,9 @@
     --input-label-text-color:var(--gray);
     --input-placeholder-color:var(--black);
     --input-border-color:#CCCCCC;
-    --large-btn-color:#29CCB1;
+    --large-btn-color:#1c3a84;
     --large-btn-text-color:var(--secoundry);
-    // --link-text-color:#29CCB1;
-    --link-text-color:#1c3a84;;
+    --link-text-color:#29CCB1;
     --white-text-color:var(--secoundry);
     // --sidebar-background-color:var(--primary);
     // --sidebar-menu-hover-color:#330099;
@@ -35,19 +34,16 @@
     --white-icon-color:var(--secoundry);
     --primary-btn-backgound-color:var(--primary);
     --child-text-color:var(--gray);
-    // --dashboard-background-color:var(--white);
-    --dashboard-background-color:white;
+    --dashboard-background-color:var(--white);
     --normal-box-shadow:0px 0px 10px rgba(0, 0, 0, 0.16);
     --company-logo-background-color:#d9ccf5;
     --full-rounded:50%;
     --top-border-color:#CCCCCC;
     --progressbar-background-color:#E6E6E6;
-    // --project-banner:var(--white);
-    --project-banner:white;
+    --project-banner:var(--white);
     --table-border:#ccc;
     --table-child-background-color:#F2F2F2;
     --count-icon-background:#E6A82E;
-    
     --add-task-background-color:var(--primary);
     --project-box-background:#F2F2F2;
     --project-box-border-color:#CCCCCC;

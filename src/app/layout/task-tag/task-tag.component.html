@@ -2,26 +2,28 @@
     <div class="md:flex pt-3 fixed-style">
         <div class="md:w-full flex justify-between">
             <span class="font-size-24 heading-title-text-color font-bold mb-0 tracking-normal cursor-pointer">
+                <i class="fa fa-tag section-menu-icon"></i>
                 Task Tag
             </span>
             <div class="text-right" style="margin-right: 10px;">
                 <!-- <div> -->
-                    <button style="cursor: pointer;" (click)="htmlModal.show();openModal()"
-                        class="new-project-btn primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center">
-                        Add Task Tag
-                    </button>
-                </div>
+                <button style="cursor: pointer;" (click)="htmlModal.show();openModal()"
+                    class="new-project-btn primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center">
+                    Add Task Tag
+                </button>
+            </div>
             <!-- </div> -->
         </div>
     </div>
 
     <div class="col-md-12">
-        
-        <hr class="mt-2"/>
+
+        <hr class="mt-2" />
         <div class="p-4">
             <div class="mt-4 lg:flex">
                 <div class="md:w-full">
-                    <div class="worker-table mt-3" *ngIf="tagList && tagList.length>0">
+                    <!--Muskaan commneted start -->
+                    <!-- <div class="worker-table mt-3" *ngIf="tagList && tagList.length>0">
                         <table class="worker-data" style="WIDTH: 100%;">
                             <tr>
                                 <th class="text-left">Tag name</th>
@@ -93,14 +95,49 @@
                                 </div>
                             </div>
                         </div>
+                    </div> -->
+                    <!--Muskaan commneted end -->
+
+                    <div class="center text-center">
+                        <table border="2" class="table">
+                            <thead>
+                                <tr class="table-head">
+                                    <th class="table-data text-left">Tag name</th>
+                                    <th class="table-data text-left">Tag color</th>
+                                    <th class="table-data text-left">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let tag of tagList">
+                                    <td class="table-data text-left">{{tag.tagName}}</td>
+                                    <td class="table-data text-left">{{tag.tagColor}}</td>
+                                    <td class="table-data" style="width: 15%">
+                                        <button class="table-edit-action-button" (click)="editTag(tag)">
+                                            <i class="fa fa-edit"> Edit </i>
+                                        </button>
+                                        <button class="m-2 table-delete-action-button" (click)="DeleteTag(tag .id)">
+                                            <i class="fas fa-trash"> Delete </i>
+                                        </button>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="mt-5 text-right">
+                            <div class="pagination">
+                                <a href="#"> <i class="fas fa-angle-double-left"></i> Prev</a>
+                                <a href="#" class="active"> 1 </a>
+                                <a href="#"> 2 </a>
+                                <a href="#"> Next <i class="fas fa-angle-double-right"></i> </a>
+                            </div>
+                        </div>
                     </div>
 
                     <div style="text-align:center;" *ngIf="tagList == null">
                         <span><b>No record (s) to show !</b></span>
                     </div>
 
-                    <div style="text-align:center;"
-                        *ngIf="tagList != null && tagList.length==0">
+                    <div style="text-align:center;" *ngIf="tagList != null && tagList.length==0">
                         <span><b>No record (s) to show !</b></span>
                     </div>
                 </div>
@@ -140,8 +177,8 @@
 
 
 <!--Model Start for Add new milestone Here-->
-<div bsModal [config]="{backdrop: 'static',  keyboard: false}" class="modal fade" #htmlModal="bs-modal"
-    tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-toggle="modal"
+<div bsModal [config]="{backdrop: 'static',  keyboard: false}" class="modal fade" #htmlModal="bs-modal" tabindex="-1"
+    role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-toggle="modal"
     data-target="#exampleModalScrollable">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -159,18 +196,18 @@
 
                     <div class="col-md-12 mt-2">
                         <p>Add Task Tag :<span class="help-block">*</span></p>
-                        <input type="text" placeholder="Add Task Tag" formControlName="tagName" name="tagName" maxlength="50"
-                            class="input-form-control" />
+                        <input type="text" placeholder="Add Task Tag" formControlName="tagName" name="tagName"
+                            maxlength="50" class="input-form-control" />
                         <p class="error-text" *ngIf="submitAttempt && TaskTag.controls.tagName.errors?.required">
-                           Task Tag name is required </p>
+                            Task Tag name is required </p>
                     </div>
 
                     <div class="col-md-12 mt-2">
                         <p>Add Task Tag color :<span class="help-block">*</span></p>
-                        <input type="text" placeholder="Add Task Tag Color" formControlName="tagColor" name="tagColor" maxlength="50"
-                            class="input-form-control" />
+                        <input type="text" placeholder="Add Task Tag Color" formControlName="tagColor" name="tagColor"
+                            maxlength="50" class="input-form-control" />
                         <p class="error-text" *ngIf="submitAttempt && TaskTag.controls.tagColor.errors?.required">
-                           Task Tag color is required </p>
+                            Task Tag color is required </p>
                     </div>
                 </div>
 
@@ -178,7 +215,7 @@
                     <button type="button"
                         class="primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center"
                         (click)="htmlModal.hide()" aria-label="Close">Cancel</button>
-                    <button type="button"  (click)="AddTaskTag()"
+                    <button type="button" (click)="AddTaskTag()"
                         class="primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center">Submit</button>
 
                 </div>

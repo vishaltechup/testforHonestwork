@@ -4,13 +4,14 @@
 @import "../../../assets/scss/variable.scss";
 @import url("//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css");
 .workers-banner-new {
-    background-color: #9bcdd329;
+    background-color: #fff;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.16);
     // height: calc(100vh - 240px);
     border-radius: 10px 10px 0px 0px;
     // overflow: scroll;
     overflow-x: hidden;
     width: 450px;
+    border: 1px;
 }
 .app-img {
     width: 350px;
@@ -526,7 +527,7 @@ td {
     position: sticky;
     top: 0;
     z-index: 1;
-    background: #eff7f8;
+    background: #4400cc;
     padding: 10px;
     /* width: 100%; */
     margin-left: -15px;
@@ -579,7 +580,4 @@ label a {
 }
 .date-p{
     width: 28%;
-}
-.container-fluid {
-   padding-bottom: 5% !important;
 }

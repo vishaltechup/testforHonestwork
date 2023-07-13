@@ -68,6 +68,7 @@ background-color: rgb(255, 204, 204);
 .normal-box-shadow {
    box-shadow: var(--normal-box-shadow);
 }
+
 .company-logo {
    background-color: var(--company-logo-background-color);
    width: 80px;
@@ -81,8 +82,7 @@ background-color: rgb(255, 204, 204);
    height: 10px;
 }
 #progressbar .abc {
-   // background-color: #ffb31a;
-   background-color: #1c3a84 !important;
+   background-color: #ffb31a;
    width: 00%;
    /* Adjust with JavaScript */
    height: 10px;
@@ -183,7 +183,7 @@ a {
 
 .s-sidebar__nav-link:hover {
    // background: var(--sidebar-menu-hover-color);
-   background: var(--primary) ;
+   background: #1164d0;
 }
 
 .s-sidebar__nav-link > i {
@@ -263,7 +263,7 @@ a {
    height: 100%;
    overflow: hidden;
    outline: 0;
-   padding-top: 0.5%;
+   padding-top: 2%;
 }
 
 .fade {
@@ -322,7 +322,6 @@ a {
    border: 1px solid rgba(0, 0, 0, 0.2);
    border-radius: 0.3rem;
    outline: 0;
-   height: 102vh;
 }
 
 .modal-header {
@@ -348,7 +347,7 @@ a {
    display: flex;
    align-items: center;
    justify-content: flex-end;
-   padding: 0.5rem;
+   padding: 1rem;
    border-top: 1px solid #c8ced3;
    border-bottom-right-radius: 0.3rem;
    border-bottom-left-radius: 0.3rem;
@@ -524,57 +523,8 @@ a:not([href]):not([tabindex]):hover {
    height: 10px;
 }
 #progressbar .abc {
-   background-color: #1c3a84;
+   background-color: #ffb31a;
    /* Adjust with JavaScript */
    height: 10px;
    border-radius: 10px;
-}
-p.link-text-color.font-size-20.tracking-normal.font-medium.mb-0.cursor-pointer.ng-star-inserted {
-   // font-size: 18px;
-   color: #1c3a84;
-   font-weight: 600;
-}
-
-p.font-size-24.tracking-normal.heading-title-text-color.font-medium.mb-0 {
-   font-weight: bolder;
-}
-
-p {
-   font-size: 15px;
-   font-weight: 500;
-}
-
-button.new-project-btn.primary-btn.font-size-18.primary-btn-text-color.font-medium.tracking-normal.text-center {
-   font-size: 10px;
-}
-
-.modal-dialog.modal-lg.d-flex {
-   margin-top: 35px !important;
-   margin-left: 0 !important;
-   position: fixed;
-    width: 100%;
-}
-input#project-input,select#currencyId,input#hourlyRate,input#inviteClient {
-   height: 40px !important;
-}
-input.px-3.font-size-10.py-3.block.input-form-control.pl-10.ng-untouched.ng-pristine.ng-invalid {
-   height: 40px !important;
-}
-// select#currencyId {
-//    min-height: 40px !important;
-// }
-// input#hourlyRate {
-//    height: 40px !important;
-// }
-// input#inviteClient {
-//    height: 40px !important;
-// }
-.container-fluid {
-   padding-bottom: 5% !important;
-}
-input.input-form-control.ng-untouched.ng-pristine.ng-invalid {
-   height: 40px;
-}
-.cancel-btn{
-   
 }

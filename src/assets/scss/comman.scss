@@ -3,27 +3,38 @@ body {
     padding: 0;
     font-family: 'Roboto', sans-serif;
 }
+
 * {
     box-sizing: border-box;
 }
+
 p:last-child {
     margin-top: 0;
 }
+
 img {
     max-width: 100%;
 }
-h1,h2,h3,h4,h6,h5 {
+
+h1,
+h2,
+h3,
+h4,
+h6,
+h5 {
     margin-top: 0;
 }
+
 a {
     text-decoration: none;
 }
-a:hover{
+
+a:hover {
     text-decoration: none;
 }
 
 .full-page-background {
-    background-color: var(--primary);
+    background-color: var(--secoundary);
     width: 100%;
     height: 100vh;
 }
@@ -36,6 +47,7 @@ a:hover{
     height: 50px;
     border-radius: 10px;
 }
+
 input:focus {
     outline: none;
 }
@@ -43,6 +55,116 @@ input:focus {
 .input-icon-color {
     color: var(--input-icon-color);
 }
+
+/* table css */
+
+.table {
+    border: 1px solid #c8ced3;
+    border-collapse: collapse;
+    padding: 5px;
+    width: 100%;
+    background-color: #ffffff;
+}
+
+.table-row {
+    border: 1px solid #c8ced3;
+    border-collapse: collapse;
+    padding: 5px;
+    background-color: #ffffff;
+}
+
+.table-head {
+    border: 1px solid #c8ced3;
+    border-collapse: collapse;
+    padding: 15px;
+    font-size: 15px;
+    background-color: #ffffff;
+    border-bottom-width: 2px;
+}
+
+.table-data {
+    border: 1px solid #c8ced3;
+    border-collapse: collapse;
+    padding: 5px;
+    background-color: #ffffff;
+}
+
+.table-delete-action-button {
+    border: 1px solid #db3a3a;
+    border-radius: 10px;
+    background-color: #db3a3a;
+    color: #fff;
+    padding: 5px;
+}
+
+.table-edit-action-button {
+    border: 1px solid #1c3a84;
+    border-radius: 10px;
+    background-color: #1c3a84;
+    color: #fff;
+    padding: 5px;
+}
+
+/* table css ends */
+
+
+/* pagination */
+
+.pagination {
+    display: inline-block;
+    background-color: #fff;
+}
+
+.pagination a {
+    color: grey;
+    float: left;
+    padding: 8px 16px;
+    border: 1px solid #c8ced3;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+.pagination a:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.pagination a:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.pagination a.active {
+    background-color: #1c3a84;
+    color: white;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+}
+
+/* pagination ends */
+
+/* div center */
+.center {
+    margin: auto;
+    width: 100%;
+    padding: 10px;
+    background-color: #ffffff;
+}
+
+/* form button css start*/
+
+.form-submit-button{
+    border: 1px solid var(--large-btn-color);
+    border-radius: 15px;
+    background-color: var(--large-btn-color);
+    color: #fff;
+    padding: 10px 20px;
+    width: 105px;
+}
+
+/* form button css end*/
 
 /* button css */
 
@@ -57,32 +179,34 @@ input:focus {
     margin-right: auto;
     padding-left: 20px;
     padding-right: 20px;
-    
-        padding-bottom: 5% !important;
-     
 }
 
 .dashboard-box {
     background-color: var(--dashboard-background-color);
     border-radius: var(--border-radius-normal);
 }
+
 .normal-box-shadow {
     box-shadow: var(--normal-box-shadow);
-  }
+}
+
 .top-full-border {
     border-top: 1px solid var(--top-border-color);
 }
+
 .workers-box {
     background: var(--dashboard-background-color);
     box-shadow: var(--normal-box-shadow);
     border-radius: var(--border-radius-normal);
 }
+
 .count-icon {
     width: 30px;
     height: 30px;
     border-radius: var(--full-rounded);
     background-color: var(--count-icon-background);
 }
+
 .select-dropdown-design {
     border: 1px solid var(--input-border-color);
     border-radius: var(--border-radius-normal);
@@ -91,9 +215,11 @@ input:focus {
     padding: .375rem .75rem;
     min-height: 50px;
 }
+
 select:focus {
     outline: none;
 }
+
 .container-long {
     width: 100%;
     padding-left: 50px;
@@ -101,69 +227,96 @@ select:focus {
     margin-right: auto;
     padding-right: 50px;
 }
+
 .child-text-color {
     color: var(--child-text-color);
 }
+
+.personal-todo-list-card {
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.task-completed {
+    border: 2px solid #00b300;
+    color: #00b300;
+    min-height: 39px;
+    font-size: 11px !important;
+    white-space: nowrap;
+    color: #fff;
+}
+
 .dashboard-box {
-    // background-color: var(--dashboard-background-color);
-    background-color: white;
-    min-height: 130px;
+    background-color: var(--dashboard-background-color);
     border-radius: var(--border-radius-normal);
 }
+
 .sub-heading-title-text-color {
     color: var(--heading-title-text-color);
 }
+
 .font-size-40 {
     font-size: var(--extra-large-text);
 }
+
 .top-full-border {
     border-top: 1px solid var(--top-border-color);
 }
+
 .workers-box {
     background: var(--dashboard-background-color);
     box-shadow: var(--normal-box-shadow);
     border-radius: var(--border-radius-normal);
 }
+
 .count-icon {
     width: 30px;
     height: 30px;
     border-radius: var(--full-rounded);
     background-color: var(--count-icon-background);
 }
+
 .view-details-btn {
     border: 2px solid var(--large-btn-color);
     border-radius: var(--border-radius-normal);
     padding: 8px 15px;
     min-width: 170px;
     min-height: 50px;
-  }
-  .view-details-btn1 {
+}
+
+.view-details-btn1 {
     border: 2px solid var(--large-btn-color);
     border-radius: var(--border-radius-normal);
     padding: 8px 15px;
     min-width: 170px;
     min-height: 50px;
-  }
+}
+
 .select-dropdown-design {
     border: 1px solid var(--input-border-color);
     border-radius: var(--border-radius-normal);
-    background-color: transparent;
+    background-color: #fff;
     width: 100%;
     padding: .375rem .75rem;
     min-height: 50px;
 }
+
 select:focus {
     outline: none;
 }
+
 .font-size-14-table {
     font-size: 14px;
 }
+
 .text-16 {
     font-size: 16px;
 }
+
 .danger-text-color {
     color: var(--danger-text-color);
 }
+
 .cus-primary-btn {
     background-color: var(--cus-primary-btn-background);
     padding: 8px 15px;
@@ -172,6 +325,21 @@ select:focus {
     border-radius: var(--border-radius-normal);
 }
 
-span.z-10.h-full.leading-snug.font-normal.absolute.text-center.text-gray-400.bg-transparent.rounded.text-base.items-center.justify-center.w-8.right-0.pr-3.py-3.ng-star-inserted {
-    height: 50px;
+.project-card {
+    background-color: #fff;
+}
+
+.column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 450px;
+    /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
 }

@@ -245,7 +245,7 @@ input[type="text"]:disabled {
     height: 10px;
  }
  #progressbar .abc {
-    background-color: #1c3a84;
+    background-color: #ffb31a;
     /* Adjust with JavaScript */
     height: 10px;
     border-radius: 10px;
@@ -761,7 +761,4 @@ color:red;
  
  .modal-footer > :not(:last-child) {
     margin-right: 0.25rem;
- }
- .container-fluid {
-    padding-bottom: 5% !important;
  }

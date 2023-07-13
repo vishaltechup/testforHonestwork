@@ -286,7 +286,7 @@
    display: flex;
    align-items: center;
    justify-content: flex-end;
-   padding: 0.5rem;
+   padding: 1rem;
    border-top: 1px solid #c8ced3;
    border-bottom-right-radius: .3rem;
    border-bottom-left-radius: .3rem;
@@ -400,24 +400,4 @@ button.close {
 }
 .select-dropdown-design{
    min-height: 45px;
-}
-select#viewas {
-   min-height: 35px;
-   width: 100px;
-}
-table,tr{
-   border: 1px solid #c8ced3;
-}
-.delete-icon{
-   color: red;
-}
-input.input-form-control.ng-pristine.ng-invalid.ng-touched {
-   height: 40px;
-}
-input.input-form-control.ng-untouched.ng-pristine.ng-invalid {
-   height: 40px;
-}
-.cancel-btn {
-   background-color: #3f4142;
-   color: white;
 }

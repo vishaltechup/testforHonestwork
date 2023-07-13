@@ -6,22 +6,23 @@
             </span>
             <div class="text-right" style="margin-right: 10px;">
                 <!-- <div> -->
-                    <button style="cursor: pointer;" (click)="htmlModal.show();openModal()"
-                        class="new-project-btn primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center">
-                        Add Task Status
-                    </button>
+                <button style="cursor: pointer;" (click)="htmlModal.show();openModal()"
+                    class="new-project-btn primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center">
+                    Add Task Status
+                </button>
                 <!-- </div> -->
             </div>
         </div>
     </div>
 
     <div class="col-md-12">
-       
-        <hr class="mt-2"/>
+
+        <hr class="mt-2" />
         <div class="p-4">
             <div class="mt-4 lg:flex">
                 <div class="md:w-full">
-                    <div class="worker-table mt-3" *ngIf="statusList && statusList.length>0">
+                    <!-- Muskaan Commented Start-->
+                    <!-- <div class="worker-table mt-3" *ngIf="statusList && statusList.length>0">
                         <table class="worker-data" style="WIDTH: 100%;">
                             <tr>
                                 <th class="text-left">Status</th>
@@ -91,14 +92,48 @@
                                 </div>
                             </div>
                         </div>
+                    </div> -->
+                    <!-- Muskaan Commented ends -->
+
+                    <div class="center text-center">
+                        <table border="2" class="table">
+                            <thead>
+                                <tr class="table-head">
+                                    <th class="table-data text-left">Status</th>
+                                    <th class="table-data text-left">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="table-row" *ngFor="let status of statusList">
+                                    <td class="table-data text-left">{{status.statusName}}</td>
+                                    <td class="table-data" style="width: 15%">
+
+                                        <button class="table-edit-action-button" (click)="editstatus(status)">
+                                            <i class="fa fa-edit"> Edit </i>
+                                        </button>
+                                        <button class="m-2 table-delete-action-button"
+                                            (click)="Deletestatus(status .id)">
+                                            <i class="fas fa-trash"> Delete</i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="mt-5 text-right">
+                            <div class="pagination">
+                                <a href="#"> <i class="fas fa-angle-double-left"></i> Prev</a>
+                                <a href="#" class="active"> 1 </a>
+                                <a href="#"> 2 </a>
+                                <a href="#"> Next <i class="fas fa-angle-double-right"></i> </a>
+                            </div>
+                        </div>
                     </div>
 
                     <div style="text-align:center;" *ngIf="statusList == null">
                         <span><b>No record (s) to show !</b></span>
                     </div>
 
-                    <div style="text-align:center;"
-                        *ngIf="statusList != null && statusList.length==0">
+                    <div style="text-align:center;" *ngIf="statusList != null && statusList.length==0">
                         <span><b>No record (s) to show !</b></span>
                     </div>
                 </div>
@@ -138,8 +173,8 @@
 
 
 <!--Model Start for Add new milestone Here-->
-<div bsModal [config]="{backdrop: 'static',  keyboard: false}" class="modal fade" #htmlModal="bs-modal"
-    tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-toggle="modal"
+<div bsModal [config]="{backdrop: 'static',  keyboard: false}" class="modal fade" #htmlModal="bs-modal" tabindex="-1"
+    role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-toggle="modal"
     data-target="#exampleModalScrollable">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -157,8 +192,8 @@
 
                     <div class="col-md-6 mt-2">
                         <p>Add Task Status :<span class="help-block">*</span></p>
-                        <input type="text" placeholder="Add Task Status" formControlName="statusName" name="statusName" maxlength="50"
-                            class="input-form-control" />
+                        <input type="text" placeholder="Add Task Status" formControlName="statusName" name="statusName"
+                            maxlength="50" class="input-form-control" />
                         <p class="error-text" *ngIf="submitAttempt && TaskStatus.controls.statusName.errors?.required">
                             Task Status is required </p>
                     </div>
@@ -168,7 +203,7 @@
                     <button type="button"
                         class="primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center"
                         (click)="htmlModal.hide()" aria-label="Close">Cancel</button>
-                    <button type="button"  (click)="AddTaskStatus()"
+                    <button type="button" (click)="AddTaskStatus()"
                         class="primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center">Submit</button>
 
                 </div>

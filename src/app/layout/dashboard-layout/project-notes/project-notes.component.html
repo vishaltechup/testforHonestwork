@@ -121,22 +121,51 @@
                                                         <div class="modal-body">
                                                             <div class="col col-md-12">
                                                                 <div class="lg:flex">
-
                                                                     {{projectNotes}}
                                                                 </div>
                                                             </div>
                                                             <!-- <div class="modal-body"> -->
 
-                                                       
+                                                            <form [formGroup]="ReplyNoteForm" method="post"
+                                                                class="form-horizontal mt-2">
+
+                                                                <div class="col-md-12">
+                                                                    <div class="md:flex">
+                                                                        <div class="md:w-5/6">
+                                                                            <textarea
+                                                                                class="px-3 py-3 block input-form-control pl-10"
+                                                                                style="width: 100%;" id="reply"
+                                                                                name="reply"
+                                                                                placeholder="Enter note reply *"
+                                                                                formControlName="reply"
+                                                                                rows="3"></textarea>
+
+                                                                            <p class="error-text"
+                                                                                *ngIf="submitAttempt && ReplyNoteForm.controls.reply.errors?.required">
+                                                                                Enter note reply !
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="ml-1 md:w-1/6 text-center">
+                                                                            <button
+                                                                                class="new-project-btn primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center"
+                                                                                (click)="ReplayToNoteDetails()">
+                                                                                <i class="fa fa-paper-plane"></i>
+                                                                            </button>
+                                                                        </div>
+
+                                                                    </div>
+
+
+                                                                </div>
+                                                            </form>
                                                             <!-- </div> -->
                                                             <div class="worker-table mt-3"
                                                                 style="height: 200px;overflow: auto;">
-                                                                <hr />
-                                                                Comments [ 3 ]: 
+
                                                                 <div *ngIf="noteReplyList && noteReplyList.length>0">
 
                                                                     <div *ngFor="let reply of noteReplyList">
-                                                                      
+
                                                                         <h3><b>{{reply.fullName}}</b> </h3>
                                                                         <p>{{reply.reply}}</p>
                                                                         <small> {{reply.replyDate | date:'dd MMM
@@ -145,39 +174,6 @@
                                                                 </div>
 
                                                             </div>
-
-                                                            <form [formGroup]="ReplyNoteForm" method="post"
-                                                            class="form-horizontal mt-2">
-
-                                                            <div class="col-md-12">
-                                                                <div class="md:flex">
-                                                                    <div class="md:w-5/6">
-                                                                        <textarea
-                                                                            class="px-3 py-3 block input-form-control pl-10"
-                                                                            style="width: 100%;" id="reply"
-                                                                            name="reply"
-                                                                            placeholder="Enter note reply *"
-                                                                            formControlName="reply"
-                                                                            rows="3"></textarea>
-
-                                                                        <p class="error-text"
-                                                                            *ngIf="submitAttempt && ReplyNoteForm.controls.reply.errors?.required">
-                                                                            Enter note reply !
-                                                                        </p>
-                                                                    </div>
-                                                                    <div class="ml-1 md:w-1/6 text-center">
-                                                                        <button
-                                                                            class="new-project-btn primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center"
-                                                                            (click)="ReplayToNoteDetails()">
-                                                                            <i class="fa fa-paper-plane"></i>
-                                                                        </button>
-                                                                    </div>
-
-                                                                </div>
-
-
-                                                            </div>
-                                                        </form>
 
                                                         </div>
 
@@ -310,14 +306,13 @@
                     <p class="error-text" *ngIf="noteSubmitAttempt && projectnote.controls.note.errors?.required">
                         Note is required</p>
                 </div>
-                <!-- class="primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center" -->
 
                 <div class="modal-footer">
                     <button type="button"
-                        class="primary-btn font-size-16 font-medium tracking-normal text-center cancel-btn"
+                        class="primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center"
                         (click)="htmlAddNoteModal.hide()" aria-label="Close">Cancel</button>
                     <button type="button" (click)="addNote()"
-                        class="primary-btn font-size-16 primary-btn-text-color font-medium tracking-normal text-center">Submit</button>
+                        class="primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center">Submit</button>
 
                 </div>
             </form>
@@ -423,30 +418,17 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="mt-2 d-flex justify-content-end">
-                            <div>
-                                <button type="button"
-                                    class="new-project-btn primary-btn font-size-16 font-medium tracking-normal text-center mx-2"
-                                    (click)="htmlConvertTaskModal.hide()" aria-label="Close">Cancel</button>
-                            </div>
-                            <div>
-                                <button type="button" (click)="AddProjectTask()"
-                                    class="new-project-btn primary-btn font-size-16 primary-btn-text-color font-medium tracking-normal text-center">Submit</button>
-                            </div>
-
-                        </div>
-
                     </div>
                 </div>
 
-                <!-- <div class="modal-footer">
+                <div class="modal-footer">
                     <button type="button"
                         class="new-project-btn primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center"
                         (click)="htmlConvertTaskModal.hide()" aria-label="Close">Cancel</button>
                     <button type="button" (click)="AddProjectTask()"
                         class="new-project-btn primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center">Submit</button>
 
-                </div> -->
+                </div>
             </form>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

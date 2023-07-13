@@ -2,6 +2,7 @@
     <div class="md:flex pt-3 fixed-style">
         <div class="md:w-full flex justify-between">
             <span class="font-size-24 heading-title-text-color font-bold mb-0 tracking-normal cursor-pointer">
+                <i class="fa fa-database section-menu-icon"></i>
                 Tech Stack
             </span>
             <div class="text-right" style="margin-right: 10px;">
@@ -22,7 +23,8 @@
         <div class="p-4">
             <div class="mt-4 lg:flex">
                 <div class="md:w-full">
-                    <div class="worker-table mt-3" *ngIf="techstackList && techstackList.length>0">
+                    <!--Muskaan Commented start-->
+                    <!-- <div class="worker-table mt-3" *ngIf="techstackList && techstackList.length>0">
                         <table class="worker-data" style="WIDTH: 100%;">
                             <tr>
                                 <th class="text-left">Tech stack</th>
@@ -88,6 +90,40 @@
                                         </ul>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!--Muskaan Commented end-->
+
+                    <div class="center text-center">
+                        <table border="2" class="table">
+                            <thead>
+                                <tr class="table-head">
+                                    <th class="table-data text-left">Tech stack</th>
+                                    <th class="table-data text-left">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let tech of techstackList">
+                                    <td class="table-data text-left">{{tech.name}}</td>
+                                    <td class="table-data" style="width: 15%">
+                                        <button class="table-edit-action-button" (click)="editTechstack(tech)">
+                                            <i class="fa fa-edit"> Edit </i>
+                                        </button>
+                                        <button class="m-2 table-delete-action-button" (click)="DeleteTechStack(tech .id)">
+                                            <i class="fas fa-trash"> Delete </i>
+                                        </button>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="mt-5 text-right">
+                            <div class="pagination">
+                                <a href="#"> <i class="fas fa-angle-double-left"></i> Prev</a>
+                                <a href="#" class="active"> 1 </a>
+                                <a href="#"> 2 </a>
+                                <a href="#"> Next <i class="fas fa-angle-double-right"></i> </a>
                             </div>
                         </div>
                     </div>

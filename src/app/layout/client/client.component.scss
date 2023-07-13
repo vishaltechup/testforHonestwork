@@ -286,7 +286,7 @@
    display: flex;
    align-items: center;
    justify-content: flex-end;
-   padding: 0.5rem;
+   padding: 1rem;
    border-top: 1px solid #c8ced3;
    border-bottom-right-radius: .3rem;
    border-bottom-left-radius: .3rem;
@@ -397,16 +397,4 @@ button.close {
 
 .mt-2{
    margin-top: 10px;
-}
-table,tr{
-   border: 1px solid #c8ced3;
-}
-.delete-btn{
-   color: red;
-}
-.container-fluid {
-   padding-bottom: 5% !important;
-}
-input.input-form-control.ng-untouched.ng-pristine.ng-invalid {
-   height: 40px;
 }

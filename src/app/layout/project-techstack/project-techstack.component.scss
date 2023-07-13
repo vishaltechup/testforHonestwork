@@ -399,12 +399,14 @@ button.close {
    margin-top: 10px;
 }
 
-.pagination {
-   display: flex;
-   padding-left: 0;
-   list-style: none;
-   border-radius: .25rem;
-}
+// Muskaan Commented start
+// .pagination {
+//    display: flex;
+//    padding-left: 0;
+//    list-style: none;
+//    border-radius: .25rem;
+// }
+// Muskaan commented ends
 
 .page-link {
    position: relative;
@@ -451,6 +453,3 @@ a:not([href]):not([tabindex]), a:not([href]):not([tabindex]):focus, a:not([href]
 td:last-child {
    width: 10%;
  }
- .container-fluid {
-   padding-bottom: 5% !important;
-}

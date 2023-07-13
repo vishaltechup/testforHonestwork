@@ -37,7 +37,7 @@
                                     </span> -->
                                 <ng-container *ngIf="agencyWiseData !== undefined">
                                     <div class="worker-data" *ngFor="let workeractivity of agencyWiseData">
-                                        <table width="100%" class="worker-table border"
+                                        <table width="100%" class="worker-table"
                                             *ngIf="workersActivityList && workersActivityList.length">
                                             <tr style="text-decoration: underline; font-weight: bold;">
                                                 <td>{{workeractivity?.childArray[0]?.agencyName}}</td>
@@ -52,11 +52,6 @@
                                                 <th class="font-size-14 heading-title-text-color tracking-normal font-bold text-center"
                                                     style="text-align:center !important;">
                                                     Time Worked / Activity</th>
-                                                <th class="delete-container">
-                                                    <div class="delete-container">
-                                                        Action
-                                                    </div>
-                                                </th>
                                             </tr>
                                             <tr *ngFor="let workeractivity of workeractivity.childArray"
                                                 id="profile-tr">
@@ -69,9 +64,9 @@
                                                                 routerLink="/today-activity/{{projectId}}/{{workeractivity.workerId}}">
                                                                 {{workeractivity.workerName}}
                                                             </p>
-                                                            <!-- <div class="dropdown-container" tabindex="-1">
+                                                            <div class="dropdown-container" tabindex="-1">
                                                                 <i class="fa fa-times" style="color: red;font-size: 14px;" (click)="deleteUser(workeractivity)"></i>
-                                                            </div> -->
+                                                            </div>
                                                             <!-- <div class="dropdown-container" tabindex="-1">
                                                                 <div class="three-dots"></div>
                                                                 <ul class="dropdown">
@@ -185,12 +180,6 @@
                                                                 </tr>
                                                             </tbody>
                                                         </table>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="dropdown-container delete-container" tabindex="-1">
-                                                        <!-- <i class="fa fa-times" style="color: red;font-size: 14px;" (click)="deleteUser(workeractivity)"></i> -->
-                                                        <i class="fa fa-trash"  (click)="deleteUser(workeractivity)"></i>
                                                     </div>
                                                 </td>
                                             </tr>

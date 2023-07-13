@@ -2,6 +2,7 @@
     <div class="md:flex pt-3 fixed-style">
         <div class="md:w-full">
             <span class="font-size-24 heading-title-text-color font-bold mb-0 tracking-normal cursor-pointer">
+                <i class="fas fa-pen section-menu-icon"></i>
                 Notes
             </span>
             <p class="font-size-14 tracking-normal font-medium child-text-color mb-0 pt-4">
@@ -22,7 +23,8 @@
     <div class="lg:flex lg:flex-wrap pt-4" *ngIf="noteList && noteList.length>0">
         <div class="lg:w-3/12 mb-4 pr-2 m-pr-0" *ngFor="let note of noteList">
             <div class="workers-box">
-                <div class="p-4">
+                <!-- add div center -->
+                <div class="p-4 project-card">
                     <div class="flex items-center justify-between">
                         <span class="font-size-14 tracking-normal link-text-color font-medium">
                             Posted by
@@ -165,8 +167,9 @@
                     </div>
 
                 </div>
+                <!-- center div ends here -->
                 <div class="top-full-border mt-3"></div>
-                <div class="p-4">
+                <div class="p-4 project-card" style="margin-top: -9px;">
                     <div class="flex justify-center cursor-pointer">
                         <img src="../../../assets/img/card.svg" />
                     </div>

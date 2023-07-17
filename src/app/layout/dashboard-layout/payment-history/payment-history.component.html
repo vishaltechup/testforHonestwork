@@ -12,7 +12,7 @@
                         <div class="text-right" style="margin-right: 10px;">
                             <div>
                                 <button (click)="paymentHistoryModal.show();openModal()" style="cursor: pointer;"
-                                    class="mt-3 new-project-btn primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center">
+                                    class="mt-3 new-project-btn primary-btn font-size-16 primary-btn-text-color font-medium tracking-normal text-center">
                                     Add Payment History
                                 </button>
                             </div>
@@ -114,7 +114,7 @@
                                                     </span>
                                                     &nbsp; | &nbsp;
                                                     <span (click)="DeletePayment(Payment.id)"
-                                                        class="font-medium heading-title-text-color font-size-14">
+                                                        class="font-medium heading-title-text-color font-size-14 delete-btn">
                                                         <i class="fas fa-trash"></i>
                                                     </span>
                                                 </td>
@@ -220,10 +220,10 @@
 
                 <div class="modal-footer">
                     <button type="button"
-                        class="primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center"
+                        class="primary-btn font-size-16 cancel-btn font-medium tracking-normal text-center"
                         (click)="paymentHistoryModal.hide()" aria-label="Close">Cancel</button>
                     <button type="button" (click)="AddNewPaymentToProject()"
-                        class="primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center">Submit</button>
+                        class="primary-btn font-size-16 primary-btn-text-color font-medium tracking-normal text-center">Submit</button>
 
                 </div>
             </form>

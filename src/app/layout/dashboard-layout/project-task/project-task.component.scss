@@ -202,8 +202,10 @@
  
  
  .modal-content {
-    position: relative;
+    // position: relative;
+    position: absolute;
     display: flex;
+    top: -50px;
     flex-direction: column;
     width: 100%;
     pointer-events: auto;
@@ -609,5 +611,13 @@
 .form-label{
     font-weight: 400;
 }
-
+form.form-horizontal.ng-untouched.ng-dirty.ng-invalid {
+    max-height: 74vh;
+}
+textarea#TaskDescription {
+    height: 70px !important;
+}
+.modal-content {
+    height: 79vh;
+}
 

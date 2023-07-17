@@ -24,7 +24,7 @@
                                         <div class="pl-2 m-pl-0 mt-1">
                                             <select formControlName="filterby" name="filterby" id="filterby"
                                                 class="select-dropdown-design" (change)="filterPriority($event)">
-                                                <option value="0">Show All</option>
+                                                <option value="" selected>Show All</option>
                                                 <option *ngFor="let tag of Taglist" [value]="tag.id">
                                                     {{tag.name}}</option>
                                             </select>
@@ -427,6 +427,7 @@
             <form [formGroup]="taskForm" method="post" class="form-horizontal">
 
                 <div class="modal-header">
+                    <!-- <h4 class="modal-title"><b>Add Task</b></h4> -->
                     <h4 class="modal-title"><b>Add Task</b></h4>
                     <button type="button" class="close" (click)="htmlAddModal.hide()" aria-label="Close">
                         <span aria-hidden="true">&times;</span>

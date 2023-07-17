@@ -7,8 +7,9 @@ export const environment = {
 };
 
 /* local env */
-const protocol = ' https';
-const host = "honestworkapi.daalvinservice.com/api"
+const protocol = 'https';
+// const host = "honestworkapi.daalvinservice.com/api"
+const host = "honestworkapi.azurewebsites.net/api"
 const port = '';
 const trailUrl = '';
 

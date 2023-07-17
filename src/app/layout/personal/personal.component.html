@@ -1,26 +1,25 @@
-<div class="container-fluid">
-    <div class="md:flex pt-3 fixed-style">
-        <div class="md:w-full">
-            <h1 class="font-size-24 heading-title-text-color font-bold mb-0 tracking-normal">
+<div class="container-fluid mt-5">
+    <div class="md-flex pt-3 fixed-style">
+        <div class="md:w-full flex justify-between">
+            <h1 class="font-size-24 heading-title-text-color font-bold mb-0 tracking-normal cursor-pointer">
                 <i class="fas fa-clipboard-list section-menu-icon"></i>
                 Personal To Do
             </h1>
         </div>
     </div>
-    <div class="lg:flex">
-        <div class="lg:w-full">
-            <div class="md:w-full">
+    <div class="flex p-3">
+        <div class="w-full">
+            <div class="w-full">
                 <form [formGroup]="todoForm" method="post">
-                    <div class="relative flex w-full items-stretch mb-3 dashboard-box normal-shadow">
-                        <input class="px-3 py-3 block input-form-control w-full pr-10 mr-2" type="text" id="notes-input"
+                    <div class="relative flex w-full items-stretch mb-3">
+                        <input class="input-form-control w-full mr-2" type="text" id="notes-input"
                             name="notes" formControlName="notes" placeholder="Write Something...">
                         <p class="error-text" *ngIf="submitAttempt && todoForm.controls.notes.errors?.required">
                             Please Enter notes
                         </p>
-                        <span class="z-10 leading-snug font-normal text-center text-gray-400 bg-transparent
-                 rounded text-base items-center justify-center w-8 right-0 py-3" (click)="insertpersonaltodo()"
-                            style="width: 15%;color: #fff;background: #4400cc;cursor: pointer;border-radius: 8px;">Add
-                        </span>
+                        <button class="cus-primary-btn text-white" (click)="insertpersonaltodo()"
+                            >Add
+                        </button>
                     </div>
                 </form>
             </div>

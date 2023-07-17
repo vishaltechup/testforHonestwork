@@ -59,79 +59,81 @@
 
 
         <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
-            <div class="md:container md:mx-auto">
-                <div class="row" style="margin:100px">
-                    <div class="column" style="background-color: #fff;">
-                        <div style="padding:50px">
-                            <div class="form pt-8">
-                                <div>
-                                    <p class="font-size-14 mb-2 tracking-normal font-bold input-label-color">
-                                        Email address <span class="help-block">*</span>
-                                    </p>
-                                    <input class="block input-form-control" type="email" formControlName="emailId"
-                                        id="emailId" placeholder="Email address*" required maxlength="100" />
-                                    <p class="error-text"
-                                        *ngIf="loginSubmitted && loginForm.controls.emailId.errors?.required">
-                                        Please enter email</p>
-                                    <p class="error-text"
-                                        *ngIf="loginSubmitted && !loginForm.controls.emailId.errors?.required && loginForm.controls.emailId?.invalid">
-                                        Invalid email address</p>
-                                </div>
-                                <div class="pt-6">
-                                    <p class="font-size-14 mb-2 tracking-normal font-bold input-label-color">
-                                        Password <span class="help-block">*</span>
-                                    </p>
-                                    <div class="relative flex w-full flex-wrap items-stretch">
-
-                                        <input [type]="passwordType ? 'text' : 'password'" formControlName="password"
-                                            class="px-3 py-3 input-form-control relative  pr-10"
-                                            id="exampleInputPassword1" placeholder="Password*" required
-                                            maxlength="20" />
-                                        <span class="d-inline-block field-icon">
-
-
-                                        </span>
-
-                                        <div>
-                                            <span (click)="togglePasswordFieldTypes()"
-                                                class="z-10 h-full leading-snug font-normal absolute text-center absolute bg-transparent rounded text-base items-center justify-center w-8 right-0 pr-3 py-3"><i
-                                                    [class]="passwordType ? 'far fa-fw fa-eye toggle-password' : 'far fa-fw fa-eye-slash toggle-password'"></i></span>
-                                        </div>
-
+            <div class="container mt-10">
+                <div class="sol-lg-10 col-md-12 col-sm-12" style="margin-left:auto;margin-right: auto;">
+                    <div class="row">
+                        <div class="col-lg-6" style="background-color: #fff;height:400px;">
+                            <div class="py-5">
+                                <div class="form pt-8">
+                                    <div>
+                                        <p class="font-size-14 mb-2 tracking-normal font-bold input-label-color">
+                                            Email address <span class="help-block">*</span>
+                                        </p>
+                                        <input class="block input-form-control" type="email" formControlName="emailId"
+                                            id="emailId" placeholder="Email address*" required maxlength="100" />
                                         <p class="error-text"
-                                            *ngIf="loginSubmitted && loginForm.controls.password.errors?.required">
-                                            Please enter password </p>
+                                            *ngIf="loginSubmitted && loginForm.controls.emailId.errors?.required">
+                                            Please enter email</p>
                                         <p class="error-text"
-                                            *ngIf="loginSubmitted && !loginForm.controls.password.errors?.required && loginForm.controls.password?.invalid">
-                                            Password must be atleast 6 characters. !.</p>
+                                            *ngIf="loginSubmitted && !loginForm.controls.emailId.errors?.required && loginForm.controls.emailId?.invalid">
+                                            Invalid email address</p>
                                     </div>
+                                    <div class="pt-6">
+                                        <p class="font-size-14 mb-2 tracking-normal font-bold input-label-color">
+                                            Password <span class="help-block">*</span>
+                                        </p>
+                                        <div class="relative flex w-full flex-wrap items-stretch">
+
+                                            <input [type]="passwordType ? 'text' : 'password'" formControlName="password"
+                                                class="px-3 py-3 input-form-control relative  pr-10"
+                                                id="exampleInputPassword1" placeholder="Password*" required
+                                                maxlength="20" />
+                                            <span class="d-inline-block field-icon">
+
+
+                                            </span>
+
+                                            <div>
+                                                <span (click)="togglePasswordFieldTypes()"
+                                                    class="z-10 h-full leading-snug font-normal absolute text-center absolute bg-transparent rounded text-base items-center justify-center w-8 right-0 pr-3 py-3"><i
+                                                        [class]="passwordType ? 'far fa-fw fa-eye toggle-password' : 'far fa-fw fa-eye-slash toggle-password'"></i></span>
+                                            </div>
+
+                                            <p class="error-text"
+                                                *ngIf="loginSubmitted && loginForm.controls.password.errors?.required">
+                                                Please enter password </p>
+                                            <p class="error-text"
+                                                *ngIf="loginSubmitted && !loginForm.controls.password.errors?.required && loginForm.controls.password?.invalid">
+                                                Password must be atleast 6 characters. !.</p>
+                                        </div>
+                                    </div>
+                                    <p class="font-size-14 tracking-normal font-medium link-text-color cursor-pointer mb-0"
+                                        data-toggle="modal" (click)="htmlAddModal.show();openModal()"
+                                        style="font-size: 15px;margin-top: 10px;">
+                                        Forgot password ?
+                                    </p>
                                 </div>
-                                <p class="font-size-14 tracking-normal font-medium link-text-color cursor-pointer mb-0"
-                                    data-toggle="modal" (click)="htmlAddModal.show();openModal()"
-                                    style="font-size: 15px;margin-top: 10px;">
-                                    Forgot password ?
+                                <div class="create-account-btn pt-7 text-center">
+                                    <button class="large-btn-style text-center create-account-btn-style" type="submit">
+                                        Login
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mb-3" style="background-color: #1c3a84;height:400px;">
+                            <div class="flex items-center justify-between header-align-top">
+                                <p class="font-size-20 cursor-pointer white-text-color font-medium tracking-normal mb-0"
+                                    style="padding: 13%;">
+                                    <img src="../../../assets/img/HonestWork Logo.png" style="width:100%; height:100%">
                                 </p>
                             </div>
-                            <div class="create-account-btn pt-7 text-center">
-                                <button class="large-btn-style text-center create-account-btn-style" type="submit">
-                                    Login
-                                </button>
-                            </div>
+                            <span
+                                class="font-size-20 cursor-pointer white-text-color font-medium tracking-normal mb-0 pl-10"
+                                routerLink="/register" style="color: #fff; padding-left: 15%;margin-bottom: 10px;">
+                                New To the Honest Work?
+                                SignUp
+                            </span>
                         </div>
-                    </div>
-                    <div class="column" style="background-color: var(--primary);">
-                        <div class="flex items-center justify-between header-align-top">
-                            <p class="font-size-20 cursor-pointer white-text-color font-medium tracking-normal mb-0"
-                                style="padding: 13%;">
-                                <img src="../../../assets/img/HonestWork Logo.png" style="width:100%; height:100%">
-                            </p>
-                        </div>
-                        <span
-                            class="font-size-20 cursor-pointer white-text-color font-medium tracking-normal mb-0 pl-10"
-                            routerLink="/register" style="color: #fff; padding-left: 15%;">
-                            New To the Honest Work?
-                            SignUp
-                        </span>
                     </div>
                 </div>
             </div>

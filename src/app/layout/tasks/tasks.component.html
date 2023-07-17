@@ -24,7 +24,8 @@
     <div class="w-full" style="overflow:auto;">
         <div class="md:flex mt-5 main-content-banner"
             style="width:fit-content;overflow:auto;height: 70vh;padding: 8px 0px;">
-            <div *ngFor="let task of finalTaskArray" class="workers-banner-new p-4 m-mb-2 mr-3 pt-0">
+            <div *ngFor="let task of finalTaskArray" class="workers-banner-new  m-mb-2 mr-3 pt-0"> 
+                <!-- p-4 -->
                 <div class="md:flex header">
                     <div class="md:w-full">
                         <p class="font-size-18 tracking-normal font-bold heading-title-text-color" style="color: #fff;">
@@ -34,58 +35,60 @@
 
                 </div>
                 <!-- <div class="md:w-full "> -->
-                <div class="md:w-full worker-banner-task px-3 py-2 m-mb-2 mr-3 mt-2"
-                    *ngFor="let taskCard of task.groupItem">
-                    <div class="md:flex">
-                        <div class="md:w-full">
-                            <div class="flex flex-wrap">
-                                <label style="font-size: 12px;"><b>Task Id:</b>{{taskCard.ticketNo}}</label>
-                            </div>
-                            <div class="flex flex-wrap">
-                                <p class="status-tag mr-2"
-                                    [ngStyle]="{'background-color':taskCard.prioritycolor,'color':taskCard.prioritycolor.toLowerCase() === 'white'?'black':'white'}">
-                                    {{taskCard.priorityName}}</p>
-                                <p *ngFor="let tag of taskCard.tagList" class="status-tag mr-2"
-                                    [ngStyle]="{'background-color':tag.tagColor,'color':tag.tagColor?.toLowerCase() === 'white'?'black':'white'}">
-                                    {{tag.tagName}}</p>
-                                <!-- <p class="status-tag danger-chip mr-2">Missed (For Now)</p> -->
-                                <!--  <p class="status-tag suceess-chip mr-2">Achieved!</p>
-                                <p class="status-tag warning-chip mr-2">On Track</p>
-                                <p class="status-tag inprogress-chip mr-2">In Progress</p>
-                                <p class="status-tag planning-chip mr-2">Planning</p>
-                                <p class="status-tag risk-chip mr-2">At Risk</p>
-                                <p class="status-tag upnext-chip mr-2">Up Next</p>
-                                <p class="status-tag tips-chip mr-2">Trello Tips</p> -->
-                            </div>
-                            <div (click)="editTaskModal(taskCard);htmlAddModal.show()"><label
-                                    style="word-break: break-all;cursor: pointer;"><u>{{taskCard.task}}</u></label>
-                            </div>
-                            <div class="">
-                                <label class="description-label"
-                                    [innerHtml]="taskCard.taskDescription">{{taskCard.taskDescription}}</label>
-                            </div>
-                            <div class="flex justify-between mt-2">
-                                <div class="flex">
-                                    <input type="file" id="imgupload" style="display:none"
-                                        (change)="readUrl($event,taskCard)" multiple />
-                                    <label for='imgupload mr-2'> <i
-                                            class="fa fa-paperclip cursor-pointer mr-2"></i></label>
-                                    <label style="font-size: 12px;">Total Documents:
-                                        {{taskCard?.fileList?.length}}</label>
-
+                    <!-- w-full -->
+                <div class="p-4">
+                    <!-- m-mb-2 mr-3 -->
+                    <div class="md: worker-banner-task px-3 py-2  mt-2" 
+                        *ngFor="let taskCard of task.groupItem">
+                        <div class="md:flex">
+                            <div class="md:w-full">
+                                <div class="flex flex-wrap">
+                                    <label style="font-size: 12px;"><b>Task Id:</b>{{taskCard.ticketNo}}</label>
                                 </div>
-                                <div class="flex">
-                                    <label style="font-size: 12px;">{{taskCard?.taskcreatedDate}}</label>
-                                    <img class="profile-img ml-2" src="{{taskCard.workerImage}}"
-                                        onerror="this.onerror=null;this.src='./assets/img/profile.png'" />
-                                    <!-- <img class="profile-img" src="./assets/img/f.svg" />
-                                    <img class="profile-img" src="./assets/img/code.svg" />
-                                    <img class="profile-img" src="./assets/img/mac.png" /> -->
+                                <div class="flex flex-wrap">
+                                    <p class="status-tag mr-2"
+                                        [ngStyle]="{'background-color':taskCard.prioritycolor,'color':taskCard.prioritycolor.toLowerCase() === 'white'?'black':'white'}">
+                                        {{taskCard.priorityName}}</p>
+                                    <p *ngFor="let tag of taskCard.tagList" class="status-tag mr-2"
+                                        [ngStyle]="{'background-color':tag.tagColor,'color':tag.tagColor?.toLowerCase() === 'white'?'black':'white'}">
+                                        {{tag.tagName}}</p>
+                                    <!-- <p class="status-tag danger-chip mr-2">Missed (For Now)</p> -->
+                                    <!--  <p class="status-tag suceess-chip mr-2">Achieved!</p>
+                                    <p class="status-tag warning-chip mr-2">On Track</p>
+                                    <p class="status-tag inprogress-chip mr-2">In Progress</p>
+                                    <p class="status-tag planning-chip mr-2">Planning</p>
+                                    <p class="status-tag risk-chip mr-2">At Risk</p>
+                                    <p class="status-tag upnext-chip mr-2">Up Next</p>
+                                    <p class="status-tag tips-chip mr-2">Trello Tips</p> -->
+                                </div>
+                                <div (click)="editTaskModal(taskCard);htmlAddModal.show()"><label
+                                        style="word-break: break-all;cursor: pointer;"><u>{{taskCard.task}}</u></label>
+                                </div>
+                                <div class="">
+                                    <label class="description-label"
+                                        [innerHtml]="taskCard.taskDescription">{{taskCard.taskDescription}}</label>
+                                </div>
+                                <div class="flex justify-between mt-2">
+                                    <div class="flex">
+                                        <input type="file" id="imgupload" style="display:none"
+                                            (change)="readUrl($event,taskCard)" multiple />
+                                        <label for='imgupload mr-2'> <i
+                                                class="fa fa-paperclip cursor-pointer mr-2"></i></label>
+                                        <label style="font-size: 12px;">Total Documents:
+                                            {{taskCard?.fileList?.length}}</label>
+                                    </div>
+                                    <div class="flex">
+                                        <label style="font-size: 12px;">{{taskCard?.taskcreatedDate}}</label>
+                                        <img class="profile-img ml-2" src="{{taskCard.workerImage}}"
+                                            onerror="this.onerror=null;this.src='./assets/img/profile.png'" />
+                                        <!-- <img class="profile-img" src="./assets/img/f.svg" />
+                                        <img class="profile-img" src="./assets/img/code.svg" />
+                                        <img class="profile-img" src="./assets/img/mac.png" /> -->
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <div class="another-card cursor-pointer" (click)="htmlAddModal.show();addCard(task)">
                     <a>+ Add another card</a>

@@ -44,7 +44,8 @@
     height: 10px;
  }
  #progressbar .abc {
-    background-color: #ffb31a;
+   //  background-color: #ffb31a;
+    background-color: #1c3a84;
     width: 00%;
     /* Adjust with JavaScript */
     height: 10px;
@@ -465,4 +466,34 @@ a:not([href]):not([tabindex]), a:not([href]):not([tabindex]):focus, a:not([href]
    color: #fff;
    background-color:#440acc;
    border-color: #440acc;
+}
+.cancel-btn{
+      background-color: #3f4142;
+      color: white;
+}
+input#notes-input {
+   height: 40px !important;
+}
+input.input-form-control.ng-pristine.ng-invalid.ng-touched {
+   height: 35px !important;
+}
+textarea.input-form-control.ng-untouched.ng-pristine.ng-valid {
+   height: 100px !important;
+}
+select#projectMileStoneId {
+   min-height: 35px !important;
+}
+select.select-dropdown-design.ng-untouched.ng-pristine.ng-invalid {
+   min-height: 35px !important;
+}
+input.input-form-control.ng-untouched.ng-pristine.ng-invalid {
+   height: 35px !important;
+}
+.mt-2.d-flex.justify-content-end {
+   display: flex;
+   justify-content: end;
+}
+button.new-project-btn.primary-btn.font-size-16.font-medium.tracking-normal.text-center.mx-2 {
+   background-color: #3f4142;
+   color: white;
 }

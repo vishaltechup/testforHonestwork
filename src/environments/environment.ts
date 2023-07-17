@@ -7,11 +7,10 @@ export const environment = {
 };
 
 /* local env */
-const protocol = 'https';
+const protocol = ' https';
 const host = "honestworkapi.daalvinservice.com/api"
-// const protocol = 'http';
-// const host = "192.168.1.35:4200/api"
-// const host = "192.168.1.35:8088/api"
+// const protocol = ' http';
+// const host = "192.168.1.4:8088/api"
 // http://192.168.1.35:8088/swagger/index.html
 // // http://192.168.221.23:8088/
 //const host = "localhost:44317/api"
@@ -20,6 +19,7 @@ const trailUrl = '';
 const webHost = 'http://localhost:4200/';
 const hostUrl = `${protocol}://${host}${port ? ':' + port : ''}`;
 const endpoint = `${hostUrl}${trailUrl ? '/' + trailUrl : ''}`;
+
 export const ENVIRONMENT = {
   production: false,
   API: {

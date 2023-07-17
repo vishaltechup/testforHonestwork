@@ -398,3 +398,19 @@ button.close {
 .mt-2{
    margin-top: 10px;
 }
+.delete-btn{
+   color: red;
+}
+table,tr{
+   border: 1px solid #c8ced3;
+}
+button.mt-3.new-project-btn.primary-btn.font-size-16.font-medium.tracking-normal.text-center {
+   color: white;
+}
+.cancel-btn{
+   background-color: #3f4142;
+   color: white;
+}
+form.form-horizontal.ng-untouched.ng-pristine.ng-invalid {
+   height: 228px;
+}

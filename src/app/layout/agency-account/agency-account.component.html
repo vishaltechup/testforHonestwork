@@ -2,14 +2,11 @@
     <div class="md:flex pt-3 fixed-style">
         <div class="md:w-full">
             <span class="font-size-24 heading-title-text-color font-bold mb-0 tracking-normal cursor-pointer">
-                <i class="fa fa-user section-menu-icon"></i>
                 Account
             </span>
         </div>
     </div>
-
-    <!-- Muskaan comment start -->
-    <!-- <div class="account-banner p-4 mt-5 md:flex">
+    <div class="account-banner p-4 mt-5 md:flex">
         <div class="lg:w-1/2 md:w-full">
             <form [formGroup]="accountForm">
                 <div class="account-page flex">
@@ -86,7 +83,7 @@
                         </div>
                         <div class="mt-5 flex items-center">
                             <button (click)="updateProfile();"
-                                style="padding: 0px 0px; background: #4400cc; border-color: #4400cc; color: #fff;"
+                                style="padding: 0px 0px; background: #1c3a84; border-color: #1c3a84; color: #fff;"
                                 class="view-details-btn1 link-text-color font-size-18 tracking-normal font-medium text-center">
                                 Update
                             </button>
@@ -161,8 +158,8 @@
                                             id="confirmPassword" placeholder="Confirm password*" />
                                         <div>
                                             <span
-                                                class="z-irmPassword()"><i10 h-full leading-snug font-normal absolute text-center absolute bg-transparent rounded text-base items-center justify-center w-8 right-0 pr-3 py-3"
-                                                (click)="toggleShowConf
+                                                class="z-10 h-full leading-snug font-normal absolute text-center absolute bg-transparent rounded text-base items-center justify-center w-8 right-0 pr-3 py-3"
+                                                (click)="toggleShowConfirmPassword()"><i
                                                     [class]="showConformPassword ? 'far fa-fw fa-eye toggle-password' : 'far fa-fw fa-eye-slash toggle-password'"></i></span>
                                         </div>
                                         <p class="error-text"
@@ -179,7 +176,7 @@
                             </div>
                             <div class="create-account-btn pt-10">
                                 <button
-                                    style="padding: 0px 0px; background: #4400cc; border-color: #4400cc; color: #fff;"
+                                    style="padding: 0px 0px; background: #1c3a84; border-color: #1c3a84; color: #fff;"
                                     class="view-details-btn1 link-text-color font-size-18 tracking-normal font-medium text-center"
                                     type="submit">
                                     Change Password
@@ -192,78 +189,6 @@
             </form>
         </div>
 
-    </div> -->
-    <!-- Muskaan comment end -->
-
-    <div class="center text-center">
-        <form>
-            <div class="row">
-                <div class="column" style="flex: 20%">
-                    <input type="file" class="custom-file-input">
-                </div>
-                <div class="column" style="flex:80%;">
-                    <div class="form-inline">
-                        <div class="form-profile">
-                            <label for="agencyname">Agency Name<span style="color: red">*</span></label>
-                            <input type="text" id="agencyName" placeholder="Enter Agency Name" name="agencyName">
-                        </div>
-                        <div class="form-profile">
-                            <label for="email">Email<span style="color: red">*</span></label>
-                            <input type="email" id="email" placeholder="Enter email" name="email">
-                        </div>
-                    </div>
-                    <br>
-                    <div class="form-inline">
-                        <div class="form-profile">
-                            <label for="contactNumber">Contact Number<span style="color: red">*</span></label>
-                            <input type="number" id="contactNumber" placeholder="Enter Contact Number"
-                                name="contactNumber">
-                        </div>
-                        <div class="form-profile">
-                            <label for="workingDays">Working Days<span style="color: red">*</span></label>
-                            <input type="number" id="workingDays" placeholder="Enter Working Days" name="workingDays">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="center text-right">
-                <button class="form-submit-button" type="submit"> <i class="fas fa-dot-circle"></i>
-                    &nbsp;Submit</button>
-            </div>
-        </form>
     </div>
 
-    <div class="md:flex pt-3 fixed-style">
-        <div class="md:w-full">
-            <span class="font-size-24 heading-title-text-color font-bold mb-0 tracking-normal cursor-pointer">
-                Change Password
-            </span>
-        </div>
-    </div>
-    <div class="center text-center" style="height: 300px">
-        <form>
-            <div class="row">
-                <div class="column">
-                    <div class="form-inline">
-                        <div>
-                            <label for="oldpwd">Old Password<span style="color: red">*</span></label>
-                            <input type="password" id="oldpwd" placeholder="Enter Old Password" name="oldpassword">
-                        </div>
-                        <div>
-                            <label for="newpwd">New Password<span style="color: red">*</span></label>
-                            <input type="password" id="newpwd" placeholder="Enter New Password" name="newpassword">
-                        </div>
-                        <div>
-                            <label for="confirmpwd">Confirm Password<span style="color: red">*</span></label>
-                            <input type="password" id="confirmpwd" placeholder="Enter Confirm Password" name="confirmpassword">
-                        </div>
-                    </div>
-                    <div class="text-right">
-                        <button class="form-submit-button" type="submit"> <i class="fas fa-dot-circle"></i>
-                            &nbsp;Submit</button>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
 </div>

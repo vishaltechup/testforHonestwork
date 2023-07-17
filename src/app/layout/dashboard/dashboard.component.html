@@ -12,39 +12,7 @@
 
     <div class="md:flex pt-5" *ngIf="permissions.agencyview.canView">
         <div class="md:w-full">
-            <div class="flex items-center justify-between m-block">
-                <form [formGroup]="searchForm" method="post">
-
-                    <div class="flex items-center m-block">
-
-                        <div class="pr-5 m-pr-0">
-                            <input class="input-form-control" formControlName="startDate" type="date"
-                                placeholder="Start Date..." onkeydown="return false" />
-                        </div>
-                        <div class="m-pt-1">
-                            <input class="input-form-control" formControlName="endDate" type="date"
-                                placeholder="Start Date..." onkeydown="return false" />
-                        </div>
-
-                        <div class="m-pt-1 lg:ml-2 md:ml-2">
-                            <button (click)="getProjectList(1)" class="new-project-btn primary-btn font-size-18
-                        primary-btn-text-color font-medium tracking-normal text-center">
-                                Search
-                            </button>
-                        </div>
-
-                    </div>
-                </form>
-                <div class="m-pt-1">
-                    <div>
-                        <button *ngIf="permissions.newproject.canView"
-                            class="new-project-btn primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center"
-                            (click)="htmlAddModal.show();openModal()">
-                            New project
-                        </button>
-                    </div>
-                </div>
-            </div>
+           
             <p class="child-text-color font-size-14 tracking-normal font-medium tracking-normal mb-0 pt-5"
                 *ngIf="permissions.newproject.canView">
                 Statistics
@@ -97,6 +65,47 @@
             </div>
         </div>
     </div>
+
+    <div class="md:flex pt-5" *ngIf="permissions.agencyview.canView">
+        <div class="md:w-full">
+    <div class="flex items-center justify-between m-block">
+        <form [formGroup]="searchForm" method="post">
+
+            <div class="flex items-center m-block">
+
+                <div class="pr-5 m-pr-0">
+                    <input class="input-form-control" formControlName="startDate" type="date"
+                        placeholder="Start Date..." onkeydown="return false" />
+                </div>
+                <div class="m-pt-1">
+                    <input class="input-form-control" formControlName="endDate" type="date"
+                        placeholder="Start Date..." onkeydown="return false" />
+                </div>
+
+                <div class="m-pt-1 lg:ml-2 md:ml-2">
+                    <button (click)="getProjectList(1)" class="new-project-btn primary-btn font-size-18
+                primary-btn-text-color font-medium tracking-normal text-center">
+                        Search
+                    </button>
+                </div>
+
+            </div>
+        </form>
+        <div class="m-pt-1">
+            <div>
+                <button *ngIf="permissions.newproject.canView"
+                    class="new-project-btn primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center"
+                    (click)="htmlAddModal.show();openModal()">
+                    New project
+                </button>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    
+
+
     <div class="md:flex">
         <div class="md:w-full">
             <p class="child-text-color  font-size-14 tracking-normal font-medium tracking-normal mb-0 pt-5">
@@ -112,13 +121,13 @@
                         <img src="../../../assets/img/projectlogo.jpg" />
                     </div> -->
                     <div class="pl-5">
-                        <p style="font-size: 18px;"
+                        <p style="font-size: 18px; float:left"
                             class="font-size-24 tracking-normal heading-title-text-color font-medium mb-0">
-                            {{project.projectName}}
+                            {{project.projectName}} 
                         </p>
-                        <p class="link-text-color font-size-14 tracking-normal font-medium mb-0 cursor-pointer"
+                        <p class="link-text-color font-size-20 tracking-normal font-medium mb-0 cursor-pointer"
                             *ngIf="permissions.agencyview.canView">
-                            Estimated profit - ${{project.estimatedProfilt}}
+                            <br/> Estimated profit - ${{project.estimatedProfilt}}
                         </p>
                     </div>
                 </div>
@@ -164,7 +173,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button"
-                                                    class="primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center"
+                                                    class="primary-btn font-size-16 primary-btn-text-color font-medium tracking-normal text-center "
                                                     (click)="htmlDescriptionModal.hide()"
                                                     aria-label="Close">Cancel</button>
                                             </div>
@@ -313,7 +322,7 @@
 <div bsModal [config]="{backdrop: 'static',  keyboard: false}" class="modal fade" #htmlAddModal="bs-modal" tabindex="-1"
     role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-toggle="modal"
     data-target="#exampleModalScrollable">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog modal-lg d-flex" role="document">
         <div class="modal-content">
 
             <form [formGroup]="projectForm" method="post" class="form-horizontal">
@@ -497,7 +506,7 @@
                         </div>
                         <div style="display: flex; justify-content: end;">
                             <button type="button" (click)="AddProject();"
-                            class="primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center">Submit</button>
+                            class="primary-btn font-size-16 primary-btn-text-color font-medium tracking-normal text-center">Submit</button>
 
                         </div>
 

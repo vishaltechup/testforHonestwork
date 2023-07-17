@@ -2,15 +2,14 @@
     <div class="md:flex pt-3 fixed-style">
         <div class="md:w-full flex justify-between">
             <span class="font-size-24 heading-title-text-color font-bold mb-0 tracking-normal cursor-pointer">
-                <i class="fas fa-user-graduate section-menu-icon"></i>
                 Worker Skills
             </span>
             <div class="text-right" style="margin-right: 10px;">
                 <!-- <div> -->
-                <button style="cursor: pointer;" (click)="htmlModal.show();openModal()"
-                    class="new-project-btn primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center">
-                    Add Skills
-                </button>
+                    <button style="cursor: pointer;" (click)="htmlModal.show();openModal()"
+                        class="new-project-btn primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center">
+                        Add Skills
+                    </button>
                 <!-- </div> -->
             </div>
         </div>
@@ -20,8 +19,7 @@
         <hr class="mt-2" />
         <div class="p-4">
             <div class="mt-4 lg:flex">
-                <!-- Muskaan Commented Start-->
-                <!-- <div class="md:w-full">
+                <div class="md:w-full">
                     <div class="worker-table mt-3" *ngIf="skillList && skillList.length>0">
                         <table class="worker-data" style="WIDTH: 100%;">
                             <tr>
@@ -100,53 +98,8 @@
                     <div style="text-align:center;" *ngIf="skillList != null && skillList.length==0">
                         <span><b>No record (s) to show !</b></span>
                     </div>
-                </div> -->
-                <!-- Muskaan Commented ends -->
-
-                <div class="center text-center">
-                    <table border="2" class="table">
-                        <thead>
-                            <tr class="table-head">
-                                <th class="table-data text-left">Skill</th>
-                                <th class="table-data text-left">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="table-row" *ngFor="let skill of skillList">
-                                <td class="table-data text-left">{{skill.skillName}}</td>
-                                <td class="table-data" style="width: 15%">
-                                    <button type="button" class="m-2 table-edit-action-button"
-                                        (click)="editSkill(skill)">
-                                        <i class="fa fa-edit">&nbsp;&nbsp;Edit</i>
-                                    </button>
-                                    <button type="button" class="m-2 table-delete-action-button"
-                                        (click)="DeleteSkill(skill .id)">
-                                        <i class="fas fa-trash">&nbsp;&nbsp;Delete</i>
-                                    </button>
-
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="mt-5 text-right">
-                        <div class="pagination">
-                            <a href="#"> <i class="fas fa-angle-double-left"></i> Prev</a>
-                            <a href="#" class="active"> 1 </a>
-                            <a href="#"> 2 </a>
-                            <a href="#"> Next <i class="fas fa-angle-double-right"></i> </a>
-                        </div>
-                    </div>
                 </div>
             </div>
-
-            <div style="text-align:center;" *ngIf="skillList == null">
-                <span><b>No record (s) to show !</b></span>
-            </div>
-
-            <div style="text-align:center;" *ngIf="skillList != null && skillList.length==0">
-                <span><b>No record (s) to show !</b></span>
-            </div>
-
         </div>
     </div>
     <!-- <div *ngIf="pager?.pages?.length>1">
@@ -201,8 +154,8 @@
 
                     <div class="col-md-6 mt-2">
                         <p>Add Worker Skills :<span class="help-block">*</span></p>
-                        <input type="text" placeholder="Add Worker Skills" formControlName="skill" name="skill"
-                            maxlength="50" class="input-form-control" />
+                        <input type="text" placeholder="Add Worker Skills" formControlName="skill" name="skill" maxlength="50"
+                            class="input-form-control" />
                         <p class="error-text" *ngIf="submitAttempt && SkillForm.controls.skill.errors?.required">
                             Skills is required </p>
                     </div>

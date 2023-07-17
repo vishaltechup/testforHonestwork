@@ -2,7 +2,6 @@
     <div class="md:flex pt-3 fixed-style">
         <div class="md:w-full flex justify-between">
             <span class="font-size-24 heading-title-text-color font-bold mb-0 tracking-normal cursor-pointer">
-                <i class="fas fa-level-up-alt section-menu-icon"></i>
                 Task Priority
             </span>
             <div class="text-right" style="margin-right: 10px;">
@@ -22,8 +21,7 @@
         <div class="p-4">
             <div class="mt-4 lg:flex">
                 <div class="md:w-full">
-                    <!-- Muskaan Commented Starts -->
-                    <!-- <div class="worker-table mt-3" *ngIf="priorityList && priorityList.length>0">
+                    <div class="worker-table mt-3" *ngIf="priorityList && priorityList.length>0">
                         <table class="worker-data" style="WIDTH: 100%;">
                             <tr>
                                 <th class="text-left">Priority name</th>
@@ -91,43 +89,6 @@
                                         </ul>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div> -->
-                    <!-- Muskaan Commented ends-->
-
-                    <div class="center text-center">
-                        <table border="2" class="table">
-                            <thead>
-                                <tr class="table-head">
-                                    <th class="table-data text-left">Priority name</th>
-                                    <th class="table-data text-left">Priority color</th>
-                                    <th class="table-data text-left">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let priority of priorityList">
-                                    <td class="table-data text-left">{{priority.priorityName}}</td>
-                                    <td class="table-data text-left">{{priority.priorityColor}}</td>
-                                    <td class="table-data" style="width: 15%">
-                                        <button class="table-edit-action-button" (click)="editPriority(priority)">
-                                            <i class="fa fa-edit"> Edit </i>
-                                        </button>
-                                        <button class="m-2 table-delete-action-button"
-                                            (click)="DeletePriority(priority .id)">
-                                            <i class="fas fa-trash"> Delete </i>
-                                        </button>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div class="mt-5 text-right">
-                            <div class="pagination">
-                                <a href="#"> <i class="fas fa-angle-double-left"></i> Prev</a>
-                                <a href="#" class="active"> 1 </a>
-                                <a href="#"> 2 </a>
-                                <a href="#"> Next <i class="fas fa-angle-double-right"></i> </a>
                             </div>
                         </div>
                     </div>
@@ -204,9 +165,8 @@
 
                     <div class="col-md-12 mt-2">
                         <p>Add Task Priority Color :<span class="help-block">*</span></p>
-                        <input type="text" placeholder="Add Task Priority Color" id="task_priority"
-                            formControlName="priorityColor" name="priorityColor" maxlength="50"
-                            class="input-form-control" />
+                        <input type="text" placeholder="Add Task Priority Color" id="task_priority"formControlName="priorityColor"
+                            name="priorityColor" maxlength="50" class="input-form-control" />
                         <p class="error-text"
                             *ngIf="submitAttempt && TaskPriority.controls.priorityColor.errors?.required">
                             Task Priority color is required </p>

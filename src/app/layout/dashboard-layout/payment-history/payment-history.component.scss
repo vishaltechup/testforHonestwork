@@ -448,4 +448,16 @@ button.close {
     background-color: #440acc;
     border-color: #440acc;
  }
- 
+ table,tr{
+   border: 1px solid #c8ced3;
+}
+.cancel-btn{
+   background-color: #3f4142;
+   color: white;
+}
+form.form-horizontal.ng-untouched.ng-pristine.ng-invalid {
+   height: 395px;
+}
+.delete-btn{
+   color: red;
+}

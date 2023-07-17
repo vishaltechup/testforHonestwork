@@ -2,7 +2,6 @@
     <div class="md:flex pt-3 fixed-style">
         <div class="md:w-full">
             <h1 class="font-size-24 heading-title-text-color font-bold mb-0 tracking-normal">
-                <i class="fas fa-clipboard-list section-menu-icon"></i>
                 Personal To Do
             </h1>
         </div>
@@ -19,71 +18,61 @@
                         </p>
                         <span class="z-10 leading-snug font-normal text-center text-gray-400 bg-transparent
                  rounded text-base items-center justify-center w-8 right-0 py-3" (click)="insertpersonaltodo()"
-                            style="width: 15%;color: #fff;background: #4400cc;cursor: pointer;border-radius: 8px;">Add
+                            style="width: 15%;color: #fff;background: #1c3a84;cursor: pointer;border-radius: 8px;">Add
                         </span>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    <div class="center text-center">
-        <div class="lg:flex pt-5 md:flex md:flex-wrap" *ngIf="perosnalTodoList && perosnalTodoList.length>0">
-            <div class="lg:w-1/4 pl-3 pr-3 md:w-1/2 mb-5" *ngFor="let perosnalTodo of perosnalTodoList">
-                <div class="personal-todo-list-card p-4 normal-box-shadow">
-                    <div class="font-size-18 tracking-normal heading-title-text-color font-normal mb-0"
-                        *ngIf="perosnalTodo.notes.length>77" style="height: 78px;text-align: justify;">
-                        {{perosnalTodo.notes.slice(0, 77)}}
-                        <!-- <b style="cursor: pointer;color: blue;" (click)="htmlDescriptionModal.show()">Read more...</b> -->
-                        <div bsModal [config]="{backdrop: 'static',  keyboard: false}" class="modal fade"
-                            #htmlDescriptionModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                            aria-hidden="true" data-toggle="modal" data-target="#exampleModalScrollable">
-                            <div class="modal-dialog modal-lg" role="document">
-                                <div class="modal-content">
+
+    <div class="lg:flex pt-5 md:flex md:flex-wrap" *ngIf="perosnalTodoList && perosnalTodoList.length>0">
+        <div class="lg:w-1/4 pl-3 pr-3 md:w-1/2 mb-5" *ngFor="let perosnalTodo of perosnalTodoList">
+            <div class="dashboard-box p-4 normal-box-shadow">
+                <div class="font-size-18 tracking-normal heading-title-text-color font-normal mb-0"
+                    *ngIf="perosnalTodo.notes.length>77" style="height: 78px;text-align: justify;">
+                    {{perosnalTodo.notes.slice(0, 77)}}
+                    <!-- <b style="cursor: pointer;color: blue;" (click)="htmlDescriptionModal.show()">Read more...</b> -->
+                    <div bsModal [config]="{backdrop: 'static',  keyboard: false}" class="modal fade"
+                        #htmlDescriptionModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                        aria-hidden="true" data-toggle="modal" data-target="#exampleModalScrollable">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
 
 
-                                    <div class="modal-header">
-                                        <h4 class="modal-title"><b>Notes</b></h4>
-                                        <button type="button" class="close" (click)="htmlDescriptionModal.hide()"
-                                            aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-
-                                    <div class="modal-body">
-                                        <div class="col col-md-12" style="height:68vh;overflow:auto;">
-                                            <div class="lg:flex">
-                                                {{perosnalTodo.notes}}
-                                            </div>
-
-                                        </div>
-                                        <div class="modal-footer" style="padding-bottom:0px !important;">
-                                            <button type="button"
-                                                class="new-project-btn primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center"
-                                                (click)="htmlDescriptionModal.hide()" aria-label="Close">Close</button>
-
-                                        </div>
-                                    </div>
-
+                                <div class="modal-header">
+                                    <h4 class="modal-title"><b>Notes</b></h4>
+                                    <button type="button" class="close" (click)="htmlDescriptionModal.hide()"
+                                        aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
                                 </div>
+
+                                <div class="modal-body">
+                                    <div class="col col-md-12" style="height:68vh;overflow:auto;">
+                                        <div class="lg:flex">
+                                            {{perosnalTodo.notes}}
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer" style="padding-bottom:0px !important;">
+                                        <button type="button"
+                                            class="new-project-btn primary-btn font-size-18 primary-btn-text-color font-medium tracking-normal text-center"
+                                            (click)="htmlDescriptionModal.hide()" aria-label="Close">Close</button>
+
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
-                    <p class="font-size-18 tracking-normal heading-title-text-color font-normal mb-0"
-                        *ngIf="perosnalTodo.notes.length<=77" [innerHtml]="perosnalTodo.notes"
-                        style="height: 78px;text-align: justify;">
-                    </p>
-                    <div class="pt-8">
-                        <button *ngIf="!perosnalTodo.completedStatus" (click)="updatemarkcomplete(perosnalTodo.id)"
-                            class="view-details-btn link-text-color font-size-18 tracking-normal font-medium text-center"
-                            style="border: 2px solid #ff8000; color: #ff8000;">
-                            Mark complete
-                        </button>
-                        <button *ngIf="perosnalTodo.completedStatus"
-                            class="view-details-btn link-text-color font-size-18 tracking-normal font-medium text-center"
-                            style="border: 2px solid #00b300; color: #00b300;" disabled="disabled">
-                            Completed
-                        </button>
-                        <!-- <button *ngIf="!perosnalTodo.completedStatus" (click)="updatemarkcomplete(perosnalTodo.id)"
+                </div>
+                <p class="font-size-18 tracking-normal heading-title-text-color font-normal mb-0"
+                    *ngIf="perosnalTodo.notes.length<=77" [innerHtml]="perosnalTodo.notes"
+                    style="height: 78px;text-align: justify;">
+                </p>
+                <div class="pt-8">
+                    <button *ngIf="!perosnalTodo.completedStatus" (click)="updatemarkcomplete(perosnalTodo.id)"
                         class="view-details-btn link-text-color font-size-18 tracking-normal font-medium text-center">
                         Mark complete
                     </button>
@@ -91,22 +80,13 @@
                         class="view-details-btn link-text-color font-size-18 tracking-normal font-medium text-center"
                         style="border: 2px solid var(--gray); color: var(--gray);" disabled="disabled">
                         Completed
-                    </button> -->
-                    </div>
+                    </button>
                 </div>
             </div>
+        </div>
 
-        </div>
-        <div class="mt-5 text-right">
-            <div class="pagination">
-                <a href="#"> <i class="fas fa-angle-double-left"></i> Prev</a>
-                <a href="#" class="active"> 1 </a>
-                <a href="#"> 2 </a>
-                <a href="#"> Next <i class="fas fa-angle-double-right"></i> </a>
-            </div>  
-        </div>
     </div>
-    <!-- <div *ngIf="pager?.pages?.length>1">
+    <div *ngIf="pager?.pages?.length>1">
         <ul *ngIf="pager.pages && pager?.pages?.length" class="mb-5 pagination-prev page-item pagination">
             <li [ngClass]="{disabled:pager.currentPage === 1}" class="pagination-first page-item">
                 <a class="page-link" style="cursor: pointer;" *ngIf="pager.currentPage > 1"
@@ -133,6 +113,6 @@
                 <a class="page-link" *ngIf="pager.currentPage === pager.totalPages">Last</a>
             </li>
         </ul>
-    </div> -->
+    </div>
 
 </div>

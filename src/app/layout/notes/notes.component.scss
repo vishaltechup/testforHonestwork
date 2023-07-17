@@ -43,7 +43,7 @@
     height: 10px;
  }
  #progressbar .abc {
-    background-color: #ffb31a;
+    background-color: #1c3a84;
     width: 50%;
     /* Adjust with JavaScript */
     height: 10px;
@@ -491,3 +491,7 @@ a:not([href]):not([tabindex]), a:not([href]):not([tabindex]):focus, a:not([href]
 .worker-data th:nth-child(4) {
    min-width: 50px;
 }
+.container-fluid {
+   padding-bottom: 5% !important;
+}
+

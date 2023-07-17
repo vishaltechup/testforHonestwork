@@ -9,6 +9,7 @@
     overflow: auto;
 }
 .dashboard-box {
+    
     background-color: var(--dashboard-background-color);
     border-radius: var(--border-radius-normal);
 }
@@ -584,7 +585,7 @@ color:red;
     height: 10px;
  }
  #progressbar .abc {
-    background-color: #ffb31a;
+    background-color: #1c3a84;
     width: 00%;
     /* Adjust with JavaScript */
     height: 10px;
@@ -1222,4 +1223,7 @@ color:red;
  
  .modal-footer > :not(:last-child) {
     margin-right: 0.25rem;
+ }
+ .container-fluid {
+    padding-bottom: 5% !important;
  }

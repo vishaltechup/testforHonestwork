@@ -177,10 +177,11 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-<div class="container-fluid">
+<div class="container-fluid mt-5 mb-5">
     <div class="md:flex pt-3 fixed-style">
         <div class="md:w-full flex justify-between">
             <h1 class="font-size-24 heading-title-text-color font-bold mb-0 tracking-normal">
+                <i class="fa fa-users section-menu-icon"></i>
                 Workers
             </h1>
             <!-- <div class="m-center"> -->
@@ -195,20 +196,18 @@
     <form [formGroup]="workerSearchForm" method="post" class="form-horizontal">
         <div class="flex m-block items-center mr-2 pt-4">
 
-
             <div class="lg:w-1/4 md:w-full">
                 <div class="relative flex w-full flex-wrap items-stretch mt-1">
                     <span
                         class="flex z-1 h-full leading-snug font-normal absolute text-center text-gray-400 absolute bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3">
                         <i class="fas fa-search"></i>
                     </span>
-                    <input type="text" placeholder="Search a worker..." class="px-3 py-3 block input-form-control pl-10"
-                        style="padding-left: 2.5rem;" formControlName="searchName" />
+                    <input type="text" placeholder="Search a worker..." class="px-3 py-3 block input-form-control pl-10" formControlName="searchName" />
                 </div>
 
             </div>
-            <div class="lg:w-3/5 md:w-full mt-1 text-center md:text-left lg:text-left">
-                <button style="background-color: var(--cus-primary-btn-background); padding: 8px 15px;min-width: 30px;"
+            <div class="mt-1 text-center md:text-left lg:text-left">
+                <button style="background-color: var(--large-btn-color); padding: 8px 15px;min-width: 30px;"
                     class="cus-primary-btn ml-1 text-center font-medium tracking-normal white-text-color font-size-18"
                     (click)="getWorkerList(1)">
                     Search
@@ -239,8 +238,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="worker-table mt-4">
-                    <table style="width: 100%;" class="worker-data">
+                <!-- Muskaan commented starts -->
+                <!-- <div class="worker-table mt-4"> -->
+                <!-- <table style="width: 100%;" class="worker-data">
                         <tr>
                             <th class="text-left">Name</th>
                             <th class="text-left">Availability</th>
@@ -269,8 +269,54 @@
                                 </td>
                             </tr>
                         </tbody>
-                    </table>
+                    </table> -->
+                <!-- Muskaan commented ends -->
+                <div class="center text-center">
+                    <div class="worker-table mt-3">
+                        <table border="2" class="table">
+                            <thead>
+                                <tr class="table-head">
+                                    <th class="table-data text-left">Name</th>
+                                    <th class="table-data text-left">Availability</th>
+                                    <th class="table-data text-left">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngIf="workerList && workerList?.length > 0">
+                                <tr class="table-row" *ngFor="let worker of workerList">
+                                    <td class="table-data text-left">
+                                        <div class="flex items-center">
+                                            <img src="../../../assets/img/profile.png" style="max-width: 10%" />
+                                            <p style="text-decoration: underline;text-align: inherit !important;"
+                                                routerLink="/worker-details/{{worker.id}}"
+                                                class="font-size-18 heading-title-text-color pl-3 cursor-pointer font-medium tracking-normal mb-0">
+                                                {{worker.fullName}}
+                                            </p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span
+                                            class="font-size-18 tracking-normal heading-title-text-color font-medium cursor-pointer">{{worker.availability}}</span>
+                                    </td>
+                                    <td class="table-data" style="width: 25%">
+                                        <button class="ml-1 table-delete-action-button">
+                                            <i class="fas fa-trash" title="Delete" (click)="deleteWorker(worker.id);">
+                                                Delete</i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="mt-5 text-right">
+                        <div class="pagination">
+                            <a href="#"> <i class="fas fa-angle-double-left"></i> Prev</a>
+                            <a href="#" class="active"> 1 </a>
+                            <a href="#"> 2 </a>
+                            <a href="#"> Next <i class="fas fa-angle-double-right"></i> </a>
+                        </div>
+                    </div>
                 </div>
+                <!-- </div> -->
 
                 <div *ngIf="pager?.pages?.length>1">
                     <ul *ngIf="pager.pages && pager?.pages?.length" class="mb-5 pagination-prev page-item pagination">
@@ -313,7 +359,8 @@
                         </p>
                     </div>
                 </div>
-                <div class="worker-table mt-4">
+                <!-- Muskaan Commented  starts -->
+                <!-- <div class="worker-table mt-4">
                     <table width="100%" class="worker-data">
                         <tr>
                             <th class="text-left">Name</th>
@@ -343,6 +390,53 @@
                             </tr>
                         </tbody>
                     </table>
+                </div> -->
+                <!-- Muskaan commented ends -->
+                <div class="center text-center">
+                    <div class="worker-table mt-3">
+                        <table border="2" class="table">
+                            <thead>
+                                <tr class="table-head">
+                                    <th class="table-data text-left">Name</th>
+                                    <th class="table-data text-left">Availability</th>
+                                    <th class="table-data text-left">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngIf="freelanceWorkerList && freelanceWorkerList?.length > 0">
+                                <tr class="table-row" *ngFor="let worker of freelanceWorkerList">
+                                    <td class="table-data text-left">
+                                        <div class="flex items-center">
+                                            <img src="../../../assets/img/profile.png" style="max-width: 10%" />
+                                            <p style="text-decoration: underline;"
+                                                routerLink="/worker-details/{{worker.id}}"
+                                                class="font-size-18 heading-title-text-color pl-3 cursor-pointer font-medium tracking-normal mb-0">
+                                                {{worker.fullName}}
+                                            </p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span
+                                        class="font-size-18 tracking-normal heading-title-text-color font-medium cursor-pointer">{{worker.availability}}
+                                    </span>
+                                    </td>
+                                    <td class="table-data" style="width: 25%">
+                                        <button class="ml-1 table-delete-action-button">
+                                            <i class="fas fa-trash" title="Delete" (click)="deleteWorker(worker.id);">
+                                                Delete</i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="mt-5 text-right">
+                        <div class="pagination">
+                            <a href="#"> <i class="fas fa-angle-double-left"></i> Prev</a>
+                            <a href="#" class="active"> 1 </a>
+                            <a href="#"> 2 </a>
+                            <a href="#"> Next <i class="fas fa-angle-double-right"></i> </a>
+                        </div>
+                    </div>
                 </div>
 
                 <div *ngIf="pager2?.pages?.length>1">

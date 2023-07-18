@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid mt-5">
     <div class="md:flex pt-3 fixed-style">
         <div class="md:w-full flex justify-between">
             <span class="font-size-24 heading-title-text-color font-bold mb-0 tracking-normal cursor-pointer">
@@ -12,7 +12,8 @@
         <hr class="mt-2" />
         <div class="p-4">
             <div class="mt-4 lg:flex">
-                <div class="md:w-full">
+                <!-- Muskaan Commented starts -->
+                <!-- <div class="md:w-full">
                     <div class="worker-table mt-3" *ngIf="projectList && projectList.length>0">
                         <table class="worker-data" style="WIDTH: 100%;">
                             <tr>
@@ -42,11 +43,52 @@
 
                     <div style="text-align:center;" *ngIf="projectList.length === 0">
                         <span><b>There are no projects to show</b></span>
-                    </div>
+                    </div> -->
 
                     <!-- <div style="text-align:center;" *ngIf="skillList != null && skillList.length==0">
                         <span><b>No record (s) to show !</b></span>
                     </div> -->
+                <!-- </div> -->
+                <!-- Muskaan Commented ends -->
+
+                <div class="center text-center">
+                    <div class="worker-table mt-3" *ngIf="projectList && projectList.length>0">
+                    <table border="2" class="table">
+                        <thead>
+                            <tr class="table-head">
+                                <th class="table-data text-left">Projects</th>
+                                <th class="table-data text-left">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-row" *ngFor="let project of projectList">
+                                <td class="table-data text-left">{{project.projectName}}</td>
+                                <td class="table-data" style="width: 25%">
+                                    <button class="m-2 table-view-action-button">
+                                        <i class="fas fa-eye" title="View" (click)="navigateToProject(project)"> View</i>
+                                    </button>
+                                    <button class="m-2 table-tasklist-action-button">
+                                        <i class="fa fa-tasks" title="TaskList"
+                                            routerLink="/task-list/{{project.id}}"> Tasks List</i>
+                                    </button>
+                                    <button class="ml-1 table-delete-action-button">
+                                        <i class="fas fa-trash" title="Delete"
+                                            (click)="deleteProject(project.id)"> Delete</i>
+                                    </button>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                    <div class="mt-5 text-right">
+                        <div class="pagination">
+                            <a href="#"> <i class="fas fa-angle-double-left"></i> Prev</a>
+                            <a href="#" class="active"> 1 </a>
+                            <a href="#"> 2 </a>
+                            <a href="#"> Next <i class="fas fa-angle-double-right"></i> </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

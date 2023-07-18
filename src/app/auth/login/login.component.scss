@@ -515,14 +515,14 @@ button:focus {
  .btn {
     display: inline-block;
     font-weight: 400;
-    color: #23282c;
+   //  color: #23282c;
     text-align: center;
     vertical-align: middle;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    background-color: transparent;
+   //  background-color: transparent;
     border: 1px solid transparent;
     padding: .375rem .75rem;
     font-size: .875rem;
@@ -539,6 +539,11 @@ button:focus {
     color: #fff;
     background-color: #2f353a;
     border-color: #2f353a;
+ }
+ .btn-primarytheme {
+    color: #fff;
+    background-color: #1c3a84;
+    border-color: #1c3a84;
  }
  
  .btn-secondary {

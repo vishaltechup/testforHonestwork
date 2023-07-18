@@ -8,7 +8,8 @@ export const environment = {
 
 /* local env */
 const protocol = 'https';
-const host = "honestworkapi.daalvinservice.com/api"
+const host = "honestworkapi.azurewebsites.net/api"
+//const host = "honestworkapi.daalvinservice.com/api"
 // const protocol = 'http';
 // const host = "192.168.1.35:4200/api"
 // const host = "192.168.1.35:8088/api"

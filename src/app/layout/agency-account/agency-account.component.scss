@@ -54,12 +54,12 @@ label {
 
 .form-inline {
     display: flex;
-    flex-flow: row wrap;
+    // flex-flow: row wrap;
     align-items: center;
 }
 
 .form-inline label {
-    margin: 40px 365px 5px 0;
+    margin: 10px 250px 5px 0;
 }
 
 .form-inline input[type='text'],
@@ -67,12 +67,12 @@ label {
 .form-inline input[type='number'],
 .form-inline input[type='password'] {
     vertical-align: middle;
-    margin: 5px 100px 5px 0;
+    // margin: 5px 100px 5px 0;
     padding: 10px;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 5px;
-    width: 375px;
+    width: 65%;
 }
 
 
@@ -96,38 +96,39 @@ label {
     height: 250px;
 }
 
-.custom-file-input {
+.upload-file-input {
     color: transparent;
 }
 
-.custom-file-input::-webkit-file-upload-button {
+.upload-file-input::-webkit-file-upload-button {
     visibility: hidden;
 }
 
-.custom-file-input::before {
-    content: 'Select Display Picture';
+.upload-file-input::before {
+    content: "Select Display Picture";
     color: #fff;
     display: inline-block;
     background: -webkit-linear-gradient(top, #d1cbcb, var(--large-btn-color));
     border: 1px solid var(--large-btn-color);
     border-radius: 3px;
-    padding: 130px 49px;
     outline: none;
     white-space: nowrap;
     -webkit-user-select: none;
     cursor: pointer;
     font-weight: 700;
-    font-size: 10pt;
+    height: 200px;
+    width: 300px;
+    padding: 10px;
 }
 
-.custom-file-input:hover::before {
+.upload-file-input:hover::before {
     border-color: black;
 }
 
-.custom-file-input:active {
+.upload-file-input:active {
     outline: 0;
 }
 
-.custom-file-input:active::before {
+.upload-file-input:active::before {
     background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 }

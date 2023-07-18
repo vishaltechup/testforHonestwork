@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid mt-5">
     <div class="md:flex pt-3 fixed-style">
         <div class="md:w-full">
             <span class="font-size-24 heading-title-text-color font-bold mb-0 tracking-normal cursor-pointer">
@@ -195,40 +195,67 @@
     </div> -->
     <!-- Muskaan comment end -->
 
-    <div class="center text-center">
-        <form>
+    <div class="center">
+        <form [formGroup]="accountForm" >
             <div class="row">
-                <div class="column" style="flex: 20%">
-                    <input type="file" class="custom-file-input">
+                <div class="col-lg-3">
+                          <input type="file" class="upload-file-input" id="file-input" name="file-input"
+                          (change)="readUrl($event)">
                 </div>
-                <div class="column" style="flex:80%;">
-                    <div class="form-inline">
-                        <div class="form-profile">
+                <div class="col-lg-9 col-md-12 col-sm-12">
+                    <div class="row">
+                        <div class="col form-group">
                             <label for="agencyname">Agency Name<span style="color: red">*</span></label>
-                            <input type="text" id="agencyName" placeholder="Enter Agency Name" name="agencyName">
+                            <input type="text" id="agencyName" placeholder="Enter Agency Name" name="agencyName"
+                                formControlName="agencyName" maxlength="100" class="form-control">
+                            <p class="error-text"
+                                *ngIf="submitAttempt && accountForm.controls.agencyName.errors?.required">
+                                Agency name is required</p>
                         </div>
-                        <div class="form-profile">
+                        <div class="col form-group">
                             <label for="email">Email<span style="color: red">*</span></label>
-                            <input type="email" id="email" placeholder="Enter email" name="email">
+                            <input type="email" name="email" formControlName="agencyEmailId"
+                                placeholder="Enter email address" name="agencyEmailId" disabled="disabled" class="form-control"/>
+                            <p class="error-text"
+                                *ngIf="submitAttempt && accountForm.controls.agencyEmailId.errors?.required">
+                                Email address is required</p>
                         </div>
                     </div>
-                    <br>
-                    <div class="form-inline">
-                        <div class="form-profile">
+                    <div class="row">
+                    <div class="col form-group">
                             <label for="contactNumber">Contact Number<span style="color: red">*</span></label>
-                            <input type="number" id="contactNumber" placeholder="Enter Contact Number"
-                                name="contactNumber">
+                            <input type="number" id="contactNo" name="contactNo" maxlength="10" pattern="^\d{10}$"
+                                placeholder="ex.9999999999" mask="0000000000" formControlName="contactNo" class="form-control">
+                            <div *ngIf="submitAttempt && accountForm.controls.contactNo.errors"
+                                class="error-text help-block">
+                                <div *ngIf="accountForm.controls.contactNo.errors.required"> Contact number is required
+                                </div>
+                                <div *ngIf="accountForm.controls.contactNo.errors.pattern"> Contact number must be a
+                                    valid number</div>
+                            </div>
                         </div>
-                        <div class="form-profile">
+                        <div class="col form-group">
                             <label for="workingDays">Working Days<span style="color: red">*</span></label>
-                            <input type="number" id="workingDays" placeholder="Enter Working Days" name="workingDays">
+                            <input type="number" formControlName="workingDay" id="contactNo" name="contactNo" min="0"
+                                max="7" type="number" placeholder="Enter working day" class="form-control"/>
+                            <div *ngIf="submitAttempt && accountForm.controls.workingDay.errors"
+                                class="error-text help-block">
+                                <div *ngIf="accountForm.controls.workingDay.errors.required"> Working day is required
+                                </div>
+                                <div *ngIf="accountForm.controls.workingDay.errors.max">Only upto 7 working days is
+                                    allowed
+                                </div>
+                                <div *ngIf="accountForm.controls.workingDay.errors.min">Minimum day must be 1
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="center text-right">
-                <button class="form-submit-button" type="submit"> <i class="fas fa-dot-circle"></i>
-                    &nbsp;Submit</button>
+                <button class="form-submit-button" style="border-radius: 10px;" type="submit" (click)="updateProfile();">
+                     <i class="fas fa-dot-circle"></i>
+                    &nbsp;Update</button>
             </div>
         </form>
     </div>
@@ -240,27 +267,73 @@
             </span>
         </div>
     </div>
-    <div class="center text-center" style="height: 300px">
-        <form>
-            <div class="row">
-                <div class="column">
-                    <div class="form-inline">
-                        <div>
+    <div class="center mb-5">
+        <form novalidate [formGroup]="changeForm" (ngSubmit)="onnewChangePassword()">
+            <!-- <div class="row"> -->
+            <div>
+                <!-- <div class="column"> -->
+                <div>
+                    <!-- <div class="form-inline"> -->
+                    <div>
+                        <div class="form-group">
                             <label for="oldpwd">Old Password<span style="color: red">*</span></label>
-                            <input type="password" id="oldpwd" placeholder="Enter Old Password" name="oldpassword">
+                            <input id="oldPassword" name="oldpassword" [type]="showOldPassword ? 'text' : 'password'"
+                                placeholder="Old password*" formControlName="oldPassword" class="form-control" required>
+                            <!-- <div>
+                                <span
+                                    class="z-10 h-full leading-snug font-normal absolute text-center absolute bg-transparent rounded text-base items-center justify-center w-8 right-0 pr-3 py-3"
+                                    (click)="toggleShowOldPassword()"><i
+                                        [class]="showOldPassword ? 'far fa-fw fa-eye toggle-password' : 'far fa-fw fa-eye-slash toggle-password'"></i></span>
+                            </div> -->
+                            <p class="error-text"
+                                *ngIf="registerSubmitted && changeForm.controls.oldPassword.errors?.required">
+                                Old password is required
+                            </p>
                         </div>
-                        <div>
+                        <div class="form-group">
                             <label for="newpwd">New Password<span style="color: red">*</span></label>
-                            <input type="password" id="newpwd" placeholder="Enter New Password" name="newpassword">
+                            <input [type]="showNewPassword ? 'text' : 'password'" formControlName="newPassword"
+                                placeholder="New password*" id="newPassword" (input)="checkPassword()" class="form-control">
+                            <!-- <div>
+
+                                <span (click)="toggleShowNewPassword()"
+                                    class="z-10 h-full leading-snug font-normal absolute text-center absolute bg-transparent rounded text-base items-center justify-center w-8 right-0 pr-3 py-3"><i
+                                        [class]="showNewPassword ? 'far fa-fw fa-eye toggle-password' : 'far fa-fw fa-eye-slash toggle-password'"></i></span>
+                            </div> -->
+
+                            <p class="error-text"
+                                *ngIf="registerSubmitted && changeForm.controls.newPassword.errors?.required">
+                                Please enter Password</p>
+
+                            <div *ngIf="changeForm.controls.newPassword.value"
+                                [ngClass]="{'password-short': passwordStrength == 'Too short' || passwordStrength == 'Weak','password-good': passwordStrength == 'Good','password-strong': passwordStrength == 'Strong'}">
+                                Your password is {{passwordStrength}}</div>
+                            <div class="error-text" *ngIf="showRegexError">{{errorMsg}}</div>
+
                         </div>
-                        <div>
+                        <div class="form-group">
                             <label for="confirmpwd">Confirm Password<span style="color: red">*</span></label>
-                            <input type="password" id="confirmpwd" placeholder="Enter Confirm Password" name="confirmpassword">
+                            <input [type]="showConformPassword ? 'text' : 'password'" id="confirmpwd"
+                                formControlName="confirmPassword" placeholder="Enter Confirm Password"
+                                id="confirmPassword" placeholder="Confirm password*" class="form-control">
+                            <!-- <div>
+                                <span (click)="toggleShowConfirmPassword()"
+                                    class="z-10 h-full leading-snug font-normal absolute text-center absolute bg-transparent rounded text-base items-center justify-center w-8 right-0 pr-3 py-3"><i
+                                        [class]="showConformPassword ? 'far fa-fw fa-eye toggle-password' : 'far fa-fw fa-eye-slash toggle-password'"></i></span>
+                            </div> -->
+                            <p class="error-text"
+                                *ngIf="registerSubmitted && changeForm.controls.confirmPassword.errors?.required">
+                                Confirm password is required
+                            </p>
+                            <p class="error-text"
+                                *ngIf="registerSubmitted && changeForm.controls.confirmPassword.errors?.mustMatch">
+                                Passwords must match
+                            </p>
                         </div>
                     </div>
-                    <div class="text-right">
-                        <button class="form-submit-button" type="submit"> <i class="fas fa-dot-circle"></i>
-                            &nbsp;Submit</button>
+                    <div class="center text-right">
+                        <button class="cus-primary-btn text-white" type="submit"> <i class="fas fa-dot-circle" ></i>
+                            &nbsp;Change Password</button>
                     </div>
                 </div>
             </div>

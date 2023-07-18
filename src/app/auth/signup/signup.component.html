@@ -1,18 +1,342 @@
-<div class="">
-    <div class="full-page-background">
-        <div class="container-long">
-            <div class="flex items-center justify-between header-align-top">
-                <p class="font-size-20 cursor-pointer white-text-color font-medium tracking-normal mb-0">
-                    <img src="../../../assets/img/HonestWork Logo.png" style="height: 35px;width: 148px;">
-                </p>
-                <p class="font-size-20 cursor-pointer white-text-color font-medium tracking-normal mb-0"
-                    routerLink="/login">
-                    Login
-                </p> 
+<div class="mt-5">
+  <div class="full-page-background">
+    <!-- Muskaan commented starts -->
+    <!-- <div class="container-long">
+      <div class="flex items-center justify-between header-align-top">
+        <p
+          class="font-size-20 cursor-pointer white-text-color font-medium tracking-normal mb-0"
+        >
+          <img
+            src="../../../assets/img/HonestWork Logo.png"
+            style="height: 35px; width: 148px"
+          />
+        </p>
+        <p
+          class="font-size-20 cursor-pointer white-text-color font-medium tracking-normal mb-0"
+          routerLink="/login"
+        >
+          Login
+        </p>
+      </div>
+    </div> -->
+    <!-- Muskaan commented ends -->
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmitRegister()">
+      <div class="container">
+        <div
+          class="sol-lg-10 col-md-12 col-sm-12"
+          style="margin-left: auto; margin-right: auto"
+        >
+          <div class="row m-md-5">
+            <div class="col-lg-6" style="background-color: #fff; height: 500px">
+              <!-- Muskaan commented starts -->
+              <!-- <div class="py-5"> -->
+              <!-- <div class="form">
+                  <div>
+                    <p
+                      class="font-size-14 mb-2 tracking-normal font-bold input-label-color"
+                    >
+                      Agency name <span class="help-block">*</span>
+                    </p>
+                    <input
+                      class="block input-form-control"
+                      type="agencyName"
+                      formControlName="agencyName"
+                      id="agencyName"
+                      placeholder="Agency name*"
+                      required
+                      maxlength="50"
+                    />
+                    <p
+                      class="error-text"
+                      *ngIf="
+                        registerSubmitted &&
+                        registerForm.controls.agencyName.errors?.required
+                      "
+                    >
+                      Please enter agency name
+                    </p>
+                  </div>
+                  <div>
+                    <p
+                      class="font-size-14 mb-2 tracking-normal font-bold input-label-color"
+                    >
+                      Email address <span class="help-block">*</span>
+                    </p>
+                    <input
+                      class="block input-form-control"
+                      type="emailId"
+                      formControlName="emailId"
+                      id="emailId"
+                      placeholder="Email address*"
+                      required
+                      maxlength="100"
+                    />
+
+                    <div
+                      *ngIf="
+                        registerSubmitted &&
+                        registerForm.controls.emailId.errors
+                      "
+                      class="error-text"
+                    >
+                      <div
+                        *ngIf="registerForm.controls.emailId.errors.required"
+                      >
+                        Email is required
+                      </div>
+                      <div *ngIf="registerForm.controls.emailId.errors.pattern">
+                        Email must be a valid email address
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <p
+                      class="font-size-14 mb-2 tracking-normal font-bold input-label-color"
+                    >
+                      Mobile number <span class="help-block">*</span>
+                    </p>
+                    <input
+                      class="block input-form-control"
+                      pattern="^\d{10}$"
+                      type="text"
+                      formControlName="mobileNo"
+                      id="mobileNo"
+                      placeholder="Mobile number*"
+                      mask="0000000000"
+                      required
+                    />
+
+                    <div
+                      *ngIf="
+                        registerSubmitted &&
+                        registerForm.controls.mobileNo.errors
+                      "
+                      class="error-text"
+                    >
+                      <div
+                        *ngIf="registerForm.controls.mobileNo.errors.required"
+                      >
+                        Mobile number is required
+                      </div>
+                      <div
+                        *ngIf="registerForm.controls.mobileNo.errors.pattern"
+                      >
+                        Mobile number must be a valid number
+                      </div>
+                    </div>
+                  </div>
+                  <p
+                    class="font-size-14 mb-2 tracking-normal font-bold input-label-color"
+                  >
+                    Password <span class="help-block">*</span>
+                  </p>
+                  <div class="relative flex w-full flex-wrap items-stretch">
+                    <input
+                      [type]="passwordType ? 'text' : 'password'"
+                      formControlName="password"
+                      class="px-3 py-3 input-form-control relative pr-10"
+                      id="exampleInputPassword1"
+                      placeholder="Password*"
+                      (input)="checkPassword()"
+                    />
+                    <span class="d-inline-block field-icon"> </span>
+                    <div>
+                      <span
+                        (click)="togglePasswordFieldTypes()"
+                        class="z-10 h-full leading-snug font-normal absolute text-center absolute bg-transparent rounded text-base items-center justify-center w-8 right-0 pr-3 py-3"
+                        ><i
+                          [class]="
+                            passwordType
+                              ? 'far fa-fw fa-eye toggle-password'
+                              : 'far fa-fw fa-eye-slash toggle-password'
+                          "
+                        ></i
+                      ></span>
+                    </div>
+
+                    <p
+                      class="error-text"
+                      *ngIf="
+                        registerSubmitted &&
+                        registerForm.controls.password.errors?.required
+                      "
+                    >
+                      Please enter password
+                    </p>
+
+                    <div
+                      *ngIf="registerForm.controls.password.value"
+                      [ngClass]="{
+                        'password-short':
+                          passwordStrength == 'Too short' ||
+                          passwordStrength == 'Weak',
+                        'password-good': passwordStrength == 'Good',
+                        'password-strong': passwordStrength == 'Strong'
+                      }"
+                    >
+                      Your password is {{ passwordStrength }}
+                    </div>
+                    <div class="error-text" *ngIf="showRegexError">
+                      {{ errorMsg }}
+                    </div>
+                    <p
+                      class="error-text"
+                      *ngIf="
+                        registerSubmitted &&
+                        registerForm.controls.password.errors?.pattern
+                      "
+                    >
+                      Password must contain at least 6 characters long with 1
+                      uppercase , 1 lowercase and 1 special character.
+                    </p>
+                  </div>
+                  <p
+                    class="font-size-14 mb-2 tracking-normal font-bold input-label-color"
+                  >
+                    Confirm password <span class="help-block">*</span>
+                  </p>
+                  <div class="relative flex w-full flex-wrap items-stretch">
+                    <input
+                      [type]="passwordType ? 'text' : 'password'"
+                      formControlName="confirmPassword"
+                      class="px-3 py-3 input-form-control relative pr-10"
+                      id="exampleInputconfirmPassword"
+                      placeholder="Confirm password*"
+                    />
+                    <span class="d-inline-block field-icon"> </span>
+                    <div>
+                      <span
+                        (click)="togglePasswordFieldTypes()"
+                        class="z-10 h-full leading-snug font-normal absolute text-center absolute bg-transparent rounded text-base items-center justify-center w-8 right-0 pr-3 py-3"
+                        ><i
+                          [class]="
+                            passwordType
+                              ? 'far fa-fw fa-eye toggle-password'
+                              : 'far fa-fw fa-eye-slash toggle-password'
+                          "
+                        ></i
+                      ></span>
+                    </div>
+
+                    <p
+                      class="error-text"
+                      *ngIf="
+                        registerSubmitted &&
+                        registerForm.controls.confirmPassword.errors?.required
+                      "
+                    >
+                      Confirm password is required
+                    </p>
+                    <p
+                      class="error-text"
+                      *ngIf="
+                        registerSubmitted &&
+                        registerForm.controls.confirmPassword.errors?.mustMatch
+                      "
+                    >
+                      Passwords must match
+                    </p>
+                  </div>
+                </div> -->
+              <!-- Muskaan commented ends -->
+              <div class="form">
+                <div class="container form-group mt-5">
+                  <label for="agencyName" class="mt-2"
+                    >Agency Name
+                    <span class="text-danger">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="exampleInputEmail1"
+                    aria-describedby="emailHelp"
+                    placeholder="Enter email"
+                  />
+                  <label for="agencyName" class="mt-2"
+                    >Email Address
+                    <span class="text-danger">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="exampleInputEmail1"
+                    aria-describedby="emailHelp"
+                    placeholder="Enter email"
+                  />
+                  <label for="agencyName" class="mt-2"
+                    >Mobile Number
+                    <span class="text-danger">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="exampleInputEmail1"
+                    aria-describedby="emailHelp"
+                    placeholder="Enter email"
+                  />
+                  <label for="agencyName" class="mt-2"
+                    >Password
+                    <span class="text-danger">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="exampleInputEmail1"
+                    aria-describedby="emailHelp"
+                    placeholder="Enter email"
+                  />
+                  <label for="agencyName" class="mt-2"
+                    >Confirm Password
+                    <span class="text-danger">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="exampleInputEmail1"
+                    aria-describedby="emailHelp"
+                    placeholder="Enter email"
+                  />
+                </div>
+              </div>
+              <div class="create-account-btn text-center">
+                <button class="btn large-btn-style text-center" type="submit">
+                  SignUp
+                </button>
+              </div>
+              <!-- </div> -->
             </div>
+            <div
+              class="col-lg-6 "
+              style="background-color: #1c3a84;"
+            >
+              <div class="flex items-center justify-between header-align-top">
+                <p
+                  class="font-size-20 cursor-pointer white-text-color font-medium tracking-normal mb-0"
+                  style="padding: 13%"
+                >
+                  <img
+                    src="../../../assets/img/HonestWork Logo.png"
+                    style="width: 100%; height: 100%"
+                  />
+                </p>
+              </div>
+              <!-- pl-10 -->
+              <!-- padding-left: 15%; -->
+              <div
+                class="font-size-md-20 d-flex justify-content-center cursor-pointer white-text-color font-medium tracking-normal m-1 mb-3 "
+                routerLink="/login"
+                style="color: #fff; "
+              >
+                Already Have an Account? Login
+              </div>
+            </div>
+          </div>
         </div>
-        <form [formGroup]="registerForm" (ngSubmit)="onSubmitRegister()">      
-            <div class="md:container md:mx-auto">
+      </div>
+
+      <!-- Muskaan Commented starts -->
+      <!-- <div class="md:container md:mx-auto">
                 <div class="flex items-center justify-center center-box">
                     <div class="login-box p-12"> 
                         <p class="font-medium font-size-24 tracking-normal heading-title-text-color">
@@ -123,7 +447,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </form>
-    </div>
+            </div> -->
+      <!-- Muskaan Commented ends -->
+    </form>
+  </div>
 </div>

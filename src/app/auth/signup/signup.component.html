@@ -28,7 +28,7 @@
           style="margin-left: auto; margin-right: auto"
         >
           <div class="row m-md-5">
-            <div class="col-lg-6" style="background-color: #fff; height: 500px">
+            <div class="col-lg-6 py-4" style="background-color: #fff">
               <!-- Muskaan commented starts -->
               <!-- <div class="py-5"> -->
               <!-- <div class="form">
@@ -241,62 +241,211 @@
                 </div> -->
               <!-- Muskaan commented ends -->
               <div class="form">
-                <div class="container form-group mt-5">
-                  <label for="agencyName" class="mt-2"
-                    >Agency Name
-                    <span class="text-danger">*</span>
-                  </label>
-                  <input
-                    type="email"
-                    class="form-control"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
-                    placeholder="Enter email"
-                  />
-                  <label for="agencyName" class="mt-2"
-                    >Email Address
-                    <span class="text-danger">*</span>
-                  </label>
-                  <input
-                    type="email"
-                    class="form-control"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
-                    placeholder="Enter email"
-                  />
-                  <label for="agencyName" class="mt-2"
-                    >Mobile Number
-                    <span class="text-danger">*</span>
-                  </label>
-                  <input
-                    type="email"
-                    class="form-control"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
-                    placeholder="Enter email"
-                  />
-                  <label for="agencyName" class="mt-2"
-                    >Password
-                    <span class="text-danger">*</span>
-                  </label>
-                  <input
-                    type="email"
-                    class="form-control"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
-                    placeholder="Enter email"
-                  />
-                  <label for="agencyName" class="mt-2"
-                    >Confirm Password
-                    <span class="text-danger">*</span>
-                  </label>
-                  <input
-                    type="email"
-                    class="form-control"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
-                    placeholder="Enter email"
-                  />
+                <div class="container form-group">
+                  <div>
+                    <label for="agencyName" class="mt-2"
+                      >Agency Name
+                      <span class="text-danger">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="agencyName"
+                      id="agencyName"
+                      placeholder="Agency name*"
+                      required
+                      maxlength="50"
+                    />
+                    <p
+                      class="error-text"
+                      *ngIf="
+                        registerSubmitted &&
+                        registerForm.controls.agencyName.errors?.required
+                      "
+                    >
+                      Please enter agency name
+                    </p>
+                  </div>
+                  <div>
+                    <label for="agencyName" class="mt-2"
+                      >Email Address
+                      <span class="text-danger">*</span>
+                    </label>
+                    <input
+                      type="email"
+                      class="form-control"
+                      formControlName="emailId"
+                      id="emailId"
+                      placeholder="Email address*"
+                      required
+                      maxlength="100"
+                    />
+                    <div
+                      *ngIf="
+                        registerSubmitted &&
+                        registerForm.controls.emailId.errors
+                      "
+                      class="error-text"
+                    >
+                      <div
+                        *ngIf="registerForm.controls.emailId.errors.required"
+                      >
+                        Email is required
+                      </div>
+                      <div *ngIf="registerForm.controls.emailId.errors.pattern">
+                        Email must be a valid email address
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <label for="agencyName" class="mt-2"
+                      >Mobile Number
+                      <span class="text-danger">*</span>
+                    </label>
+                    <input
+                      class="form-control"
+                      pattern="^\d{10}$"
+                      type="text"
+                      formControlName="mobileNo"
+                      id="mobileNo"
+                      placeholder="Mobile number*"
+                      mask="0000000000"
+                      required
+                    />
+                    <div
+                      *ngIf="
+                        registerSubmitted &&
+                        registerForm.controls.mobileNo.errors
+                      "
+                      class="error-text"
+                    >
+                      <div
+                        *ngIf="registerForm.controls.mobileNo.errors.required"
+                      >
+                        Mobile number is required
+                      </div>
+                      <div
+                        *ngIf="registerForm.controls.mobileNo.errors.pattern"
+                      >
+                        Mobile number must be a valid number
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <label for="agencyName" class="mt-2"
+                      >Password
+                      <span class="text-danger">*</span>
+                    </label>
+                    <div class="relative flex w-full flex-wrap items-stretch">
+                      <input
+                        [type]="passwordType ? 'text' : 'password'"
+                        formControlName="password"
+                        class="form-control"
+                        id="exampleInputPassword1"
+                        placeholder="Password*"
+                        (input)="checkPassword()"
+                      />
+                      <span class="d-inline-block field-icon"> </span>
+                      <div>
+                        <span
+                          (click)="togglePasswordFieldTypes()"
+                          class="z-10 h-full leading-snug font-normal absolute text-center absolute bg-transparent rounded text-base items-center justify-center w-8 right-0 pr-3 py-3"
+                          ><i
+                            [class]="
+                              passwordType
+                                ? 'far fa-fw fa-eye toggle-password'
+                                : 'far fa-fw fa-eye-slash toggle-password'
+                            "
+                          ></i
+                        ></span>
+                      </div>
+
+                      <p
+                        class="error-text"
+                        *ngIf="
+                          registerSubmitted &&
+                          registerForm.controls.password.errors?.required
+                        "
+                      >
+                        Please enter password
+                      </p>
+
+                      <div
+                        *ngIf="registerForm.controls.password.value"
+                        [ngClass]="{
+                          'password-short':
+                            passwordStrength == 'Too short' ||
+                            passwordStrength == 'Weak',
+                          'password-good': passwordStrength == 'Good',
+                          'password-strong': passwordStrength == 'Strong'
+                        }"
+                      >
+                        Your password is {{ passwordStrength }}
+                      </div>
+                      <div class="error-text" *ngIf="showRegexError">
+                        {{ errorMsg }}
+                      </div>
+                      <p
+                        class="error-text"
+                        *ngIf="
+                          registerSubmitted &&
+                          registerForm.controls.password.errors?.pattern
+                        "
+                      >
+                        Password must contain at least 6 characters long with 1
+                        uppercase , 1 lowercase and 1 special character.
+                      </p>
+                    </div>
+                  </div>
+                  <div>
+                    <label for="agencyName" class="mt-2"
+                      >Confirm Password
+                      <span class="text-danger">*</span>
+                    </label>
+                    <div class="relative flex w-full flex-wrap items-stretch">
+                      <input
+                        [type]="passwordType ? 'text' : 'password'"
+                        formControlName="confirmPassword"
+                        class="form-control"
+                        id="exampleInputconfirmPassword"
+                        placeholder="Confirm password*"
+                      />
+                      <span class="d-inline-block field-icon"> </span>
+                      <div>
+                        <span
+                          (click)="togglePasswordFieldTypes()"
+                          class="z-10 h-full leading-snug font-normal absolute text-center absolute bg-transparent rounded text-base items-center justify-center w-8 right-0 pr-3 py-3"
+                          ><i
+                            [class]="
+                              passwordType
+                                ? 'far fa-fw fa-eye toggle-password'
+                                : 'far fa-fw fa-eye-slash toggle-password'
+                            "
+                          ></i
+                        ></span>
+                      </div>
+
+                      <p
+                        class="error-text"
+                        *ngIf="
+                          registerSubmitted &&
+                          registerForm.controls.confirmPassword.errors?.required
+                        "
+                      >
+                        Confirm password is required
+                      </p>
+                      <p
+                        class="error-text"
+                        *ngIf="
+                          registerSubmitted &&
+                          registerForm.controls.confirmPassword.errors
+                            ?.mustMatch
+                        "
+                      >
+                        Passwords must match
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="create-account-btn text-center">
@@ -306,10 +455,7 @@
               </div>
               <!-- </div> -->
             </div>
-            <div
-              class="col-lg-6 "
-              style="background-color: #1c3a84;"
-            >
+            <div class="col-lg-6" style="background-color: #1c3a84">
               <div class="flex items-center justify-between header-align-top">
                 <p
                   class="font-size-20 cursor-pointer white-text-color font-medium tracking-normal mb-0"
@@ -324,9 +470,9 @@
               <!-- pl-10 -->
               <!-- padding-left: 15%; -->
               <div
-                class="font-size-md-20 d-flex justify-content-center cursor-pointer white-text-color font-medium tracking-normal m-1 mb-3 "
+                class="font-size-md-20 d-flex justify-content-center cursor-pointer white-text-color font-medium tracking-normal m-1 mb-3"
                 routerLink="/login"
-                style="color: #fff; "
+                style="color: #fff"
               >
                 Already Have an Account? Login
               </div>
